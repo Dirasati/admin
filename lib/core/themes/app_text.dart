@@ -2,68 +2,79 @@ import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppText extends StatelessWidget {
-  final TextStyle style;
-  final String text;
+abstract class AppTextStyles {
+  static TextStyle h1 = TextStyle(
+    fontSize: 48.sp,
+    fontWeight: FontWeight.bold,
+  );
 
-  AppText.h1(this.text, {super.key, Color? color})
-    : style = _buildTextStyle(48, FontWeight.bold, color);
+  static TextStyle h2 = TextStyle(
+    fontSize: 36.sp,
+    fontWeight: FontWeight.bold,
+  );
 
-  AppText.h2(this.text, {super.key, Color? color})
-    : style = _buildTextStyle(36, FontWeight.bold, color);
+  static TextStyle h3 = TextStyle(
+    fontSize: 28.sp,
+    fontWeight: FontWeight.bold,
+  );
 
-  AppText.h3(this.text, {super.key, Color? color})
-    : style = _buildTextStyle(28, FontWeight.bold, color);
+  static TextStyle h4 = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w600,
+  );
 
-  AppText.h4(this.text, {super.key, Color? color})
-    : style = _buildTextStyle(24, FontWeight.w600, color);
+  static TextStyle xLarge = TextStyle(
+    fontSize: 22.sp,
+    fontWeight: FontWeight.w500,
+  );
 
-  AppText.xLarge(this.text, {super.key, Color? color})
-    : style = _buildTextStyle(22, FontWeight.w500, color);
+  static TextStyle large = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w500,
+  );
 
-  AppText.large(this.text, {super.key, Color? color})
-    : style = _buildTextStyle(20, FontWeight.w500, color);
+  static TextStyle medium = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w400,
+  );
 
-  AppText.medium(this.text, {super.key, Color? color})
-    : style = _buildTextStyle(18, FontWeight.w400, color);
+  static TextStyle normal = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+  );
 
-  AppText.normal(this.text, {super.key, Color? color})
-    : style = _buildTextStyle(16, FontWeight.w400, color);
+  static TextStyle small = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+  );
 
-  AppText.small(this.text, {super.key, Color? color})
-    : style = _buildTextStyle(14, FontWeight.w400, color);
+  static TextStyle hint = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w300,
+  );
 
-  AppText.hint(this.text, {super.key, Color? color})
-    : style = _buildTextStyle(12, FontWeight.w300, color);
+  static TextStyle primaryButton = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.white,
+  );
 
-  AppText.primaryButton(this.text, {super.key})
-    : style = _buildTextStyle(16, FontWeight.w600, AppColors.white);
+  static TextStyle secondaryButton = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.primary,
+  );
 
-  AppText.secondaryButton(this.text, {super.key})
-    : style = _buildTextStyle(16, FontWeight.w600, AppColors.primary);
+  static TextStyle link = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.primary,
+    decoration: TextDecoration.underline,
+  );
 
-  AppText.link(this.text, {super.key})
-    : style = _buildTextStyle(
-        16,
-        FontWeight.w600,
-        AppColors.primary,
-      ).copyWith(decoration: TextDecoration.underline);
-
-  factory AppText.error(String text) =>
-      AppText.small(text, color: AppColors.error);
-
-  @override
-  Widget build(BuildContext context) => Text(text, style: style);
-
-  static TextStyle _buildTextStyle(
-    double size,
-    FontWeight weight,
-    Color? color,
-  ) {
-    return TextStyle(
-      fontSize: size.sp,
-      fontWeight: weight,
-      color: color,
-    );
-  }
+  static TextStyle error = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.red,
+  );
 }

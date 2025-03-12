@@ -18,8 +18,7 @@ extension MapExtension<T, V> on Map<T, V> {
                 element.value != null &&
                 element.value != '' &&
                 element.value != {} &&
-                !(element.value is List &&
-                    (element.value as List).isEmpty),
+                element.value != [],
           ),
     );
   }
@@ -27,10 +26,12 @@ extension MapExtension<T, V> on Map<T, V> {
 
 extension ListExtension<T> on List<T> {
   List<T> withoutNullsOrEmpty() {
-    return where((element) =>
-        element != null &&
-        element != '' &&
-        element != {} &&
-        element != []).toList();
+    return where(
+      (element) =>
+          element != null &&
+          element != '' &&
+          element != {} &&
+          element != [],
+    ).toList();
   }
 }

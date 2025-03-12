@@ -1,9 +1,10 @@
+import 'package:dirasaty_admin/core/extension/map.extension.dart';
 import 'package:flutter/material.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/number_editingcontroller.dart';
 
 class PaginationDto {
-  final IntegerEditingController page;
-  final IntegerEditingController limit;
+  final IntEditingcontroller page;
+  final IntEditingcontroller limit;
   final TextEditingController keywordController;
   final TextEditingController fields;
   final TextEditingController sort;
@@ -17,17 +18,18 @@ class PaginationDto {
   }) : keywordController = TextEditingController(text: keyword),
        fields = TextEditingController(text: fields),
        sort = TextEditingController(text: sort),
-       page = IntegerEditingController(page),
-       limit = IntegerEditingController(limit);
+       page = IntEditingcontroller(page),
+       limit = IntEditingcontroller(limit);
 
-  Map<String, dynamic> toJson() => {
-    'page': page.value,
-    'limit': limit.value,
-    if (keywordController.text.isNotEmpty)
-      'keyword': keywordController.text,
-    if (fields.text.isNotEmpty) 'fields': fields.text,
-    if (sort.text.isNotEmpty) 'sort': sort.text,
-  };
+  Map<String, dynamic> toJson() =>
+      {
+        'page': page.value,
+        'limit': limit.value,
+        if (keywordController.text.isNotEmpty)
+          'keyword': keywordController.text,
+        if (fields.text.isNotEmpty) 'fields': fields.text,
+        if (sort.text.isNotEmpty) 'sort': sort.text,
+      }.withoutNullsOrEmpty();
 
   void dispose() {
     page.dispose();
@@ -37,6 +39,6 @@ class PaginationDto {
     sort.dispose();
   }
 
-  void nextPage() => page.increment();
+  void nextPage() => page.add(1);
   void firstPage() => page.setValue(1);
 }

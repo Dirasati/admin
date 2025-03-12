@@ -1,15 +1,24 @@
 import 'package:flutter/foundation.dart';
 
-class IntegerEditingController extends ValueNotifier<int> {
-  IntegerEditingController([super._value = 0]);
+class IntEditingcontroller extends ValueNotifier<int> {
+  IntEditingcontroller([super._value = 0]);
 
-  void setValue(int value) => super.value = value;
+  void setValue(int value) => this.value = value;
 
-  void increment([int step = 1]) {
-    value += step;
-  }
+  void add(int value) => this.value += value;
+  void subtract(int value) => this.value -= value;
 
-  void decrement([int step = 1]) {
-    value -= step;
-  }
+  void clear() => value = 0;
+}
+
+
+class DoubleEditingcontroller extends ValueNotifier<double> {
+  DoubleEditingcontroller([super._value = 0.0]);
+
+  void setValue(double value) => this.value = value;
+
+  void add(double value) => this.value += value;
+  void subtract(double value) => this.value -= value;
+
+  void clear() => value = 0.0;
 }
