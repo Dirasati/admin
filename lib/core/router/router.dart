@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:dirasaty_admin/core/di/locator.dart';
 
 part 'routes.dart';
 part 'navigator_base.dart';

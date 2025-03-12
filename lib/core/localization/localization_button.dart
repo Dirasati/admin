@@ -15,7 +15,7 @@ class LocalizationButton extends StatelessWidget {
         padding: EdgeInsets.all(7.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
-          border: Border.all(color: KColors.white, width: 2),
+          border: Border.all(color: AppColors.white, width: 2),
         ),
         child: Text(
           context
@@ -25,7 +25,7 @@ class LocalizationButton extends StatelessWidget {
                   .toUpperCase() ??
               'EN',
           style: TextStyle(
-            color: KColors.white,
+            color: AppColors.white,
             fontSize: 16.sp,
             fontWeight: FontWeight.w600,
           ),

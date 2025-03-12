@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-abstract class KColors {
-  static const primary = Color(0xFFF29F05);
-  static const secondary = Color.fromARGB(255, 239, 76, 1);
+abstract class AppColors {
+  static const primaryDark = Color(0xFF172154);
+  static const primary = Color(0xFF1566FF);
+  static const primaryLight = Color(0xFFDCE8FD);
 
-  static const background = Color(0xFF282828);
-
-  static const dark = Color(0xFF00012A);
-  static const grey = Color(0xFFB4B4D1);
-  static const darkGrey = Color(0xFF596574);
-  static const lightGrey = Color(0xFFE5E5E5);
+  static const black = Color(0xFF000000);
+  static const blackLight = Color(0xFF2F2F2F);
+  static const greyDark = Color(0xFF535353);
+  static const grey = Color(0xFFD9D9D9);
+  static const greyLight = Color(0xFFFAFAFA);
   static const white = Color(0xFFFFFFFF);
-  static const black = Color(0xFF18191E);
 
-  static const red = Color(0xFFE02020);
-  static const green = Color(0xFF00B341);
+  static const error = Color(0xFFD32F2F);
 }

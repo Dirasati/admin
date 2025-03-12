@@ -62,7 +62,7 @@ extension DialogExtension on BuildContext {
                   context.back();
                 },
                 color: Colors.white,
-                borderColor: KColors.primary,
+                borderColor: AppColors.primary,
                 textColor: Colors.blue,
               ),
               _buildButton(
@@ -112,7 +112,7 @@ extension DialogExtension on BuildContext {
       context: this,
       builder:
           (_) => AlertDialog(
-            backgroundColor: KColors.white,
+            backgroundColor: AppColors.white,
             title: Row(
               spacing: 8.w,
               children: [
@@ -134,9 +134,9 @@ extension DialogExtension on BuildContext {
               _buildButton(
                 text: 'TryAgain'.tr(this),
                 onPressed: () => back(),
-                color: KColors.white,
-                borderColor: KColors.primary,
-                textColor: KColors.primary,
+                color: AppColors.white,
+                borderColor: AppColors.primary,
+                textColor: AppColors.primary,
               ),
             ],
           ),

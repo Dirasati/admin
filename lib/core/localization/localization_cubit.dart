@@ -5,4 +5,5 @@ class LocalizationCubit extends Cubit<Locale?> {
   LocalizationCubit() : super(null);
 
   void changeLanguage(String langCode) => emit(Locale(langCode));
+
 }
