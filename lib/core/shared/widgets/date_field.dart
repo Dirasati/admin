@@ -1,7 +1,9 @@
 import 'package:dirasaty_admin/core/extension/date_formatter.extension.dart';
+import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 import 'package:dirasaty_admin/core/themes/app_text.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
+import 'package:dirasaty_admin/core/themes/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -128,17 +130,31 @@ class AppDateField extends StatelessWidget {
               },
             ),
 
-            if (state.hasError)
-              Padding(
-                padding: EdgeInsetsDirectional.only(
-                  top: 2.h,
-                  start: 8.w,
-                ),
-                child: Text(
-                  state.errorText!,
-                  style: TextStyle(color: Colors.red),
-                ),
+            if (state.hasError) ...[
+              heightSpace(4),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  widthSpace(8),
+                  SizedBox(
+                    height: 20.r,
+                    width: 20.r,
+                    child: Icon(
+                      AppIcons.error_outline,
+                      color: AppColors.red,
+                    ),
+                  ),
+                  widthSpace(8),
+                  Expanded(
+                    child: Text(
+                      state.errorText!,
+                      style: AppTextStyles.error,
+                    ),
+                  ),
+                  widthSpace(8),
+                ],
               ),
+            ],
           ],
         );
       },

@@ -1,0 +1,10 @@
+{
+    "InvalidPhoneNumber": "Invalid phone number",
+    "InvalidEmail": "Invalid email",
+    "IncorrectPassword": "Incorrect password",
+    "Login": "Login",
+    "Email": "Email",
+    "Password": "Password",
+    "ForgotPassword": "Forgot password?",
+    "LoginMessage": "Welcome to Dirasaty Admin Panel. Please log in to manage the school system efficiently"
+}

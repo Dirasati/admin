@@ -53,8 +53,8 @@ class AppButton extends StatelessWidget {
     textStyle: AppTextStyles.secondaryButton,
   );
 
-  factory AppButton.hyperLink(
-    String text, {
+  factory AppButton.hyperLink({
+    required String text,
     IconData? suffixIcon,
     void Function()? onPressed,
     bool Function(BuildContext context)? isLoading,
@@ -84,6 +84,7 @@ class AppButton extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           spacing: 8.w,
           children: [
             if (text != null) Text(text!, style: textStyle),

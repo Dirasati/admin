@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:async';
+import 'package:dirasaty_admin/features/auth/config/auth_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,7 +10,8 @@ part 'navigator_base.dart';
 
 class AppRouter {
   final routerConfig = GoRouter(
-    routes: [],
+    initialLocation: '/login', //TODO change to home
+    routes: [...AuthNavigator.routes],
     debugLogDiagnostics: true,
 
     redirect: _handelRedirect,

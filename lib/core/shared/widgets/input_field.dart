@@ -6,19 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class InputField extends StatelessWidget {
+class AppInputField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final String? Function(String?)? validator;
 
-  final Widget prefixIcon;
+  final IconData prefixIcon;
   final Widget? suffixIcon;
 
   final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
 
   final bool obscureText;
 
-  const InputField({
+  const AppInputField({
     super.key,
     required this.controller,
     required this.hintText,
@@ -27,6 +28,7 @@ class InputField extends StatelessWidget {
     this.suffixIcon,
     this.inputFormatters,
     this.obscureText = false,
+    this.keyboardType,
   });
 
   static Widget password({
@@ -46,16 +48,13 @@ class InputField extends StatelessWidget {
       builder:
           (state) => Column(
             children: [
-              TextFormField(
+              TextField(
                 controller: controller,
-                validator: validator,
+                keyboardType: keyboardType,
                 obscureText: obscureText,
 
                 style: AppTextStyles.medium.copyWith(
-                  color:
-                      state.hasError
-                          ? AppColors.red
-                          : AppColors.black,
+                  color: AppColors.black,
                 ),
 
                 cursorColor: AppColors.primary,
@@ -65,27 +64,27 @@ class InputField extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
                     vertical: 12.h,
-                    horizontal: 12.w,
+                    horizontal: 8.w,
                   ),
 
                   hintText: hintText,
-                  prefixIcon: prefixIcon,
+                  prefixIcon: Icon(
+                    prefixIcon,
+                    color: AppColors.greyDark,
+                    size: 24.sp,
+                  ),
                   suffixIcon: suffixIcon,
-
-                  error: SizedBox.shrink(),
-
-                  prefixIconConstraints: BoxConstraints(
-                    minWidth: 8.w,
-                  ),
-                  suffixIconConstraints: BoxConstraints(
-                    minWidth: 8.w,
-                  ),
 
                   hintStyle: AppTextStyles.medium.copyWith(
                     color: AppColors.greyDark,
                   ),
 
                   border: UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.greyDark),
+                    borderRadius: BorderRadius.circular(8).r,
+                  ),
+
+                  enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: AppColors.greyDark),
                     borderRadius: BorderRadius.circular(8).r,
                   ),
@@ -105,6 +104,7 @@ class InputField extends StatelessWidget {
               if (state.hasError) ...[
                 heightSpace(4),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     widthSpace(8),
                     SizedBox(
@@ -152,12 +152,13 @@ class _PasswordFormFieldState extends State<_PasswordFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return InputField(
+    return AppInputField(
       controller: widget.controller,
       hintText: widget.hintText,
       validator: widget.validator,
       obscureText: obscureText,
-      prefixIcon: Icon(AppIcons.lock, color: AppColors.black),
+      prefixIcon: AppIcons.lock,
+
       suffixIcon: IconButton(
         icon: Icon(
           obscureText ? AppIcons.visibility_off : AppIcons.visibility,

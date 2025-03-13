@@ -115,6 +115,7 @@ class AppTextField extends StatelessWidget {
               if (state.hasError) ...[
                 heightSpace(4),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     widthSpace(8),
                     SizedBox(

@@ -1,3 +1,4 @@
+import 'package:dirasaty_admin/features/auth/config/auth_dependency.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -37,7 +38,7 @@ Future<void> setupLocator() async {
   );
 
   // Features dependencies
-
+  AuthDependency.init();
 
   locator.allowReassignment = true;
 }

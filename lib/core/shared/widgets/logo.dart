@@ -10,13 +10,9 @@ class AppLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      spacing: 14.w,
+      spacing: 14.r,
       children: [
-        SizedBox(
-          height: 64.h,
-          width: 64.w,
-          child: Icon(AppIcons.school, color: AppColors.primary),
-        ),
+        Icon(AppIcons.school, color: AppColors.primary, size: 64.r),
         Text(
           'Dirasaty',
           style: AppTextStyles.h3.copyWith(color: AppColors.primary),

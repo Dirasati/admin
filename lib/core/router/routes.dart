@@ -15,6 +15,7 @@ abstract class AppRoutes {
   static const String login = 'LOGIN';
   static const String signup = 'SIGNUP';
   static const String forgetPassword = 'FORGET_PASSWORD';
+  static const String checkOtp = 'CHECK_OTP';
   static const String resetPassword = 'RESET_PASSWORD';
   static const String verifyAccount = 'VERIFY_ACCOUNT';
 
