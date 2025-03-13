@@ -21,12 +21,6 @@ class AppRouter {
     BuildContext context,
     GoRouterState state,
   ) async {
-    if (AppRoutes.authPaths.contains(state.matchedLocation)) {
-      return null;
-    }
-
-    // final authCubit = locator<AuthCubit>();
-    // if (await authCubit.isAuthenticated) return null; //TODO check if user is authenticated
-    return '/login';
+    // TODO 
   }
 }

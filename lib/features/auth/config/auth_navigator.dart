@@ -7,6 +7,7 @@ import 'package:dirasaty_admin/features/auth/modules/forgotpassword/ui/forgot_pa
 import 'package:dirasaty_admin/features/auth/modules/login/logic/login.cubit.dart';
 import 'package:dirasaty_admin/features/auth/modules/login/ui/login_screen.dart';
 import 'package:dirasaty_admin/features/auth/modules/resetpassword/logic/reset_password_cubit.dart';
+import 'package:dirasaty_admin/features/auth/modules/resetpassword/ui/reset_password_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,12 +18,12 @@ class AuthNavigator extends AppNavigatorBase {
     : super(name: AppRoutes.forgetPassword);
 
   AuthNavigator.checkOtp(String email)
-    : super(name: AppRoutes.checkOtp, pathParams: {'email': email});
+    : super(name: AppRoutes.checkOtp, queryParams: {'email': email});
 
   AuthNavigator.resetPassword(String email, String otp)
     : super(
         name: AppRoutes.resetPassword,
-        pathParams: {'email': email, 'otp': otp},
+        queryParams: {'email': email, 'otp': otp},
       );
 
   static List<RouteBase> routes = [
@@ -50,10 +51,10 @@ class AuthNavigator extends AppNavigatorBase {
 
     // Check OTP Screen
     GoRoute(
-      path: 'forgot-password/:email',
+      path: '/check-otp',
       name: AppRoutes.checkOtp,
       builder: (context, state) {
-        final email = state.pathParameters['email']!;
+        final email = state.uri.queryParameters['email'] ?? '';
         return BlocProvider(
           create: (context) => CheckOtpCubit(OtpDTO(email: email)),
           child: CheckOtpScreen(),
@@ -63,17 +64,25 @@ class AuthNavigator extends AppNavigatorBase {
 
     // Reset Password Screen
     GoRoute(
-      path: 'forgot-password/:email/:otp',
+      path: '/reset-password',
       name: AppRoutes.resetPassword,
       builder: (context, state) {
-        final email = state.pathParameters['email']!;
-        final otp = state.pathParameters['otp']!;
-        return BlocProvider(
-          create:
-              (context) => ResetPasswordCubit(
-                NewPasswordDTO(email: email, otp: otp),
-              ),
-          child: CheckOtpScreen(),
+        final email = state.uri.queryParameters['email'] ?? '';
+        final otp = state.uri.queryParameters['otp'] ?? '';
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create:
+                  (context) => ResetPasswordCubit(
+                    NewPasswordDTO(email: email, otp: otp),
+                  ),
+            ),
+            BlocProvider(
+              create:
+                  (context) => CheckOtpCubit(OtpDTO(email: email)),
+            ),
+          ],
+          child: ResetPasswordScreen(),
         );
       },
     ),

@@ -29,7 +29,7 @@ class ResetPasswordScreen extends StatelessWidget {
         title: 'ResetPassword'.tr(context),
         message: 'ResetPasswordMessage'.tr(context),
         form: const _Form(),
-        submitButton: AppButton.secondary(
+        submitButton: AppButton.primary(
           text: 'Save'.tr(context),
           onPressed: context.read<ResetPasswordCubit>().submit,
           isLoading:

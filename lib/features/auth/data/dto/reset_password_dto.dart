@@ -40,7 +40,7 @@ class OtpDTO extends ForgotPasswordDto {
 
   @override
   Future<Map<String, dynamic>> toMap() async {
-    return {'email': emailController.text, ...await super.toMap()};
+    return {'otp': otpController.text, ...await super.toMap()};
   }
 
   Map<String, dynamic> toResendMap() {

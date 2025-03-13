@@ -65,6 +65,7 @@ class _Form extends StatelessWidget {
             validator: (value) => dto.validateOtp(value, context),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               AppButton.hyperLink(
                 text: 'ResendOtp'.tr(context),
