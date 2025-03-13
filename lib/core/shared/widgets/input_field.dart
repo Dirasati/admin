@@ -16,6 +16,7 @@ class AppInputField extends StatelessWidget {
 
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
+  final List<String>? autofillHints;
 
   final bool obscureText;
 
@@ -29,6 +30,7 @@ class AppInputField extends StatelessWidget {
     this.inputFormatters,
     this.obscureText = false,
     this.keyboardType,
+    this.autofillHints,
   });
 
   static Widget password({
@@ -45,89 +47,97 @@ class AppInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormField(
       validator: (_) => validator?.call(controller.text),
-      builder:
-          (state) => Column(
-            children: [
-              TextField(
-                controller: controller,
-                keyboardType: keyboardType,
-                obscureText: obscureText,
+      autovalidateMode: AutovalidateMode.onUnfocus,
+      builder: (state) {
+        return Column(
+          children: [
+            TextField(
+              controller: controller,
+              obscureText: obscureText,
 
-                style: AppTextStyles.medium.copyWith(
-                  color: AppColors.black,
-                ),
+              keyboardType: keyboardType,
+              autofillHints: autofillHints,
 
-                cursorColor: AppColors.primary,
-
-                inputFormatters: inputFormatters,
-
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 12.h,
-                    horizontal: 8.w,
-                  ),
-
-                  hintText: hintText,
-                  prefixIcon: Icon(
-                    prefixIcon,
-                    color: AppColors.greyDark,
-                    size: 24.sp,
-                  ),
-                  suffixIcon: suffixIcon,
-
-                  hintStyle: AppTextStyles.medium.copyWith(
-                    color: AppColors.greyDark,
-                  ),
-
-                  border: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.greyDark),
-                    borderRadius: BorderRadius.circular(8).r,
-                  ),
-
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.greyDark),
-                    borderRadius: BorderRadius.circular(8).r,
-                  ),
-
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.primary),
-                    borderRadius: BorderRadius.circular(8).r,
-                  ),
-
-                  errorBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.red),
-                    borderRadius: BorderRadius.circular(8).r,
-                  ),
-                ),
+              style: AppTextStyles.medium.copyWith(
+                color: AppColors.black,
               ),
 
-              if (state.hasError) ...[
-                heightSpace(4),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    widthSpace(8),
-                    SizedBox(
-                      height: 20.r,
-                      width: 20.r,
-                      child: Icon(
-                        AppIcons.error_outline,
-                        color: AppColors.red,
-                      ),
-                    ),
-                    widthSpace(8),
-                    Expanded(
-                      child: Text(
-                        state.errorText!,
-                        style: AppTextStyles.error,
-                      ),
-                    ),
-                    widthSpace(8),
-                  ],
+              cursorColor: AppColors.primary,
+
+              inputFormatters: inputFormatters,
+
+              decoration: InputDecoration(
+                fillColor: AppColors.greyLight,
+                filled: true,
+
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 16.h,
+                  horizontal: 8.w,
                 ),
-              ],
+
+                hintText: hintText,
+
+                error: state.hasError ? SizedBox.shrink() : null,
+
+                // error: SizedBox(),
+                prefixIcon: Icon(
+                  prefixIcon,
+                  color: AppColors.greyDark,
+                  size: 24.r, // Adjust icon size if necessary
+                ),
+                suffixIcon: suffixIcon,
+
+                hintStyle: AppTextStyles.medium.copyWith(
+                  color: AppColors.greyDark,
+                ),
+
+                border: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.greyDark),
+                  borderRadius: BorderRadius.circular(8).r,
+                ),
+
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.greyDark),
+                  borderRadius: BorderRadius.circular(8).r,
+                ),
+
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                  borderRadius: BorderRadius.circular(8).r,
+                ),
+
+                errorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.red),
+                  borderRadius: BorderRadius.circular(8).r,
+                ),
+              ),
+            ),
+
+            if (state.hasError) ...[
+              heightSpace(4),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  widthSpace(8),
+                  Icon(
+                    AppIcons.error_outline,
+                    color: AppColors.red,
+                    size: 20.r,
+                  ),
+                  widthSpace(8),
+                  Expanded(
+                    child: Text(
+                      state.errorText!,
+                      style: AppTextStyles.error,
+                    ),
+                  ),
+                  widthSpace(8),
+                ],
+              ),
             ],
-          ),
+          ],
+        );
+      },
     );
   }
 }
@@ -157,12 +167,15 @@ class _PasswordFormFieldState extends State<_PasswordFormField> {
       hintText: widget.hintText,
       validator: widget.validator,
       obscureText: obscureText,
+      keyboardType: TextInputType.visiblePassword,
+      autofillHints: [AutofillHints.password],
       prefixIcon: AppIcons.lock,
 
       suffixIcon: IconButton(
         icon: Icon(
           obscureText ? AppIcons.visibility_off : AppIcons.visibility,
           color: AppColors.greyDark,
+          size: 22.r,
         ),
         onPressed: () => setState(() => obscureText = !obscureText),
       ),

@@ -1,6 +1,8 @@
+import 'package:dirasaty_admin/core/extension/navigator.extension.dart';
 import 'package:dirasaty_admin/core/shared/widgets/auth_screen.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
 import 'package:dirasaty_admin/core/shared/widgets/input_field.dart';
+import 'package:dirasaty_admin/features/auth/config/auth_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
@@ -20,7 +22,7 @@ class LoginScreen extends StatelessWidget {
         // state.onSuccess(() => context.offAll(HomeNavigator())); //TODO go to home
       },
       child: AuthScreen(
-        title: 'Login',
+        title: 'Login'.tr(context),
         message: 'LoginMessage'.tr(context),
         form: const _Form(),
         submitButton: AppButton.primary(
@@ -51,6 +53,7 @@ class _Form extends StatelessWidget {
             hintText: 'Email'.tr(context),
             prefixIcon: AppIcons.email,
             keyboardType: TextInputType.emailAddress,
+            autofillHints: [AutofillHints.email],
             validator: (value) => dto.validateEmail(value, context),
           ),
           heightSpace(26),
@@ -66,7 +69,8 @@ class _Form extends StatelessWidget {
             children: [
               AppButton.hyperLink(
                 text: 'ForgotPassword'.tr(context),
-                onPressed: () {}, //TODO go to forgot password
+                onPressed:
+                    () => context.to(AuthNavigator.forgetPassword()),
               ),
             ],
           ),

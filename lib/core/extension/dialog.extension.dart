@@ -1,3 +1,6 @@
+import 'package:dirasaty_admin/core/shared/widgets/button.dart';
+import 'package:dirasaty_admin/core/themes/app_text.dart';
+import 'package:dirasaty_admin/core/themes/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
@@ -55,55 +58,22 @@ extension DialogExtension on BuildContext {
             content:
                 content != null ? Text(content.tr(context)) : null,
             actions: [
-              _buildButton(
+              AppButton.secondary(
                 text: cancelText.tr(context),
                 onPressed: () {
                   onCancel?.call();
                   context.back();
                 },
-                color: Colors.white,
-                borderColor: AppColors.primary,
-                textColor: Colors.blue,
               ),
-              _buildButton(
+              AppButton.primary(
                 text: okText.tr(context),
                 onPressed: () {
                   onConfirm();
                   context.back();
                 },
-                color: Colors.blue,
-                borderColor: Colors.white,
-                textColor: Colors.white,
               ),
             ],
           ),
-    );
-  }
-
-  Widget _buildButton({
-    required String text,
-    required VoidCallback onPressed,
-    required Color color,
-    required Color borderColor,
-    required Color textColor,
-  }) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16.w,
-          vertical: 8.h,
-        ),
-        decoration: BoxDecoration(
-          color: color,
-          border: Border.all(color: borderColor),
-          borderRadius: BorderRadius.circular(8.r),
-        ),
-        child: Text(
-          text,
-          style: TextStyle(color: textColor, fontSize: 16.sp),
-        ),
-      ),
     );
   }
 
@@ -113,30 +83,31 @@ extension DialogExtension on BuildContext {
       builder:
           (_) => AlertDialog(
             backgroundColor: AppColors.white,
+
             title: Row(
               spacing: 8.w,
               children: [
-                Icon(Icons.error, color: Colors.red),
+                Icon(
+                  AppIcons.error,
+                  color: AppColors.red,
+                  size: 32.r,
+                ),
                 Text(
                   'Error'.tr(this),
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 20.sp,
+                  style: AppTextStyles.h3.copyWith(
+                    color: AppColors.red,
                   ),
                 ),
               ],
             ),
             content: Text(
               message.tr(this),
-              style: TextStyle(color: Colors.black, fontSize: 16.sp),
+              style: AppTextStyles.medium,
             ),
             actions: [
-              _buildButton(
+              AppButton.secondary(
                 text: 'TryAgain'.tr(this),
                 onPressed: () => back(),
-                color: AppColors.white,
-                borderColor: AppColors.primary,
-                textColor: AppColors.primary,
               ),
             ],
           ),

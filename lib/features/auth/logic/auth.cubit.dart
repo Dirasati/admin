@@ -37,6 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
     if (refreshToken == null) return logout();
 
     final result = await _authRepo.refreshToken(refreshToken);
+    
     result.when(
       success: (tokens) => authenticate(tokens),
       error: (error) {

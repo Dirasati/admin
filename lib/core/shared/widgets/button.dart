@@ -72,7 +72,7 @@ class AppButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: 24.w,
+          horizontal: 16.w,
           vertical: 16.h,
         ),
         decoration: BoxDecoration(
@@ -85,27 +85,32 @@ class AppButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
-          spacing: 8.w,
+          spacing: 12.w,
           children: [
             if (text != null) Text(text!, style: textStyle),
 
             //show loading indicator if isLoading is true, else show suffixIcon if it is not null
             if (isLoading?.call(context) == true)
               SizedBox(
-                width: 16.w,
-                height: 16.h,
+                // width: 16.r,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
+                  constraints: BoxConstraints(
+                    minHeight: 18.r,
+                    minWidth: 18.r,
+                  ),
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    AppColors.white,
+                    textStyle.color ?? AppColors.white,
                   ),
                 ),
               )
             else if (suffixIcon != null)
               SizedBox(
-                width: 16.w,
-                height: 16.h,
-                child: Icon(suffixIcon!),
+                child: Icon(
+                  suffixIcon,
+                  color: AppColors.white,
+                  size: 18.r,
+                ),
               ),
           ],
         ),

@@ -130,8 +130,10 @@ class _$SuccessImpl<T> implements _Success<T> {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(
+    runtimeType,
+    const DeepCollectionEquality().hash(data),
+  );
 
   /// Create a copy of ApiResult
   /// with the given fields replaced by the non-null parameter values.
@@ -139,7 +141,10 @@ class _$SuccessImpl<T> implements _Success<T> {
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<T, _$SuccessImpl<T>> get copyWith =>
-      __$$SuccessImplCopyWithImpl<T, _$SuccessImpl<T>>(this, _$identity);
+      __$$SuccessImplCopyWithImpl<T, _$SuccessImpl<T>>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -282,7 +287,10 @@ class _$FailureImpl<T> implements _Failure<T> {
   @override
   @pragma('vm:prefer-inline')
   _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
-      __$$FailureImplCopyWithImpl<T, _$FailureImpl<T>>(this, _$identity);
+      __$$FailureImplCopyWithImpl<T, _$FailureImpl<T>>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -348,7 +356,8 @@ class _$FailureImpl<T> implements _Failure<T> {
 }
 
 abstract class _Failure<T> implements ApiResult<T> {
-  const factory _Failure(final ApiErrorModel errorHandler) = _$FailureImpl<T>;
+  const factory _Failure(final ApiErrorModel errorHandler) =
+      _$FailureImpl<T>;
 
   ApiErrorModel get errorHandler;
 

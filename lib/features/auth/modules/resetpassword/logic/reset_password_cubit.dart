@@ -1,24 +1,27 @@
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dirasaty_admin/core/di/locator.dart';
 import 'package:dirasaty_admin/core/types/cubitstate/error.state.dart';
-import 'package:dirasaty_admin/features/auth/data/dto/login.dto.dart';
+import 'package:dirasaty_admin/features/auth/data/dto/reset_password_dto.dart';
 import 'package:dirasaty_admin/features/auth/data/repository/auth.repo.dart';
 import 'package:dirasaty_admin/features/auth/logic/auth.cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'login.state.dart';
+part 'reset_password_state.dart';
 
-class LoginCubit extends Cubit<LoginState> {
-  final _authRepo = locator<AuthRepo>();
+class ResetPasswordCubit extends Cubit<ResetPasswordState> {
+  final AuthRepo _authRepo;
 
-  LoginCubit() : super(LoginState.initial());
+  ResetPasswordCubit( NewPasswordDTO dto)
+    : _authRepo = locator(),
+      super(ResetPasswordState.initial(dto));
 
-  void login() async {
-    if (state.isLoading || !state.loginDTO.validate()) return;
+  NewPasswordDTO get dto => state._dto;
+
+  void submit() async {
+    if (state.isLoading || !dto.validate()) return;
 
     emit(state._loading());
 
-    final result = await _authRepo.login(state.loginDTO);
+    final result = await _authRepo.resetPassword(state._dto);
 
     result.when(
       success: (tokens) {
@@ -31,7 +34,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   @override
   Future<void> close() {
-    state.loginDTO.dispose();
+    dto.dispose();
     return super.close();
   }
 }

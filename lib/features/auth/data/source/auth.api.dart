@@ -12,22 +12,29 @@ abstract class AuthApi {
     ParseErrorLogger? errorLogger,
   }) = _AuthApi;
 
-  @POST("/auth/login") //* LOGIN ~ {{URL}}/auth/login
+  @POST("/auth/login")
   Future<AuthResponse> login(@Body() Map<String, dynamic> body);
 
-  @POST("/auth/register") //* REGISTER ~ {{URL}}/auth/register
+  @POST("/auth/register")
   Future<AuthResponse> register(@Body() Map<String, dynamic> body);
 
-  @GET("/auth/refresh") //* REFRESH TOKEN ~ {{URL}}/auth/refresh
+  @GET("/auth/refresh-token")
   Future<AuthResponse> refreshToken(
-    @Query("refresh_token") String refreshToken,
+    @Query("refreshToken") String refreshToken,
   );
 
-  @POST("/auth/verify") //!  VERIFY ~ {{URL}}/auth/verify
-  Future<AuthResponse> verify(@Body() Map<String, dynamic> body);
+  @POST("/auth/forgot-password")
+  Future<MessageResponse> forgotPassword(
+    @Body() Map<String, dynamic> body,
+  );
 
-  @GET(
-    'resend-verification',
-  ) //!  RESEND VERIFICATION CODE ~ {{URL}}/resend-verification
-  Future<MessageResponse> resendVerificationCode();
+  @POST("/auth/check-reset-code")
+  Future<MessageResponse> checkResetCode(
+    @Body() Map<String, dynamic> body,
+  );
+
+  @POST("/auth/reset-password")
+  Future<AuthResponse> resetPassword(
+    @Body() Map<String, dynamic> body,
+  );
 }

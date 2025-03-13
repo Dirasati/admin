@@ -11,17 +11,19 @@
 			"program": "lib/main_development.dart",
 			"args": ["--target", "lib/main_development.dart"]
 		},
-
-		// Production
 		{
 			"name": "Production",
 			"request": "launch",
 			"type": "dart",
 			"program": "lib/main_production.dart",
 			"args": ["--target", "lib/main_production.dart"]
+		},
+		{
+			"name": "Flutter (lib/core/network/api.constants.dart)",
+			"type": "dart",
+			"request": "launch",
+			"program": "lib/core/network/api.constants.dart"
 		}
-		
-
 	],
 	"compounds": []
 }

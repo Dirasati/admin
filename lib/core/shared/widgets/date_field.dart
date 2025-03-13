@@ -136,13 +136,10 @@ class AppDateField extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   widthSpace(8),
-                  SizedBox(
-                    height: 20.r,
-                    width: 20.r,
-                    child: Icon(
-                      AppIcons.error_outline,
-                      color: AppColors.red,
-                    ),
+                  Icon(
+                    AppIcons.error_outline,
+                    color: AppColors.red,
+                    size: 20.r,
                   ),
                   widthSpace(8),
                   Expanded(
