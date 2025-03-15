@@ -12,7 +12,10 @@ class _SideBarItem {
     required this.onTap,
     required BuildContext context,
   }) : isSelected =
-           GoRouter.of(context).state.name == title.toUpperCase();
+           GoRouter.of(
+             context,
+           ).state.name?.contains(title.toUpperCase()) ??
+           false;
 }
 
 class _SideBar extends StatelessWidget {

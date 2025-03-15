@@ -4,7 +4,7 @@ import 'package:dirasaty_admin/features/auth/data/source/auth.api.dart';
 import 'package:dirasaty_admin/features/auth/data/source/auth.cache.dart';
 import 'package:dirasaty_admin/features/auth/logic/auth.cubit.dart';
 
-abstract class AuthDependency {
+abstract class AuthDI {
   static void init() {
     locator.registerLazySingleton<AuthApi>(() => AuthApi(locator()));
     locator.registerLazySingleton<AuthRepo>(() => AuthRepo());
