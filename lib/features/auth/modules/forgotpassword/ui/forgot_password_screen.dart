@@ -1,10 +1,12 @@
 import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
+import 'package:dirasaty_admin/core/extension/navigator.extension.dart';
 import 'package:dirasaty_admin/core/extension/snackbar.extension.dart';
 import 'package:dirasaty_admin/core/shared/widgets/auth_screen.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
 import 'package:dirasaty_admin/core/shared/widgets/input_field.dart';
 import 'package:dirasaty_admin/core/themes/icons.dart';
+import 'package:dirasaty_admin/features/auth/config/auth_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +22,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         state.onError(context.showErrorDialog);
         state.onSuccess((email) {
           context.showSuccessSnackbar('CheckEmail'.tr(context));
-          //TODO go to otp screen
+          context.to(AuthNavigator.checkOtp(email));
         });
       },
       child: AuthScreen(

@@ -10,7 +10,7 @@ part 'reset_password_state.dart';
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   final AuthRepo _authRepo;
 
-  ResetPasswordCubit( NewPasswordDTO dto)
+  ResetPasswordCubit(NewPasswordDTO dto)
     : _authRepo = locator(),
       super(ResetPasswordState.initial(dto));
 

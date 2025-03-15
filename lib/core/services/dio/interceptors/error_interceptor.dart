@@ -8,20 +8,16 @@ class DioErrorInterceptor extends InterceptorsWrapper {
     DioException err,
     ErrorInterceptorHandler handler,
   ) async {
-    // if (err.response?.statusCode == 401) {
-    //   await locator<AuthCubit>().refreshToken();
+    if (err.response?.statusCode == 401) {
+      await locator<AuthCubit>().refreshToken();
 
-    //   return handler.resolve(
-    //     await locator<Dio>().fetch(err.requestOptions),
-    //   );
-    // }
-    // TODO: Handle other errors
-    // return handler.next(err);
+      return handler.resolve(
+        await locator<Dio>().fetch(err.requestOptions),
+      );
+    }
 
-    super.onError(err, handler);
+    return handler.next(err);
   }
 
   DioErrorInterceptor._();
-
-  
 }

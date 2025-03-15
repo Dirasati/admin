@@ -1,10 +1,11 @@
 part of 'router.dart';
 
 abstract class AppRoutes {
-  static const authPaths = [
+  static const _authPaths = [
     '/login',
     '/signup',
     '/forget-password',
+    '/check-otp',
     '/reset-password',
     '/verify-account',
   ];

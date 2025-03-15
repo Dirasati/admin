@@ -1,7 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:async';
+import 'package:dirasaty_admin/core/di/locator.dart';
 import 'package:dirasaty_admin/features/auth/config/auth_navigator.dart';
+import 'package:dirasaty_admin/features/auth/logic/auth.cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,6 +23,16 @@ class AppRouter {
     BuildContext context,
     GoRouterState state,
   ) async {
-    // TODO 
+    if (AppRoutes._authPaths.any(
+      (path) => state.matchedLocation.contains(path),
+    )) {
+      return null;
+    }
+
+    if (await locator<AuthCubit>().isAuthenticated) {
+      return null;
+    }
+
+    return '/login';
   }
 }
