@@ -19,7 +19,7 @@ class _SideBarItem {
 }
 
 class _SideBar extends StatelessWidget {
-  _SideBar();
+  const _SideBar();
 
   @override
   Widget build(BuildContext context) {
