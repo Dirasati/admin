@@ -29,7 +29,7 @@ class _SideBar extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
       child: Column(
         children: [
-          AppLogo(),
+          Align(alignment: Alignment.center, child: AppLogo()),
           heightSpace(40),
           ..._sideBarItems(
             context,
@@ -44,6 +44,12 @@ class _SideBar extends StatelessWidget {
       title: 'Dashboard',
       icon: AppIcons.dashboard,
       onTap: () {},
+      context: context,
+    ),
+    _SideBarItem(
+      title: 'Students',
+      icon: AppIcons.person,
+      onTap: () => context.to(StudentNavigator.students()),
       context: context,
     ),
   ];

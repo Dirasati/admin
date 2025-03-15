@@ -14,6 +14,10 @@ extension ListExtension<T> on List<T> {
     if (!contains(item)) add(item);
   }
 
+  void addUniqueFirst(T item) {
+    if (!contains(item)) addFirst(item);
+  }
+
   List<T> withUnique(T item) {
     addUnique(item);
     return this;

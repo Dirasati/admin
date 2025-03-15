@@ -1,4 +1,5 @@
 import 'package:dirasaty_admin/core/extension/map.extension.dart';
+import 'package:dirasaty_admin/core/network/models/api_response.model.dart';
 import 'package:flutter/material.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/number_editingcontroller.dart';
 
@@ -41,4 +42,7 @@ class PaginationDto {
 
   void nextPage() => page.add(1);
   void firstPage() => page.setValue(1);
+  void prevPage() => page.subtract(1);
+
+  void replace(Pagination pagination) {}
 }

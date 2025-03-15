@@ -1,5 +1,5 @@
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
-import 'package:dirasaty_admin/core/themes/app_text.dart';
+import 'package:dirasaty_admin/core/themes/font_styles.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/icons.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +20,8 @@ class AppInputField extends StatelessWidget {
 
   final bool obscureText;
 
+  final Color fillColor;
+
   const AppInputField({
     super.key,
     required this.controller,
@@ -31,6 +33,7 @@ class AppInputField extends StatelessWidget {
     this.obscureText = false,
     this.keyboardType,
     this.autofillHints,
+    this.fillColor = AppColors.greyLight,
   });
 
   static Widget password({
@@ -67,7 +70,7 @@ class AppInputField extends StatelessWidget {
               inputFormatters: inputFormatters,
 
               decoration: InputDecoration(
-                fillColor: AppColors.greyLight,
+                fillColor: fillColor,
                 filled: true,
 
                 contentPadding: EdgeInsets.symmetric(
@@ -88,7 +91,7 @@ class AppInputField extends StatelessWidget {
                 suffixIcon: suffixIcon,
 
                 hintStyle: AppTextStyles.medium.copyWith(
-                  color: AppColors.greyDark,
+                  color: AppColors.grey,
                 ),
 
                 border: UnderlineInputBorder(
