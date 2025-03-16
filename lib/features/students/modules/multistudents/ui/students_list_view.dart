@@ -1,5 +1,6 @@
 import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
+import 'package:dirasaty_admin/core/extension/snackbar.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
 import 'package:dirasaty_admin/core/shared/widgets/info_table.dart';
@@ -22,16 +23,21 @@ class StudentsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.h),
-      child: Column(
-        children: [
-          _Header(),
-          heightSpace(16),
-          Expanded(child: _StudentsList()),
-          heightSpace(16),
-          _PaginationIndicator(),
-        ],
+    return BlocListener<StudentsListCubit, StudentsListState>(
+      listener: (context, state) {
+        state.onError(context.showErrorSnackbar);
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 12.h),
+        child: Column(
+          children: [
+            _Header(),
+            heightSpace(16),
+            Expanded(child: _StudentsList()),
+            heightSpace(16),
+            _PaginationIndicator(),
+          ],
+        ),
       ),
     );
   }
