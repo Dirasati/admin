@@ -40,7 +40,7 @@ class _MaterialApp extends StatelessWidget {
       supportedLocales: [
         Locale('fr'), // French
         Locale('en'), // English
-        // Locale('ar'), // Arabic
+        Locale('ar'), // Arabic
       ],
       localizationsDelegates: [
         AppLocalizations.delegate,
