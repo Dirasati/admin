@@ -5,9 +5,18 @@ part 'school_class_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class SchoolClassModel extends Equatable {
-  //TODO add properties
+  @JsonKey(name: '_id')
+  final String? id;
+  final String? name;
+  final String? level;
+  final int? nbOfStudents;
 
-  const SchoolClassModel();
+  const SchoolClassModel({
+    this.id,
+    this.name,
+    this.level,
+    this.nbOfStudents,
+  });
 
   factory SchoolClassModel.fromJson(Map<String, dynamic> json) =>
       _$SchoolClassModelFromJson(json);

@@ -1,9 +1,13 @@
+import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
+import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
+import 'package:dirasaty_admin/core/shared/widgets/info_table.dart';
 import 'package:dirasaty_admin/core/shared/widgets/search_field.dart';
 import 'package:dirasaty_admin/core/themes/font_styles.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/icons.dart';
+import 'package:dirasaty_admin/features/students/data/model/student_model.dart';
 import 'package:dirasaty_admin/features/students/modules/multistudents/logic/multi_students_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -11,7 +11,6 @@ class _Header extends StatelessWidget {
         Expanded(
           child: AppSearchField(
             controller: cubit.filter.keywordController,
-            hintText: 'Search for students ...',
             onSearch: (_) => cubit.firstPage(),
           ),
         ),

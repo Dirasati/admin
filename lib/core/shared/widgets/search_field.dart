@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/shared/widgets/input_field.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/icons.dart';
@@ -15,7 +16,7 @@ class AppSearchField extends StatefulWidget {
   const AppSearchField({
     super.key,
     required this.controller,
-    required this.hintText,
+    this.hintText = 'Search',
     required this.onSearch,
   });
 
@@ -52,7 +53,7 @@ class _AppSearchFieldState extends State<AppSearchField> {
   Widget build(BuildContext context) {
     return AppInputField(
       controller: widget.controller,
-      hintText: widget.hintText,
+      hintText: widget.hintText.tr(context),
       prefixIcon: AppIcons.search,
       keyboardType: TextInputType.text,
       fillColor: AppColors.white,
