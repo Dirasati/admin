@@ -24,6 +24,8 @@ class AppRouter {
     BuildContext context,
     GoRouterState state,
   ) async {
+    return null; //TODO remove after adding auth
+
     if (AppRoutes._authPaths.any(
       (path) => state.matchedLocation.contains(path),
     )) {

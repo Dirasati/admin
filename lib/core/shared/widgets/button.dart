@@ -1,4 +1,4 @@
-import 'package:dirasaty_admin/core/themes/app_text.dart';
+import 'package:dirasaty_admin/core/themes/font_styles.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -96,8 +96,8 @@ class AppButton extends StatelessWidget {
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
                   constraints: BoxConstraints(
-                    minHeight: 18.r,
-                    minWidth: 18.r,
+                    minHeight: 25.r,
+                    minWidth: 25.r,
                   ),
                   valueColor: AlwaysStoppedAnimation<Color>(
                     textStyle.color ?? AppColors.white,
@@ -108,8 +108,8 @@ class AppButton extends StatelessWidget {
               SizedBox(
                 child: Icon(
                   suffixIcon,
-                  color: AppColors.white,
-                  size: 18.r,
+                  color: textStyle.color ?? AppColors.white,
+                  size: 25.r,
                 ),
               ),
           ],

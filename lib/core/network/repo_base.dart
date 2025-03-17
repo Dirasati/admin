@@ -1,3 +1,4 @@
+import 'package:dirasaty_admin/core/network/types/pagination_result.dart';
 import 'package:flutter/material.dart';
 
 import 'api_error.handler.dart';

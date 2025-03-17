@@ -1,5 +1,5 @@
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
-import 'package:dirasaty_admin/core/themes/app_text.dart';
+import 'package:dirasaty_admin/core/themes/font_styles.dart';
 import 'package:dirasaty_admin/core/themes/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -16,6 +16,8 @@ class Pagination {
   int get pageBegin => (page! - 1) * length!;
   int get pageEnd => (page! - 1) * length! + length!;
 
+  
+
   factory Pagination.fromJson(Map<String, dynamic>? json) {
     return Pagination(
       page: json?['page'],

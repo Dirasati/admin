@@ -1,8 +1,10 @@
+import 'package:dirasaty_admin/core/extension/navigator.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/widgets/logo.dart';
-import 'package:dirasaty_admin/core/themes/app_text.dart';
+import 'package:dirasaty_admin/core/themes/font_styles.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/icons.dart';
+import 'package:dirasaty_admin/features/students/config/student_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -36,16 +38,12 @@ class HomeScreen extends StatelessWidget {
 
                   heightSpace(40),
 
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12.h),
-                      child: body,
-                    ),
-                  ),
+                  Expanded(child: body),
                 ],
               ),
             ),
           ),
+          widthSpace(20),
         ],
       ),
     );
