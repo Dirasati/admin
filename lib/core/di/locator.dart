@@ -1,3 +1,4 @@
+import 'package:dirasaty_admin/features/parent/config/parent_dependency.dart';
 import 'package:dirasaty_admin/features/auth/config/auth_dependency.dart';
 import 'package:dirasaty_admin/features/students/config/student_dependecy.dart';
 import 'package:flutter/foundation.dart';
@@ -39,6 +40,7 @@ Future<void> setupLocator() async {
   );
 
   // Features dependencies
+  ParentDependency.init();
   AuthDI.init();
   StudentDependecy.init();
 

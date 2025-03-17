@@ -1,3 +1,4 @@
+import 'package:dirasaty_admin/features/parent/config/parent_navigator.dart';
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:async';
@@ -14,7 +15,7 @@ part 'navigator_base.dart';
 class AppRouter {
   final routerConfig = GoRouter(
     initialLocation: '/login', //TODO change to home
-    routes: [  ...AuthNavigator.routes, ...HomeNavigator.routes],
+    routes: [...ParentNavigator.routes,   ...AuthNavigator.routes, ...HomeNavigator.routes],
     debugLogDiagnostics: true,
 
     redirect: _handelRedirect,
