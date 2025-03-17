@@ -8,11 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'student_form_state.dart';
 
-abstract class _StudentFormCubit<T extends UserDto>
+abstract class StudentFormCubit<T extends UserDto>
     extends Cubit<StudentFormState<T>> {
   final _studentRepo = locator<StudentRepo>();
 
-  _StudentFormCubit() : super(StudentFormState.initial());
+  StudentFormCubit() : super(StudentFormState.initial());
 
   T get dto => state._dto!;
 
@@ -21,7 +21,7 @@ abstract class _StudentFormCubit<T extends UserDto>
   void save();
 }
 
-class CreateStudentCubit extends _StudentFormCubit<CreateStudentDto> {
+class CreateStudentCubit extends StudentFormCubit<CreateStudentDto> {
   CreateStudentCubit() : super();
 
   @override
@@ -40,7 +40,7 @@ class CreateStudentCubit extends _StudentFormCubit<CreateStudentDto> {
   }
 }
 
-class UpdateStudentCubit extends _StudentFormCubit<UpdateStudentDto> {
+class UpdateStudentCubit extends StudentFormCubit<UpdateStudentDto> {
   final String _studentId;
 
   UpdateStudentCubit(this._studentId) : super();
