@@ -1,5 +1,6 @@
 {
     "Delete": "Delete",
+    "FullName": "Full Name",
     "Edit": "Edit",
     "ID": "ID",
     "Name": "Name",
@@ -31,6 +32,7 @@
     "ResetPasswordMessage": "Enter your new password",
     "Save": "Save",
     "NewPassword": "New password",
+    "FieldIsRequired": "This field is required",
     "ConfirmPassword": "Confirm password",
     "PasswordNotMatch": "Password does not match",
     "InvalidPassword": "Password must be at least 6 characters , contain at least one uppercase letter, one lowercase letter, one number and one special character",

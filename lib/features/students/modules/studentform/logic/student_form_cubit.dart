@@ -1,5 +1,4 @@
 import 'package:dirasaty_admin/core/di/locator.dart';
-import 'package:dirasaty_admin/core/shared/dto/userdto/user_dto.dart';
 import 'package:dirasaty_admin/core/types/cubitstate/error.state.dart';
 import 'package:dirasaty_admin/features/students/data/dto/student_dto.dart';
 import 'package:dirasaty_admin/features/students/data/model/student_model.dart';
@@ -8,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'student_form_state.dart';
 
-abstract class StudentFormCubit<T extends UserDto>
+abstract class StudentFormCubit<T extends StudentDto>
     extends Cubit<StudentFormState<T>> {
   final _studentRepo = locator<StudentRepo>();
 

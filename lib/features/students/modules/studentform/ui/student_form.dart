@@ -1,11 +1,16 @@
+import 'package:dirasaty_admin/core/constants/data.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/extension/navigator.extension.dart';
 import 'package:dirasaty_admin/core/extension/snackbar.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
+import 'package:dirasaty_admin/core/shared/widgets/dropdown_field.dart';
 import 'package:dirasaty_admin/core/shared/widgets/loading_widget.dart';
+import 'package:dirasaty_admin/core/shared/widgets/text_field.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/font_styles.dart';
+import 'package:dirasaty_admin/core/themes/icons.dart';
+import 'package:dirasaty_admin/features/students/data/dto/student_dto.dart';
 import 'package:dirasaty_admin/features/students/modules/studentform/logic/student_form_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,12 +24,25 @@ class StudentForm extends StatelessWidget {
   final Widget _studentForm;
   final Widget _parentForm;
 
-  const StudentForm({
-    super.key,
+  const StudentForm._({
     required Widget studentForm,
     required Widget parentForm,
   }) : _studentForm = studentForm,
        _parentForm = parentForm;
+
+  factory StudentForm.create() {
+    return StudentForm._(
+      studentForm: _CreateStudentForm(),
+      parentForm: _ParentForm(),
+    );
+  }
+
+  factory StudentForm.update() {
+    return StudentForm._(
+      studentForm: _UpdateStudentForm(),
+      parentForm: _ParentForm(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

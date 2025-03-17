@@ -1,25 +1,28 @@
 part of 'student_dto.dart';
 
-class UpdateStudentDto extends UpdateUserDto {
-  final StudentModel _student;
-
-  final TextEditingController codeController;
-  final TextEditingController levelController;
-  final ListEditingcontroller<ParentReferenceDTO> parentsReferences;
-  final BooleanEditingController isClassNull;
-
+class UpdateStudentDto extends StudentDto {
   UpdateStudentDto(this._student)
-    : codeController = TextEditingController(text: _student.code),
-      levelController = TextEditingController(text: _student.level),
-      parentsReferences = ListEditingcontroller<ParentReferenceDTO>(
-        _student.parentsReferences
-            .map((e) => ParentReferenceDTO.fromModel(e))
-            .toList(),
-      ),
-      isClassNull = BooleanEditingController(
+    : isClassNull = BooleanEditingController(
         _student.schoolClass == null,
       ),
-      super(_student);
+      super(
+        codeController: TextEditingController(text: _student.code),
+        nameController: TextEditingController(text: _student.name),
+        emailController: TextEditingController(text: _student.email),
+        passwordController: TextEditingController(),
+        levelController: EditingController<String>(_student.level),
+        parentsReferences: ListEditingController<ParentReferenceDTO>(
+          _student.parentsReferences
+              .map((e) => ParentReferenceDTO.fromModel(e))
+              .toList(),
+        ),
+      );
+
+  final StudentModel _student;
+
+  final BooleanEditingController isClassNull;
+
+  String get id => _student.id!;
 
   @override
   void dispose() {
@@ -33,12 +36,17 @@ class UpdateStudentDto extends UpdateUserDto {
   @override
   Future<Map<String, dynamic>> toMap() async {
     return {
-      ...await super.toMap(),
+      if (_student.name != nameController.text)
+        'name': nameController.text,
+
+      if (_student.email != emailController.text)
+        'email': emailController.text,
+
       if (_student.code != codeController.text)
         'code': codeController.text,
 
-      if (_student.level != levelController.text)
-        'level': levelController.text,
+      if (_student.level != levelController.value)
+        'level': levelController.value,
 
       if (_student.schoolClass == null && !isClassNull.value)
         'schoolClass': null,

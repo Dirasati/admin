@@ -15,6 +15,8 @@ class AppTextField extends StatelessWidget {
 
   final bool isRequired;
 
+  final double width;
+
   const AppTextField({
     super.key,
     required this.controller,
@@ -23,119 +25,128 @@ class AppTextField extends StatelessWidget {
 
     this.inputFormatters,
     this.isRequired = false,
+
+    this.width = double.infinity,
   });
 
   @override
   Widget build(BuildContext context) {
-    return FormField(
-      validator: (_) => validator?.call(controller.text),
-      builder:
-          (state) => Column(
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.only(
-                  bottom: 2.h,
-                  start: 8.w,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text.rich(
-                        TextSpan(
-                          text: label,
-                          children: [
-                            TextSpan(
-                              text: isRequired ? ' *' : '',
-                              style: AppTextStyles.large.copyWith(
-                                color: AppColors.red,
+    return SizedBox(
+      width: width,
+      child: FormField(
+        validator: (_) => validator?.call(controller.text),
+        builder:
+            (state) => Column(
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.only(
+                    bottom: 2.h,
+                    start: 8.w,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text.rich(
+                          TextSpan(
+                            text: label,
+                            children: [
+                              TextSpan(
+                                text: isRequired ? ' *' : '',
+                                style: AppTextStyles.large.copyWith(
+                                  color: AppColors.red,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        style: AppTextStyles.large.copyWith(
-                          color: AppColors.black,
+                            ],
+                          ),
+                          style: AppTextStyles.large.copyWith(
+                            color: AppColors.black,
+                          ),
                         ),
                       ),
+                    ],
+                  ),
+                ),
+
+                TextFormField(
+                  controller: controller,
+                  validator: validator,
+
+                  style: AppTextStyles.medium.copyWith(
+                    color:
+                        state.hasError
+                            ? AppColors.red
+                            : AppColors.black,
+                  ),
+
+                  cursorColor: AppColors.primary,
+
+                  inputFormatters: inputFormatters,
+
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 12.h,
+                      horizontal: 12.w,
                     ),
-                  ],
-                ),
-              ),
 
-              TextFormField(
-                controller: controller,
-                validator: validator,
+                    error: SizedBox.shrink(),
 
-                style: AppTextStyles.medium.copyWith(
-                  color:
-                      state.hasError
-                          ? AppColors.red
-                          : AppColors.black,
-                ),
-
-                cursorColor: AppColors.primary,
-
-                inputFormatters: inputFormatters,
-
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 12.h,
-                    horizontal: 12.w,
-                  ),
-
-                  error: SizedBox.shrink(),
-
-                  prefixIconConstraints: BoxConstraints(
-                    minWidth: 8.w,
-                  ),
-                  suffixIconConstraints: BoxConstraints(
-                    minWidth: 8.w,
-                  ),
-
-                  hintStyle: AppTextStyles.medium.copyWith(
-                    color: AppColors.greyDark,
-                  ),
-
-                  border: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.greyDark),
-                    borderRadius: BorderRadius.circular(8).r,
-                  ),
-
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.primary),
-                    borderRadius: BorderRadius.circular(8).r,
-                  ),
-
-                  errorBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.red),
-                    borderRadius: BorderRadius.circular(8).r,
-                  ),
-                ),
-              ),
-
-              if (state.hasError) ...[
-                heightSpace(4),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    widthSpace(8),
-                    Icon(
-                      AppIcons.error_outline,
-                      color: AppColors.red,
-                      size: 20.r,
+                    prefixIconConstraints: BoxConstraints(
+                      minWidth: 8.w,
                     ),
-                    widthSpace(8),
-                    Expanded(
-                      child: Text(
-                        state.errorText!,
-                        style: AppTextStyles.error,
+                    suffixIconConstraints: BoxConstraints(
+                      minWidth: 8.w,
+                    ),
+
+                    hintStyle: AppTextStyles.medium.copyWith(
+                      color: AppColors.greyDark,
+                    ),
+
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.greyDark,
                       ),
+                      borderRadius: BorderRadius.circular(8).r,
                     ),
-                    widthSpace(8),
-                  ],
+
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.primary,
+                      ),
+                      borderRadius: BorderRadius.circular(8).r,
+                    ),
+
+                    errorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.red),
+                      borderRadius: BorderRadius.circular(8).r,
+                    ),
+                  ),
                 ),
+
+                if (state.hasError) ...[
+                  heightSpace(4),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      widthSpace(8),
+                      Icon(
+                        AppIcons.error_outline,
+                        color: AppColors.red,
+                        size: 20.r,
+                      ),
+                      widthSpace(8),
+                      Expanded(
+                        child: Text(
+                          state.errorText!,
+                          style: AppTextStyles.error,
+                        ),
+                      ),
+                      widthSpace(8),
+                    ],
+                  ),
+                ],
               ],
-            ],
-          ),
+            ),
+      ),
     );
   }
 }

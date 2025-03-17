@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dirasaty_admin/core/extension/list.extension.dart';
 
-class ListEditingcontroller<T> extends ValueNotifier<List<T>> {
-  ListEditingcontroller([List<T>? value]) : super(value ?? []);
+class ListEditingController<T> extends ValueNotifier<List<T>> {
+  ListEditingController([List<T>? value]) : super(value ?? []);
 
   void addValue(T value) {
     this.value.addUnique(value);

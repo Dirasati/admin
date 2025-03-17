@@ -20,6 +20,8 @@ class AppDropDownField<T> extends StatelessWidget {
 
   final bool isRequired;
 
+  final double width;
+
   const AppDropDownField({
     super.key,
     required this.controller,
@@ -30,124 +32,130 @@ class AppDropDownField<T> extends StatelessWidget {
     required this.itemsBuilder,
     required this.itemToString,
     this.itemToWidget,
+    this.width = double.infinity,
   });
 
   @override
   Widget build(BuildContext context) {
-    return FormField<T>(
-      validator: (value) => validator?.call(controller.value),
-      builder: (state) {
-        return Column(
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.only(
-                bottom: 2.h,
-                start: 8.w,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text.rich(
-                      TextSpan(
-                        text: label,
-                        children: [
-                          TextSpan(
-                            text: isRequired ? ' *' : '',
-                            style: AppTextStyles.large.copyWith(
-                              color: AppColors.red,
+    return SizedBox(
+      width: width,
+      child: FormField<T>(
+        validator: (value) => validator?.call(controller.value),
+        builder: (state) {
+          return Column(
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.only(
+                  bottom: 2.h,
+                  start: 8.w,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text.rich(
+                        TextSpan(
+                          text: label,
+                          children: [
+                            TextSpan(
+                              text: isRequired ? ' *' : '',
+                              style: AppTextStyles.large.copyWith(
+                                color: AppColors.red,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      style: AppTextStyles.large.copyWith(
-                        color: AppColors.black,
+                          ],
+                        ),
+                        style: AppTextStyles.large.copyWith(
+                          color: AppColors.black,
+                        ),
                       ),
                     ),
-                  ),
 
-                  if (onAdd != null) ...[
-                    InkWell(
-                      // Add button
-                      onTap: onAdd,
-                      child: Icon(
-                        AppIcons.add_circle_outline,
-                        color: AppColors.black,
+                    if (onAdd != null) ...[
+                      InkWell(
+                        // Add button
+                        onTap: onAdd,
+                        child: Icon(
+                          AppIcons.add_circle_outline,
+                          color: AppColors.black,
+                        ),
                       ),
-                    ),
+                    ],
                   ],
-                ],
-              ),
-            ),
-
-            DropdownSearch<T>(
-              itemAsString: itemToString,
-
-              items: (filter, loadProps) => itemsBuilder(context),
-
-              validator: (value) => validator?.call(value),
-
-              onChanged:
-                  (value) =>
-                      value != null
-                          ? controller.setValue(value)
-                          : controller.clear(),
-
-              decoratorProps: DropDownDecoratorProps(
-                baseStyle: AppTextStyles.medium.copyWith(
-                  color: AppColors.black,
-                ),
-
-                decoration: InputDecoration(
-                  error: SizedBox.shrink(),
-
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 12.h,
-                    horizontal: 12.w,
-                  ),
-
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12).r,
-                    borderSide: BorderSide(color: AppColors.grey),
-                  ),
-
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12).r,
-                    borderSide: BorderSide(color: AppColors.primary),
-                  ),
-
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12).r,
-                    borderSide: BorderSide(color: AppColors.red),
-                  ),
                 ),
               ),
-            ),
 
-            if (state.hasError) ...[
-              heightSpace(4),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  widthSpace(8),
-                  Icon(
-                    AppIcons.error_outline,
-                    color: AppColors.red,
-                   size: 20.r,
+              DropdownSearch<T>(
+                itemAsString: itemToString,
+
+                items: (filter, loadProps) => itemsBuilder(context),
+
+                validator: (value) => validator?.call(value),
+
+                onChanged:
+                    (value) =>
+                        value != null
+                            ? controller.setValue(value)
+                            : controller.clear(),
+
+                decoratorProps: DropDownDecoratorProps(
+                  baseStyle: AppTextStyles.medium.copyWith(
+                    color: AppColors.black,
                   ),
-                  widthSpace(8),
-                  Expanded(
-                    child: Text(
-                      state.errorText!,
-                      style: AppTextStyles.error,
+
+                  decoration: InputDecoration(
+                    error: SizedBox.shrink(),
+
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 12.h,
+                      horizontal: 12.w,
+                    ),
+
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12).r,
+                      borderSide: BorderSide(color: AppColors.grey),
+                    ),
+
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12).r,
+                      borderSide: BorderSide(
+                        color: AppColors.primary,
+                      ),
+                    ),
+
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12).r,
+                      borderSide: BorderSide(color: AppColors.red),
                     ),
                   ),
-                  widthSpace(8),
-                ],
+                ),
               ),
+
+              if (state.hasError) ...[
+                heightSpace(4),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    widthSpace(8),
+                    Icon(
+                      AppIcons.error_outline,
+                      color: AppColors.red,
+                      size: 20.r,
+                    ),
+                    widthSpace(8),
+                    Expanded(
+                      child: Text(
+                        state.errorText!,
+                        style: AppTextStyles.error,
+                      ),
+                    ),
+                    widthSpace(8),
+                  ],
+                ),
+              ],
             ],
-          ],
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

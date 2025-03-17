@@ -1,3 +1,5 @@
+import 'package:dirasaty_admin/core/extension/localization.extension.dart';
+import 'package:dirasaty_admin/core/extension/validator.extension.dart';
 import 'package:dirasaty_admin/core/shared/dto/form_dto.dart';
 import 'package:dirasaty_admin/core/shared/models/user_model.dart';
 import 'package:flutter/widgets.dart';
@@ -10,6 +12,13 @@ abstract class UserDto extends FormDTO {
   @override
   void dispose() {
     nameController.dispose();
+  }
+
+  String? validateName(String? value, BuildContext context) {
+    if (value == null || value.isEmpty) {
+      return 'FieldIsRequired'.tr(context);
+    }
+    return null;
   }
 }
 
@@ -37,6 +46,13 @@ class CreateUserDto extends UserDto {
       'password': passwordController.text,
     };
   }
+
+  String? validateEmail(String? value, BuildContext context) {
+    return value.isValidEmail ? null : 'InvalidEmail'.tr(context);
+  }
+
+  String? validatePassword(String? value, BuildContext context) =>
+      value.isValidPassword ? null : 'InvalidPassword'.tr(context);
 }
 
 class UpdateUserDto extends UserDto {
