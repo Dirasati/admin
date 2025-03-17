@@ -42,11 +42,7 @@ class _ParentFormCard extends StatelessWidget {
   final ParentReferenceDTO parentDto;
   final VoidCallback? onRemove;
 
-  const _ParentFormCard({
-    Key? key,
-    required this.parentDto,
-    this.onRemove,
-  }) : super(key: key);
+  const _ParentFormCard({required this.parentDto, this.onRemove});
 
   @override
   Widget build(BuildContext context) {
