@@ -1,60 +1,33 @@
-import 'package:dirasaty_admin/core/constants/data.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/extension/navigator.extension.dart';
 import 'package:dirasaty_admin/core/extension/snackbar.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
-import 'package:dirasaty_admin/core/shared/widgets/dropdown_field.dart';
 import 'package:dirasaty_admin/core/shared/widgets/loading_widget.dart';
-import 'package:dirasaty_admin/core/shared/widgets/text_field.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/font_styles.dart';
-import 'package:dirasaty_admin/core/themes/icons.dart';
-import 'package:dirasaty_admin/features/students/data/dto/student_dto.dart';
-import 'package:dirasaty_admin/features/students/modules/studentform/logic/student_form_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-part 'widget/create_student_form.dart';
-part 'widget/update_student_form.dart';
-part 'widget/parent_form.dart';
+import '../logic/parent_form_cubit.dart';
 
-class StudentForm extends StatelessWidget {
-  final Widget _studentForm;
-  final Widget _parentForm;
+part 'widgets/parent_form.dart';
 
-  const StudentForm._({
-    required Widget studentForm,
-    required Widget parentForm,
-  }) : _studentForm = studentForm,
-       _parentForm = parentForm;
-
-  factory StudentForm.create() {
-    return StudentForm._(
-      studentForm: _CreateStudentForm(),
-      parentForm: _ParentForm(),
-    );
-  }
-
-  factory StudentForm.update() {
-    return StudentForm._(
-      studentForm: _UpdateStudentForm(),
-      parentForm: _ParentForm(),
-    );
-  }
+class ParentForm extends StatelessWidget {
+  const ParentForm({super.key});
 
   @override
   Widget build(BuildContext context) {
     final isLoaded = context.select(
-      (StudentFormCubit cubit) => cubit.state.isLoaded,
+      (ParentFormState state) => state.isLoaded,
     );
-    return BlocListener<StudentFormCubit, StudentFormState>(
+    return BlocListener<ParentFormCubit, ParentFormState>(
       listener: (context, state) {
         state.onError(context.showErrorSnackbar);
-        state.onSaved((student) {
-          context.showSuccessSnackbar("StudentSaved".tr(context));
-          context.back(student);
+        state.onSaved((parent) {
+          context.showSuccessSnackbar("ParentSaved".tr(context));
+          context.back(parent);
         });
       },
       child: Container(
@@ -81,7 +54,7 @@ class StudentForm extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildTitle("StudentInfo".tr(context)),
+            _buildTitle("ParentInfo".tr(context)),
             const Spacer(),
             InkWell(
               onTap: context.back,
@@ -95,33 +68,17 @@ class StudentForm extends StatelessWidget {
         ),
         heightSpace(24),
 
-        _studentForm,
-        heightSpace(24),
-
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildTitle("ParentInfo".tr(context)),
-            const Spacer(),
-            AppButton.hyperLink(
-              text: "AddParent".tr(context),
-              onPressed: () {}, //TODO: Show Add Parent Dialog
-            ),
-          ],
-        ),
-        heightSpace(24),
-
-        _parentForm,
+        _ParentsForm(),
         heightSpace(24),
 
         Align(
           alignment: AlignmentDirectional.centerEnd,
           child: AppButton.primary(
             text: "Save".tr(context),
-            onPressed: context.read<StudentFormCubit>().save,
+            onPressed: context.read<ParentFormCubit>().save,
             isLoading:
                 (ctx) => ctx.select(
-                  (StudentFormCubit cubit) => cubit.state.isLoading,
+                  (ParentFormState cubit) => cubit.isLoading,
                 ),
           ),
         ),

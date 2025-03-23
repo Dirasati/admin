@@ -17,7 +17,7 @@ abstract class ParentFormCubit<T extends ParentDto>
 
   void loadDto();
 
-  void saveDto();
+  void save();
 }
 
 class CreateParentCubit extends ParentFormCubit<CreateParentDto> {
@@ -28,7 +28,7 @@ class CreateParentCubit extends ParentFormCubit<CreateParentDto> {
   }
 
   @override
-  void saveDto() async {
+  void save() async {
     if (state.isLoading || !dto.validate()) return;
 
     emit(state._loading());
@@ -60,7 +60,7 @@ class UpdateParentCubit extends ParentFormCubit<UpdateParentDto> {
   }
 
   @override
-  void saveDto() async {
+  void save() async {
     if (state.isLoading || !dto.validate()) return;
 
     emit(state._loading());

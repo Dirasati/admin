@@ -13,6 +13,7 @@
     "ParentInfo": "Parent Information",
     "AddParent": "Add Parent",
     "StudentSaved": "Student saved successfully",
+    "ParentSaved": "Parent saved successfully",
     "DeleteConfirmation": "Are you sure you want to delete this item?",
     "InvalidPhoneNumber": "Invalid phone number",
     "InvalidEmail": "Invalid email",
