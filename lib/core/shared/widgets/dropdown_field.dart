@@ -87,6 +87,8 @@ class AppDropDownField<T> extends StatelessWidget {
               DropdownSearch<T>(
                 itemAsString: itemToString,
 
+                autoValidateMode: AutovalidateMode.onUserInteraction,
+
                 items: (filter, loadProps) => itemsBuilder(context),
 
                 validator: (value) => validator?.call(value),
