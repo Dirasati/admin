@@ -10,6 +10,8 @@ import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/icons.dart';
 import 'package:dirasaty_admin/features/students/data/model/student_model.dart';
 import 'package:dirasaty_admin/features/students/modules/multistudents/logic/multi_students_cubit.dart';
+import 'package:dirasaty_admin/features/students/modules/studentform/logic/student_form_cubit.dart';
+import 'package:dirasaty_admin/features/students/modules/studentform/ui/student_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

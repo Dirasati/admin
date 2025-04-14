@@ -20,14 +20,14 @@ extension ListExtension<T> on List<T> {
 
   List<T> withUnique(T item) {
     addUnique(item);
-    return this;
+    return List.from(this);
   }
 
   void addAllUnique(List<T> items) => items.forEach(addUnique);
 
   List<T> withAllUnique(List<T> items) {
     items.forEach(addUnique);
-    return this;
+    return List.from(this);
   }
 
   void replace(T item) {
@@ -40,13 +40,13 @@ extension ListExtension<T> on List<T> {
     final index = indexWhere((e) => e == item);
     if (index == -1) return this;
     this[index] = item;
-    return this;
+    return List<T>.from(this);
   }
 
   List<T> without(T item) {
     final index = indexWhere((e) => e == item);
     if (index == -1) return this;
     removeAt(index);
-    return this;
+    return List<T>.from(this);
   }
 }

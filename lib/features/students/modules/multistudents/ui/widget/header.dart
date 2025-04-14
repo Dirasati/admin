@@ -17,7 +17,19 @@ class _Header extends StatelessWidget {
         const Spacer(),
         AppButton.primary(
           text: 'Add Student',
-          onPressed: () {}, //TODO Show add student form
+          onPressed:
+              () => context.dialogWith<StudentModel>(
+                child: BlocProvider<StudentFormCubit>(
+                  create: (context) => CreateStudentCubit()..load(),
+                  child: StudentForm.create(),
+                ),
+                onResult: (student) {
+                  cubit.addStudent(student);
+                  context.showSuccessSnackbar(
+                    'Student added successfully',
+                  );
+                },
+              ),
           suffixIcon: AppIcons.add,
         ),
         widthSpace(12),

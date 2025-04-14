@@ -9,7 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppDropDownField<T> extends StatelessWidget {
   final EditingController<T> controller;
-  final String label;
+
+  final String? label;
+  final String? hintText;
 
   final List<T> Function(BuildContext context) itemsBuilder;
   final Widget Function(T)? itemToWidget;
@@ -25,7 +27,8 @@ class AppDropDownField<T> extends StatelessWidget {
   const AppDropDownField({
     super.key,
     required this.controller,
-    required this.label,
+    this.label,
+    this.hintText,
     this.validator,
     this.onAdd,
     this.isRequired = false,
@@ -52,22 +55,26 @@ class AppDropDownField<T> extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Text.rich(
-                        TextSpan(
-                          text: label,
-                          children: [
-                            TextSpan(
-                              text: isRequired ? ' *' : '',
-                              style: AppTextStyles.large.copyWith(
-                                color: AppColors.red,
-                              ),
-                            ),
-                          ],
-                        ),
-                        style: AppTextStyles.large.copyWith(
-                          color: AppColors.black,
-                        ),
-                      ),
+                      child:
+                          label != null
+                              ? Text.rich(
+                                TextSpan(
+                                  text: label,
+                                  children: [
+                                    TextSpan(
+                                      text: isRequired ? ' *' : '',
+                                      style: AppTextStyles.large
+                                          .copyWith(
+                                            color: AppColors.red,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                style: AppTextStyles.large.copyWith(
+                                  color: AppColors.black,
+                                ),
+                              )
+                              : SizedBox.shrink(),
                     ),
 
                     if (onAdd != null) ...[
@@ -86,6 +93,7 @@ class AppDropDownField<T> extends StatelessWidget {
 
               DropdownSearch<T>(
                 itemAsString: itemToString,
+                selectedItem: controller.value,
 
                 autoValidateMode: AutovalidateMode.onUserInteraction,
 
@@ -105,7 +113,8 @@ class AppDropDownField<T> extends StatelessWidget {
                   ),
 
                   decoration: InputDecoration(
-                    error: SizedBox.shrink(),
+                    hintText: hintText,
+                    error: state.hasError ? SizedBox.shrink() : null,
 
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 12.h,

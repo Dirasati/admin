@@ -10,16 +10,16 @@ abstract class AppRoutes {
     '/verify-account',
   ];
 
-  static const String home = 'HOME';
+  static const String home = '/home';
 
   //* AUTH ROUTES
-  static const String login = 'LOGIN';
-  static const String signup = 'SIGNUP';
-  static const String forgetPassword = 'FORGET_PASSWORD';
-  static const String checkOtp = 'CHECK_OTP';
-  static const String resetPassword = 'RESET_PASSWORD';
-  static const String verifyAccount = 'VERIFY_ACCOUNT';
+  static const String login = '/login';
+  static const String signup = '/signup';
+  static const String forgetPassword = '/forget-password';
+  static const String checkOtp = '/check-otp';
+  static const String resetPassword = '/reset-password';
+  static const String verifyAccount = '/verify-account';
 
   //* STUDENT ROUTES
-  static const String students = 'STUDENTS';
+  static const String students = '/students';
 }

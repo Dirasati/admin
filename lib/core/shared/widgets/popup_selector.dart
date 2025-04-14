@@ -1,5 +1,6 @@
 import 'package:dirasaty_admin/core/shared/widgets/search_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PopupSelector<T> extends StatelessWidget {
   final Widget widget;
@@ -26,9 +27,19 @@ class PopupSelector<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<T>(
       onSelected: (value) => onItemSelected(value),
+      borderRadius: BorderRadius.circular(16).r,
+      color: Colors.white,
+      menuPadding: EdgeInsets.symmetric(
+        horizontal: 12.w,
+        vertical: 8.h,
+      ),
+      constraints: BoxConstraints(minWidth: 320.w),
+
       itemBuilder:
           (context) => [
             PopupMenuItem(
+              enabled: false,
+              padding: EdgeInsets.zero,
               child: AppSearchField(
                 controller: searchController,
                 onSearch: onSearch,
