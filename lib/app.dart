@@ -1,3 +1,4 @@
+import 'package:dirasaty_admin/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -36,7 +37,7 @@ class _MaterialApp extends StatelessWidget {
 
     return MaterialApp.router(
       routerConfig: router.routerConfig,
-      theme: ThemeData(fontFamily: 'Poppins'),
+      theme: ThemeData(fontFamily: FontFamily.poppins),
       supportedLocales: [
         Locale('fr'), // French
         Locale('en'), // English
