@@ -23,7 +23,6 @@ abstract class ParentFormCubit<T extends ParentDto>
 class CreateParentCubit extends ParentFormCubit<CreateParentDto> {
   @override
   void loadDto() {
-    emit(state._loading());
     emit(state._loaded(CreateParentDto()));
   }
 

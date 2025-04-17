@@ -68,7 +68,11 @@ class ParentRefernces extends StatelessWidget {
                       onConfirm:
                           () => controller.removeValue(parentDto),
                     ),
-                icon: Icon(AppIcons.delete, size: 24.r),
+                icon: Icon(
+                  AppIcons.delete,
+                  size: 24.r,
+                  color: AppColors.red,
+                ),
               ),
             ],
           ),
@@ -97,7 +101,7 @@ class ParentRefernces extends StatelessWidget {
 
           AppDropDownField(
             controller: parentDto.parentRelationController,
-            hintText: 'e.g. mother, father ...',
+            hintText: 'e.g. mother, father'.tr(contxt),
             itemsBuilder: (_) => AppConstants.parentRelations,
             isRequired: true,
             itemToString: (relation) => relation,

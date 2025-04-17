@@ -20,7 +20,7 @@ class ParentForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLoaded = context.select(
-      (ParentFormState state) => state.isLoaded,
+      (ParentFormCubit cubit) => cubit.state.isLoaded,
     );
     return BlocListener<ParentFormCubit, ParentFormState>(
       listener: (context, state) {
@@ -36,7 +36,7 @@ class ParentForm extends StatelessWidget {
           horizontal: 32.w,
           vertical: 32.h,
         ),
-        constraints: BoxConstraints(minHeight: 850.h),
+        // constraints: BoxConstraints(minHeight: 850.h),
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(24).r,
@@ -78,7 +78,7 @@ class ParentForm extends StatelessWidget {
             onPressed: context.read<ParentFormCubit>().save,
             isLoading:
                 (ctx) => ctx.select(
-                  (ParentFormState cubit) => cubit.isLoading,
+                  (ParentFormCubit cubit) => cubit.state.isLoading,
                 ),
           ),
         ),

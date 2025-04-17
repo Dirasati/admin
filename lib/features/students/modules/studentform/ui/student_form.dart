@@ -9,6 +9,7 @@ import 'package:dirasaty_admin/core/shared/widgets/loading_widget.dart';
 import 'package:dirasaty_admin/core/shared/widgets/text_field.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/font_styles.dart';
+import 'package:dirasaty_admin/features/parent/data/dto/parent_refernce_dto.dart';
 import 'package:dirasaty_admin/features/parent/data/dto/parents_filter.dart';
 import 'package:dirasaty_admin/features/parent/modules/multiparent/logic/multi_parent_cubit.dart';
 import 'package:dirasaty_admin/features/parent/modules/multiparent/ui/parent_refernces.dart';
@@ -65,6 +66,8 @@ class StudentForm extends StatelessWidget {
   }
 
   Column _buildForm(BuildContext context) {
+    final parentsReferences =
+        context.read<StudentFormCubit>().dto.parentsReferences;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -90,23 +93,28 @@ class StudentForm extends StatelessWidget {
         heightSpace(24),
 
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _buildTitle("Parents".tr(context)),
-            const Spacer(),
+            Expanded(child: _buildTitle("Parents".tr(context))),
+
             BlocProvider(
               create:
                   (context) =>
                       MultiParentCubit(ParentsFilter(limit: 5)),
-              child: ParentsSelector(),
+              child: ParentsSelector(
+                onSelected:
+                    (parent) => parentsReferences.addValue(
+                      ParentReferenceDTO(parent),
+                    ),
+              ),
             ),
           ],
         ),
         heightSpace(24),
 
-        ParentRefernces(
-          controller:
-              context.read<StudentFormCubit>().dto.parentsReferences,
+        Expanded(
+          //TODO use MultiParentCubit if parents are not in student model response
+          child: ParentRefernces(controller: parentsReferences),
         ),
         heightSpace(24),
 

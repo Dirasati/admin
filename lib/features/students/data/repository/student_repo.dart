@@ -8,6 +8,7 @@ import '../model/student_model.dart';
 import '../source/student_api.dart';
 
 
+
 class StudentRepo extends NetworkRepository {
   final _studentApi = locator<StudentApi>();
 
