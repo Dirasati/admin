@@ -1,10 +1,13 @@
 import 'package:dirasaty_admin/core/di/locator.dart';
 import 'package:dirasaty_admin/core/network/repo_base.dart';
 import 'package:dirasaty_admin/core/network/types/pagination_result.dart';
-import 'package:dirasaty_admin/features/students/data/dto/student_dto.dart';
-import 'package:dirasaty_admin/features/students/data/dto/students_filter.dart';
-import 'package:dirasaty_admin/features/students/data/model/student_model.dart';
-import 'package:dirasaty_admin/features/students/data/source/student_api.dart';
+
+import '../dto/student_dto.dart';
+import '../dto/students_filter.dart';
+import '../model/student_model.dart';
+import '../source/student_api.dart';
+
+
 
 class StudentRepo extends NetworkRepository {
   final _studentApi = locator<StudentApi>();

@@ -67,7 +67,7 @@ class AppDateField extends StatelessWidget {
                   readOnly: true,
 
                   controller: TextEditingController(
-                    text: controller.value?.toDayMonthYear() ?? '',
+                    text: value?.toDayMonthYear() ?? '',
                   ),
 
                   style: AppTextStyles.medium.copyWith(
@@ -92,6 +92,8 @@ class AppDateField extends StatelessWidget {
 
                   decoration: InputDecoration(
                     hintText: 'dd/mm/yyyy',
+
+                    error: state.hasError ? SizedBox.shrink() : null,
 
                     prefixIconConstraints: BoxConstraints(
                       minWidth: 8.w,

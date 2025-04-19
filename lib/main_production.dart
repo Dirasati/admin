@@ -8,7 +8,7 @@ void main() async {
   // Define the flavor
   FlavorConfig(
     name: "PRODUCTION",
-    variables: {"baseUrl": "https://mazad.rechidiahmed.me/api/v1"},
+    variables: {"baseUrl": "https://dirassaty.rechidiahmed.me/api/v1"},
   );
 
   // Initialize the ScreenUtil

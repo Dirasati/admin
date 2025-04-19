@@ -70,7 +70,18 @@ class _StudentsList extends StatelessWidget {
       PopupMenuItem(
         child: Text("Edit".tr(context)),
         onTap: () {
-          //TODO show edit student dialog
+          context.dialogWith<StudentModel>(
+            child: BlocProvider<StudentFormCubit>(
+              create: (context) => UpdateStudentCubit(student.id!),
+              child: StudentForm.update(),
+            ),
+            onResult: (student) {
+              context.read<StudentsListCubit>().replaceStudent(
+                student,
+              );
+              context.showSuccessSnackbar("StudentSaved".tr(context));
+            },
+          );
         },
       ),
       PopupMenuItem(

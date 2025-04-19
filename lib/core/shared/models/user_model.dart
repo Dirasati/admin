@@ -1,4 +1,4 @@
-import 'package:dirasaty_admin/core/shared/models/parent_reference_model.dart';
+import 'package:dirasaty_admin/features/parent/data/models/parent_reference_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 

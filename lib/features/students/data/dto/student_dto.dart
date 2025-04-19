@@ -4,11 +4,10 @@ import 'package:dirasaty_admin/core/shared/classes/editioncontollers/boolean_edi
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/list_generic_editingcontroller.dart';
 import 'package:dirasaty_admin/core/shared/dto/form_dto.dart';
-import 'package:dirasaty_admin/core/shared/models/parent_reference_model.dart';
+import 'package:dirasaty_admin/features/parent/data/dto/parent_refernce_dto.dart';
 import 'package:dirasaty_admin/features/students/data/model/student_model.dart';
 import 'package:flutter/material.dart';
 
-part 'parent_reference.dart';
 part 'update_student_dto.dart';
 
 abstract class StudentDto extends FormDTO {

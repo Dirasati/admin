@@ -9,8 +9,11 @@ import 'package:dirasaty_admin/core/shared/widgets/loading_widget.dart';
 import 'package:dirasaty_admin/core/shared/widgets/text_field.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/font_styles.dart';
-import 'package:dirasaty_admin/core/themes/icons.dart';
-import 'package:dirasaty_admin/features/students/data/dto/student_dto.dart';
+import 'package:dirasaty_admin/features/parent/data/dto/parent_refernce_dto.dart';
+import 'package:dirasaty_admin/features/parent/data/dto/parents_filter.dart';
+import 'package:dirasaty_admin/features/parent/modules/multiparent/logic/multi_parent_cubit.dart';
+import 'package:dirasaty_admin/features/parent/modules/multiparent/ui/parent_refernces.dart';
+import 'package:dirasaty_admin/features/parent/modules/multiparent/ui/parents_selector.dart';
 import 'package:dirasaty_admin/features/students/modules/studentform/logic/student_form_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,42 +21,31 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 part 'widget/create_student_form.dart';
 part 'widget/update_student_form.dart';
-part 'widget/parent_form.dart';
 
 class StudentForm extends StatelessWidget {
   final Widget _studentForm;
-  final Widget _parentForm;
 
-  const StudentForm._({
-    required Widget studentForm,
-    required Widget parentForm,
-  }) : _studentForm = studentForm,
-       _parentForm = parentForm;
+  const StudentForm._({required Widget studentForm})
+    : _studentForm = studentForm;
 
   factory StudentForm.create() {
-    return StudentForm._(
-      studentForm: _CreateStudentForm(),
-      parentForm: _ParentForm(),
-    );
+    return StudentForm._(studentForm: _CreateStudentForm());
   }
 
   factory StudentForm.update() {
-    return StudentForm._(
-      studentForm: _UpdateStudentForm(),
-      parentForm: _ParentForm(),
-    );
+    return StudentForm._(studentForm: _UpdateStudentForm());
   }
 
   @override
   Widget build(BuildContext context) {
     final isLoaded = context.select(
-      (StudentFormState state) => state.isLoaded,
+      (StudentFormCubit cubit) => cubit.state.isLoaded,
     );
     return BlocListener<StudentFormCubit, StudentFormState>(
       listener: (context, state) {
         state.onError(context.showErrorSnackbar);
         state.onSaved((student) {
-          context.showSuccessSnackbar("StudentSaved".tr(context));
+          
           context.back(student);
         });
       },
@@ -74,6 +66,8 @@ class StudentForm extends StatelessWidget {
   }
 
   Column _buildForm(BuildContext context) {
+    final parentsReferences =
+        context.read<StudentFormCubit>().dto.parentsReferences;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -99,19 +93,29 @@ class StudentForm extends StatelessWidget {
         heightSpace(24),
 
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _buildTitle("ParentInfo".tr(context)),
-            const Spacer(),
-            AppButton.hyperLink(
-              text: "AddParent".tr(context),
-              onPressed: () {}, //TODO: Show Add Parent Dialog
+            Expanded(child: _buildTitle("Parents".tr(context))),
+
+            BlocProvider(
+              create:
+                  (context) =>
+                      MultiParentCubit(ParentsFilter(limit: 5)),
+              child: ParentsSelector(
+                onSelected:
+                    (parent) => parentsReferences.addValue(
+                      ParentReferenceDTO(parent),
+                    ),
+              ),
             ),
           ],
         ),
         heightSpace(24),
 
-        _parentForm,
+        Expanded(
+          //TODO use MultiParentCubit if parents are not in student model response
+          child: ParentRefernces(controller: parentsReferences),
+        ),
         heightSpace(24),
 
         Align(

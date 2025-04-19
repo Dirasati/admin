@@ -1,4 +1,6 @@
+import 'package:dirasaty_admin/features/parent/data/models/parent_model.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 
 part 'parent_reference_model.g.dart';
 
@@ -6,7 +8,7 @@ part 'parent_reference_model.g.dart';
 class ParentReferenceModel {
   const ParentReferenceModel({this.parent, this.relationship});
 
-  final String? parent;
+  final ParentModel? parent;
   final String? relationship;
 
   factory ParentReferenceModel.fromJson(Map<String, dynamic> json) =>

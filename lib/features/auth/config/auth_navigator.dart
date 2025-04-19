@@ -12,17 +12,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AuthNavigator extends AppNavigatorBase {
-  AuthNavigator.login() : super(name: AppRoutes.login);
+  AuthNavigator.login() : super(path: AppRoutes.login);
 
   AuthNavigator.forgetPassword()
-    : super(name: AppRoutes.forgetPassword);
+    : super(path: AppRoutes.forgetPassword);
 
   AuthNavigator.checkOtp(String email)
-    : super(name: AppRoutes.checkOtp, queryParams: {'email': email});
+    : super(path: AppRoutes.checkOtp, queryParams: {'email': email});
 
   AuthNavigator.resetPassword(String email, String otp)
     : super(
-        name: AppRoutes.resetPassword,
+        path: AppRoutes.resetPassword,
         queryParams: {'email': email, 'otp': otp},
       );
 

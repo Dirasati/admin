@@ -5,12 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class StudentNavigator extends AppNavigatorBase {
-  StudentNavigator.students() : super(name: AppRoutes.students);
+  StudentNavigator.students() : super(path: AppRoutes.students);
 
   static List<RouteBase> routes = [
     GoRoute(
-      path: '/students',
-      name: AppRoutes.students,
+      path: AppRoutes.students,
       builder: (context, state) {
         return BlocProvider(
           create: (_) => StudentsListCubit()..firstPage(),

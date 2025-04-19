@@ -88,7 +88,7 @@ class AppTextField extends StatelessWidget {
                       horizontal: 12.w,
                     ),
 
-                    error: SizedBox.shrink(),
+                    error: state.hasError ? SizedBox.shrink() : null,
 
                     prefixIconConstraints: BoxConstraints(
                       minWidth: 8.w,

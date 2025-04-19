@@ -1,7 +1,6 @@
 part of 'dio_interceptors.dart';
 
 class DioErrorInterceptor extends InterceptorsWrapper {
-  // final authCacheHelper = locator<AuthCache>();
 
   @override
   void onError(
