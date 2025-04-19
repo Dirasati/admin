@@ -45,7 +45,7 @@ class StudentForm extends StatelessWidget {
       listener: (context, state) {
         state.onError(context.showErrorSnackbar);
         state.onSaved((student) {
-          context.showSuccessSnackbar("StudentSaved".tr(context));
+          
           context.back(student);
         });
       },
