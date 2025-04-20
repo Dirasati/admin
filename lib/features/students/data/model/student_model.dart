@@ -1,6 +1,6 @@
 import 'package:dirasaty_admin/features/parent/data/models/parent_reference_model.dart';
 import 'package:dirasaty_admin/core/shared/models/user_model.dart';
-import 'package:dirasaty_admin/features/schoolclass/data/models/school_class_model.dart';
+import 'package:dirasaty_admin/features/schoolclass/data/model/school_class_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'student_model.g.dart';

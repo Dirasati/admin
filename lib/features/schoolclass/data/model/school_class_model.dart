@@ -10,12 +10,14 @@ class SchoolClassModel extends Equatable {
   final String? name;
   final String? level;
   final int? nbOfStudents;
+  final int? nbOfTeachers;
 
   const SchoolClassModel({
     this.id,
     this.name,
     this.level,
     this.nbOfStudents,
+    this.nbOfTeachers,
   });
 
   factory SchoolClassModel.fromJson(Map<String, dynamic> json) =>
