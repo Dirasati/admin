@@ -72,7 +72,9 @@ class _StudentsList extends StatelessWidget {
         onTap: () {
           context.dialogWith<StudentModel>(
             child: BlocProvider<StudentFormCubit>(
-              create: (context) => UpdateStudentCubit(student.id!),
+              create:
+                  (context) =>
+                      UpdateStudentCubit(student.id!)..load(),
               child: StudentForm.update(),
             ),
             onResult: (student) {

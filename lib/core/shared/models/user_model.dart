@@ -10,9 +10,9 @@ class UserModel extends Equatable {
   final String? id;
   final String? name;
   final String? email;
-  final List<ParentReferenceModel> parentsReferences;
 
-  const UserModel({this.id, this.name, this.email  , required this.parentsReferences});
+
+  const UserModel({this.id, this.name, this.email  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

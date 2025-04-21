@@ -56,28 +56,24 @@ class InfoTable<T> extends StatelessWidget {
           ),
           const Divider(),
 
-          ...items.map(
-            (item) => Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 16.h,
-                    horizontal: 12.w,
-                  ),
-                  child: Row(
-                    children:
-                        columns
-                            .map(
-                              (column) => Expanded(
-                                flex: column.flex,
-                                child: column.itemBuilder(item),
-                              ),
-                            )
-                            .toList(),
-                  ),
-                ),
-                const Divider(),
-              ],
+          Expanded(
+            child: ListView.separated(
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return Row(
+                  children:
+                      columns
+                          .map(
+                            (column) => Expanded(
+                              flex: column.flex,
+                              child: column.itemBuilder(item),
+                            ),
+                          )
+                          .toList(),
+                );
+              },
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: items.length,
             ),
           ),
         ],

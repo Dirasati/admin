@@ -1,4 +1,5 @@
 import 'package:dirasaty_admin/core/constants/data.dart';
+import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/extension/navigator.extension.dart';
 import 'package:dirasaty_admin/core/extension/snackbar.extension.dart';
@@ -9,8 +10,10 @@ import 'package:dirasaty_admin/core/shared/widgets/loading_widget.dart';
 import 'package:dirasaty_admin/core/shared/widgets/text_field.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/font_styles.dart';
+import 'package:dirasaty_admin/core/themes/icons.dart';
 import 'package:dirasaty_admin/features/parent/data/dto/parent_refernce_dto.dart';
 import 'package:dirasaty_admin/features/parent/data/dto/parents_filter.dart';
+import 'package:dirasaty_admin/features/parent/data/models/parent_model.dart';
 import 'package:dirasaty_admin/features/parent/modules/multiparent/logic/multi_parent_cubit.dart';
 import 'package:dirasaty_admin/features/parent/modules/multiparent/ui/parent_refernces.dart';
 import 'package:dirasaty_admin/features/parent/modules/multiparent/ui/parents_selector.dart';
@@ -45,7 +48,6 @@ class StudentForm extends StatelessWidget {
       listener: (context, state) {
         state.onError(context.showErrorSnackbar);
         state.onSaved((student) {
-          
           context.back(student);
         });
       },
@@ -97,16 +99,23 @@ class StudentForm extends StatelessWidget {
           children: [
             Expanded(child: _buildTitle("Parents".tr(context))),
 
-            BlocProvider(
-              create:
-                  (context) =>
-                      MultiParentCubit(ParentsFilter(limit: 5)),
-              child: ParentsSelector(
-                onSelected:
-                    (parent) => parentsReferences.addValue(
-                      ParentReferenceDTO(parent),
+            InkWell(
+              onTap:
+                  () => context.dialogWith<ParentModel>(
+                    child: BlocProvider(
+                      create:
+                          (context) => MultiParentCubit(
+                            ParentsFilter(limit: 3),
+                          ),
+                      child: ParentsSelector(),
                     ),
-              ),
+                    onResult: (parent) {
+                      parentsReferences.addValue(
+                        ParentReferenceDTO(parent),
+                      );
+                    },
+                  ),
+              child: Icon(AppIcons.add),
             ),
           ],
         ),

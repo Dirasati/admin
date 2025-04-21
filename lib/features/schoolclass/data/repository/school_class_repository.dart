@@ -56,10 +56,7 @@ class SchoolClassRepo extends NetworkRepository {
     });
   }
 
-  RepoResult<SchoolClassModel> deleteSchoolClass(String id) async {
-    return tryApiCall(() async {
-      final response = await _schoolClassApi.deleteSchoolClass(id);
-      return SchoolClassModel.fromJson(response.data!);
-    });
+  RepoResult<void> deleteSchoolClass(String id) async {
+    return tryApiCall(() async => await _schoolClassApi.deleteSchoolClass(id));
   }
 }

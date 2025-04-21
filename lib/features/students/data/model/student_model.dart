@@ -11,17 +11,19 @@ class StudentModel extends UserModel {
   final String? code;
   final String? level;
   final bool? isAbsent;
+  final List<ParentReferenceModel>? parentsReferences;
 
   const StudentModel({
     super.id,
-    super.name,
+    String? lastName,
+    String? firstName,
     super.email,
-    required super.parentsReferences,
+    this.parentsReferences,
     this.schoolClass,
     this.code,
     this.level,
     this.isAbsent,
-  });
+  }) : super(name: '$lastName $firstName');
 
   factory StudentModel.fromJson(Map<String, dynamic> json) =>
       _$StudentModelFromJson(json);

@@ -13,7 +13,7 @@ class UpdateStudentDto extends StudentDto {
         levelController: EditingController<String>(_student.level),
         parentsReferences: ListEditingController<ParentReferenceDTO>(
           _student.parentsReferences
-              .map((e) => ParentReferenceDTO.fromModel(e))
+              ?.map((e) => ParentReferenceDTO.fromModel(e))
               .toList(),
         ),
       );
@@ -51,11 +51,11 @@ class UpdateStudentDto extends StudentDto {
       if (_student.schoolClass == null && !isClassNull.value)
         'schoolClass': null,
 
-      if (_student.parentsReferences.any(
+      if (_student.parentsReferences?.any(
         (e) => parentsReferences.value.every(
           (element) => element.isModified(e),
         ),
-      ))
+      ) ?? false)
         'parentsReferences': parentsReferences.value.map(
           (e) => e.toMap(),
         ),

@@ -16,7 +16,7 @@ part 'navigator_base.dart';
 class AppRouter {
   final routerConfig = GoRouter(
     initialLocation: '/students', //TODO change to home
-    routes: [...SchoolClassNavigator.routes, 
+    routes: [
       ...ParentNavigator.routes,
       ...AuthNavigator.routes,
       ...HomeNavigator.routes,

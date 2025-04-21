@@ -11,25 +11,25 @@ abstract class SchoolClassApi {
   @factoryMethod
   factory SchoolClassApi(Dio dio) = _SchoolClassApi;
 
-  @GET('/school-classes')
+  @GET('/schoolClasses')
   Future<PaginatedDataResponse> getSchoolClasses(
     @Queries() Map<String, dynamic>? queries,
   );
 
-  @GET('/school-classes/{id}')
+  @GET('/schoolClasses/{id}')
   Future<SingleDataResponse> getSchoolClass(@Path('id') String id);
 
-  @POST('/school-classes')
+  @POST('/schoolClasses')
   Future<SingleDataResponse> createSchoolClass(
     @Body() Map<String, dynamic> body,
   );
 
-  @PUT('/school-classes/{id}')
+  @PUT('/schoolClasses/{id}')
   Future<SingleDataResponse> updateSchoolClass(
     @Path('id') String id,
     @Body() Map<String, dynamic> body,
   );
 
-  @DELETE('/school-classes/{id}')
-  Future<SingleDataResponse> deleteSchoolClass(@Path('id') String id);
+  @DELETE('/schoolClasses/{id}')
+  Future<MessageResponse> deleteSchoolClass(@Path('id') String id);
 }

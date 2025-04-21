@@ -22,4 +22,8 @@ abstract class AppRoutes {
 
   //* STUDENT ROUTES
   static const String students = '/students';
+
+  //* CLASS ROUTES
+  static const String classes = '/classes';
+  static const String classDetails = '/classes/:id';
 }
