@@ -9,7 +9,7 @@ class ParentReferenceDTO extends Equatable {
   final EditingController<String> parentRelationController;
 
   ParentReferenceDTO(ParentModel parent)
-    : parentController = EditingController(),
+    : parentController = EditingController(parent),
       parentRelationController = EditingController();
 
   ParentReferenceDTO.fromModel(ParentReferenceModel model)

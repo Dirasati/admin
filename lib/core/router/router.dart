@@ -1,4 +1,3 @@
-import 'package:dirasaty_admin/features/schoolclass/config/school_class_navigator.dart';
 import 'package:dirasaty_admin/features/parent/config/parent_navigator.dart';
 // ignore_for_file: non_constant_identifier_names
 

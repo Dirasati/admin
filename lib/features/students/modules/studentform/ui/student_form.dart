@@ -43,12 +43,12 @@ class StudentForm extends StatelessWidget {
       },
       child: Container(
         width: 1250.w,
-        margin: EdgeInsets.symmetric(vertical: 40.h),
+        constraints: BoxConstraints(maxHeight: 1200.h),
         padding: EdgeInsets.symmetric(
           horizontal: 32.w,
           vertical: 32.h,
         ),
-        constraints: BoxConstraints(minHeight: 850.h),
+
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(24).r,
@@ -63,76 +63,77 @@ class StudentForm extends StatelessWidget {
     final parentsReferences = dto.parentsReferencesController;
     return Form(
       key: dto.formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildTitle("StudentInfo".tr(context)),
-              const Spacer(),
-              InkWell(
-                onTap: context.back,
-                child: Icon(
-                  Icons.close,
-                  color: AppColors.blackLight,
-                  size: 24.r,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildTitle("StudentInfo".tr(context)),
+                const Spacer(),
+                InkWell(
+                  onTap: context.back,
+                  child: Icon(
+                    Icons.close,
+                    color: AppColors.blackLight,
+                    size: 24.r,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          heightSpace(24),
+              ],
+            ),
+            heightSpace(24),
 
-          _StudentForm(),
-          heightSpace(24),
+            _StudentForm(),
+            heightSpace(24),
 
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(child: _buildTitle("Parents".tr(context))),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(child: _buildTitle("Parents".tr(context))),
 
-              InkWell(
-                onTap:
-                    () => context.dialogWith<ParentModel>(
-                      child: BlocProvider(
-                        create:
-                            (context) => MultiParentCubit(
-                              ParentsFilter(limit: 3),
-                            ),
-                        child: ParentsSelector(),
+                InkWell(
+                  onTap:
+                      () => context.dialogWith<ParentModel>(
+                        child: BlocProvider(
+                          create:
+                              (context) => MultiParentCubit(
+                                ParentsFilter(limit: 3),
+                              ),
+                          child: ParentsSelector(),
+                        ),
+                        onResult: (parent) {
+                          parentsReferences.addValue(
+                            ParentReferenceDTO(parent),
+                          );
+                        },
                       ),
-                      onResult: (parent) {
-                        parentsReferences.addValue(
-                          ParentReferenceDTO(parent),
-                        );
-                      },
-                    ),
-                child: Icon(AppIcons.add),
-              ),
-            ],
-          ),
-          heightSpace(24),
+                  child: Icon(AppIcons.add),
+                ),
+              ],
+            ),
+            heightSpace(24),
 
-          Expanded(
-            child: SingleChildScrollView(
+            SizedBox(
               child: ParentRefernces(controller: parentsReferences),
             ),
-          ),
-          heightSpace(24),
+            heightSpace(24),
 
-          Align(
-            alignment: AlignmentDirectional.centerEnd,
-            child: AppButton.primary(
-              text: "Save".tr(context),
-              onPressed: context.read<StudentFormCubit>().save,
-              isLoading:
-                  (ctx) => ctx.select(
-                    (StudentFormCubit cubit) => cubit.state.isLoading,
-                  ),
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: AppButton.primary(
+                text: "Save".tr(context),
+                onPressed: context.read<StudentFormCubit>().save,
+                isLoading:
+                    (ctx) => ctx.select(
+                      (StudentFormCubit cubit) =>
+                          cubit.state.isLoading,
+                    ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
