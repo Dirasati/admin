@@ -2,7 +2,7 @@ import 'package:dirasaty_admin/core/di/locator.dart';
 import 'package:dirasaty_admin/core/network/repo_base.dart';
 import 'package:dirasaty_admin/core/network/types/pagination_result.dart';
 import 'package:dirasaty_admin/core/shared/dto/pagination/pagination.dto.dart';
-import 'package:dirasaty_admin/features/parent/data/dto/paent_dto.dart';
+import 'package:dirasaty_admin/features/parent/data/dto/parent_dto.dart';
 import '../models/parent_model.dart';
 import '../source/parent_api.dart';
 

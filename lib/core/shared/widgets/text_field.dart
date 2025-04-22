@@ -35,6 +35,7 @@ class AppTextField extends StatelessWidget {
       width: width,
       child: FormField(
         validator: (_) => validator?.call(controller.text),
+        autovalidateMode: AutovalidateMode.onUnfocus,
         builder:
             (state) => Column(
               children: [
@@ -67,9 +68,8 @@ class AppTextField extends StatelessWidget {
                   ),
                 ),
 
-                TextFormField(
+                TextField(
                   controller: controller,
-                  validator: validator,
 
                   style: AppTextStyles.medium.copyWith(
                     color:
@@ -88,7 +88,7 @@ class AppTextField extends StatelessWidget {
                       horizontal: 12.w,
                     ),
 
-                    error: state.hasError ? SizedBox.shrink() : null,
+                    error: state.hasError ? const SizedBox() : null,
 
                     prefixIconConstraints: BoxConstraints(
                       minWidth: 8.w,

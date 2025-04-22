@@ -7,13 +7,17 @@ class AppLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 4.h,
-      child: LinearProgressIndicator(
-        backgroundColor: AppColors.greyLight,
-        valueColor: AlwaysStoppedAnimation(AppColors.primary),
-        borderRadius: BorderRadius.circular(8).r,
-      ),
+    return Stack(
+      children: [
+        SizedBox(
+          height: 4.h,
+          child: LinearProgressIndicator(
+            backgroundColor: AppColors.greyLight,
+            valueColor: AlwaysStoppedAnimation(AppColors.primary),
+            borderRadius: BorderRadius.circular(8).r,
+          ),
+        ),
+      ],
     );
   }
 }

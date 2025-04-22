@@ -58,82 +58,82 @@ class StudentForm extends StatelessWidget {
     );
   }
 
-  Column _buildForm(BuildContext context) {
-    final parentsReferences =
-        context
-            .read<StudentFormCubit>()
-            .dto
-            .parentsReferencesController;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildTitle("StudentInfo".tr(context)),
-            const Spacer(),
-            InkWell(
-              onTap: context.back,
-              child: Icon(
-                Icons.close,
-                color: AppColors.blackLight,
-                size: 24.r,
-              ),
-            ),
-          ],
-        ),
-        heightSpace(24),
-
-        _StudentForm(),
-        heightSpace(24),
-
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(child: _buildTitle("Parents".tr(context))),
-
-            InkWell(
-              onTap:
-                  () => context.dialogWith<ParentModel>(
-                    child: BlocProvider(
-                      create:
-                          (context) => MultiParentCubit(
-                            ParentsFilter(limit: 3),
-                          ),
-                      child: ParentsSelector(),
-                    ),
-                    onResult: (parent) {
-                      parentsReferences.addValue(
-                        ParentReferenceDTO(parent),
-                      );
-                    },
-                  ),
-              child: Icon(AppIcons.add),
-            ),
-          ],
-        ),
-        heightSpace(24),
-
-        Expanded(
-          child: SingleChildScrollView(
-            child: ParentRefernces(controller: parentsReferences),
-          ),
-        ),
-        heightSpace(24),
-
-        Align(
-          alignment: AlignmentDirectional.centerEnd,
-          child: AppButton.primary(
-            text: "Save".tr(context),
-            onPressed: context.read<StudentFormCubit>().save,
-            isLoading:
-                (ctx) => ctx.select(
-                  (StudentFormCubit cubit) => cubit.state.isLoading,
+  Widget _buildForm(BuildContext context) {
+    final dto = context.read<StudentFormCubit>().dto;
+    final parentsReferences = dto.parentsReferencesController;
+    return Form(
+      key: dto.formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildTitle("StudentInfo".tr(context)),
+              const Spacer(),
+              InkWell(
+                onTap: context.back,
+                child: Icon(
+                  Icons.close,
+                  color: AppColors.blackLight,
+                  size: 24.r,
                 ),
+              ),
+            ],
           ),
-        ),
-      ],
+          heightSpace(24),
+
+          _StudentForm(),
+          heightSpace(24),
+
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(child: _buildTitle("Parents".tr(context))),
+
+              InkWell(
+                onTap:
+                    () => context.dialogWith<ParentModel>(
+                      child: BlocProvider(
+                        create:
+                            (context) => MultiParentCubit(
+                              ParentsFilter(limit: 3),
+                            ),
+                        child: ParentsSelector(),
+                      ),
+                      onResult: (parent) {
+                        parentsReferences.addValue(
+                          ParentReferenceDTO(parent),
+                        );
+                      },
+                    ),
+                child: Icon(AppIcons.add),
+              ),
+            ],
+          ),
+          heightSpace(24),
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: ParentRefernces(controller: parentsReferences),
+            ),
+          ),
+          heightSpace(24),
+
+          Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: AppButton.primary(
+              text: "Save".tr(context),
+              onPressed: context.read<StudentFormCubit>().save,
+              isLoading:
+                  (ctx) => ctx.select(
+                    (StudentFormCubit cubit) => cubit.state.isLoading,
+                  ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

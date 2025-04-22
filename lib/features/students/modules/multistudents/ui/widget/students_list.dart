@@ -5,9 +5,8 @@ class _StudentsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final students = context.select(
-      (StudentsListCubit cubit) => cubit.students,
-    );
+    final students = context.watch<StudentsListCubit>().students;
+
     return InfoTable(
       columns: _generateColumns(context),
       items: students,
@@ -18,12 +17,13 @@ class _StudentsList extends StatelessWidget {
     BuildContext context,
   ) => [
     InfoColumn(
+      flex: 2,
       header: _buildTitle("ID".tr(context)),
       itemBuilder: (student) => _buildInfo(student.code!),
     ),
 
     InfoColumn(
-      flex: 6,
+      flex: 8,
       header: _buildTitle("Name".tr(context)),
       itemBuilder:
           (student) => Row(
@@ -39,19 +39,37 @@ class _StudentsList extends StatelessWidget {
     ),
 
     InfoColumn(
-      flex: 2,
+      flex: 3,
       header: _buildTitle("Gender".tr(context)),
       itemBuilder: (student) => _buildInfo(student.gender ?? ''),
     ),
 
     InfoColumn(
-      flex: 2,
-      header: _buildTitle("Class".tr(context)),
-      itemBuilder:
-          (student) => _buildInfo(student.schoolClass?.name ?? ''),
+      flex: 3,
+      header: _buildTitle("Level".tr(context)),
+      itemBuilder: (student) => _buildInfo(student.level ?? ''),
     ),
 
     InfoColumn(
+      flex: 3,
+      header: _buildTitle("Inscription".tr(context)),
+      itemBuilder:
+          (student) => _buildInfo(
+            student.inscriptionDate?.toLocal().toDayMonthYear() ?? '',
+          ),
+    ),
+
+    InfoColumn(
+      flex: 3,
+      header: _buildTitle("Birth Day".tr(context)),
+      itemBuilder:
+          (student) => _buildInfo(
+            student.birthDate?.toLocal().toDayMonthYear() ?? '',
+          ),
+    ),
+
+    InfoColumn(
+      flex: 1,
       header: SizedBox.shrink(),
       itemBuilder:
           (student) => PopupMenuButton(

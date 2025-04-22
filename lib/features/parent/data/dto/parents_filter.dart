@@ -8,4 +8,6 @@ class ParentsFilter extends PaginationDto {
     super.fields,
     super.sort,
   });
+
+  
 }

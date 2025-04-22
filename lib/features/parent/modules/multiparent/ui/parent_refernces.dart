@@ -1,6 +1,7 @@
 import 'package:dirasaty_admin/core/constants/data.dart';
 import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
+import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/list_generic_editingcontroller.dart';
 import 'package:dirasaty_admin/core/shared/widgets/dropdown_field.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
@@ -16,20 +17,56 @@ class ParentRefernces extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: controller,
-      builder: (_, parentDtos, __) {
-        return Wrap(
-          spacing: 16.w,
-          runSpacing: 16.h,
-          crossAxisAlignment: WrapCrossAlignment.start,
-
-          children:
-              parentDtos.map((parentDto) {
-                return _buildParentCard(context, parentDto);
-              }).toList(),
-        );
+    return FormField(
+      validator: (value) {
+        if (controller.value.isEmpty) {
+          return 'ParentRequired'.tr(context);
+        }
+        return null;
       },
+      builder:
+          (state) => Column(
+            children: [
+              ValueListenableBuilder(
+                valueListenable: controller,
+                builder: (_, parentDtos, __) {
+                  return Wrap(
+                    spacing: 16.w,
+                    runSpacing: 16.h,
+                    crossAxisAlignment: WrapCrossAlignment.start,
+
+                    children:
+                        parentDtos.map((parentDto) {
+                          return _buildParentCard(context, parentDto);
+                        }).toList(),
+                  );
+                },
+              ),
+
+              if (state.hasError) ...[
+                heightSpace(4),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    widthSpace(8),
+                    Icon(
+                      AppIcons.error_outline,
+                      color: AppColors.red,
+                      size: 20.r,
+                    ),
+                    widthSpace(8),
+                    Expanded(
+                      child: Text(
+                        state.errorText!,
+                        style: AppTextStyles.error,
+                      ),
+                    ),
+                    widthSpace(8),
+                  ],
+                ),
+              ],
+            ],
+          ),
     );
   }
 

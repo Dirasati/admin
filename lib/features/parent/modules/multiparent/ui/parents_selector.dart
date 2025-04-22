@@ -96,7 +96,7 @@ class _ParentsList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${parent.name}',
+            parent.name,
             style: AppTextStyles.xLarge.copyWith(
               color: AppColors.black,
             ),
@@ -105,10 +105,13 @@ class _ParentsList extends StatelessWidget {
           heightSpace(12),
 
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildIconInf(AppIcons.phone, parent.phone),
-              _buildIconInf(AppIcons.email, parent.email),
+              Expanded(
+                child: _buildIconInf(AppIcons.phone, parent.phone),
+              ),
+              Expanded(
+                child: _buildIconInf(AppIcons.email, parent.email),
+              ),
             ],
           ),
         ],
@@ -121,9 +124,13 @@ class _ParentsList extends StatelessWidget {
       children: [
         Icon(icon, color: AppColors.blackLight, size: 24.r),
         widthSpace(4),
-        Text(
-          info ?? '',
-          style: AppTextStyles.small.copyWith(color: AppColors.black),
+        Expanded(
+          child: Text(
+            info ?? '',
+            style: AppTextStyles.small.copyWith(
+              color: AppColors.black,
+            ),
+          ),
         ),
       ],
     );

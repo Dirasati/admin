@@ -78,6 +78,12 @@ class UpdateStudentDto extends StudentDto {
       if (_student.schoolClass == null && !isClassNull.value)
         'schoolClass': null,
 
+      if (_student.phone != phoneController.text)
+        'phone': phoneController.text,
+
+      if (_student.gender != genderController.value)
+        'gender': genderController.value,
+
       if (_student.parentsReferences?.any(
             (e) => parentsReferencesController.value.every(
               (element) => element.isModified(e),

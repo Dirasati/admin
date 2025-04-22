@@ -44,6 +44,7 @@ class AppDropDownField<T> extends StatelessWidget {
       width: width,
       child: FormField<T>(
         validator: (value) => validator?.call(controller.value),
+        autovalidateMode: AutovalidateMode.onUnfocus,
         builder: (state) {
           return Column(
             children: [
@@ -95,11 +96,7 @@ class AppDropDownField<T> extends StatelessWidget {
                 itemAsString: itemToString,
                 selectedItem: controller.value,
 
-                autoValidateMode: AutovalidateMode.onUserInteraction,
-
                 items: (filter, loadProps) => itemsBuilder(context),
-
-                validator: (value) => validator?.call(value),
 
                 onChanged:
                     (value) =>
