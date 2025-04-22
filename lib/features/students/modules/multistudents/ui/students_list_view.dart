@@ -5,6 +5,7 @@ import 'package:dirasaty_admin/core/extension/snackbar.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
 import 'package:dirasaty_admin/core/shared/widgets/info_table.dart';
+import 'package:dirasaty_admin/core/shared/widgets/loading_widget.dart';
 import 'package:dirasaty_admin/core/shared/widgets/search_field.dart';
 import 'package:dirasaty_admin/core/themes/font_styles.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';

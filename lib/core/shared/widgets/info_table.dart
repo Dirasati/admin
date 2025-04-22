@@ -42,6 +42,7 @@ class InfoTable<T> extends StatelessWidget {
         borderRadius: BorderRadius.circular(8).r,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children:

@@ -1,4 +1,3 @@
-import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/extension/map.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/boolean_editigcontroller.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
@@ -76,15 +75,18 @@ class CreateStudentDto extends StudentDto {
     return {
       'firstName': firstNameController.text,
       'lastName': lastNameController.text,
-      'birthDate': birthDateController.value,
-      'inscriptionDate': inscriptionDateController.value,
+      'birthDate': birthDateController.value?.toIso8601String(),
+      'inscriptionDate':
+          inscriptionDateController.value?.toIso8601String(),
       'address': addressController.text,
+      'phone': phoneController.text,
       'email': emailController.text,
       'password': 'DEFAULT_PASSWORD',
       'code': codeController.text,
       'level': levelController.value,
-      'parentsReferences': parentsReferencesController.value.map(
-        (e) => e.toMap(),
+      'gender': genderController.value,
+      'parentsReferences': await Future.wait(
+        parentsReferencesController.value.map((e) => e.toMap()),
       ),
     }.withoutNullsOrEmpty();
   }

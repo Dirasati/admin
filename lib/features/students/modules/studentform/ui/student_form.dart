@@ -2,7 +2,6 @@ import 'package:dirasaty_admin/core/constants/data.dart';
 import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/extension/navigator.extension.dart';
-import 'package:dirasaty_admin/core/extension/snackbar.extension.dart';
 import 'package:dirasaty_admin/core/extension/validator.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
@@ -36,7 +35,7 @@ class StudentForm extends StatelessWidget {
     );
     return BlocListener<StudentFormCubit, StudentFormState>(
       listener: (context, state) {
-        state.onError(context.showErrorSnackbar);
+        state.onError(context.showErrorDialog);
         state.onSaved((student) {
           context.back(student);
         });

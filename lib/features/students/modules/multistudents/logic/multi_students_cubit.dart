@@ -30,20 +30,21 @@ class StudentsListCubit extends Cubit<StudentsListState> {
   }
 
   void nextPage() {
-    if (state.isLoading) return;
+    emit(StudentsListState.initial());
 
     _filter.nextPage();
     _loadStudents();
   }
 
   void prevPage() {
-    if (state.isLoading) return;
+    emit(StudentsListState.initial());
 
     _filter.prevPage();
     _loadStudents();
   }
 
   void _loadStudents() async {
+    if (state.isLoading) return;
     emit(state._loading());
 
     final result = await _studentRepo.getStudents(_filter);
@@ -70,4 +71,10 @@ class StudentsListCubit extends Cubit<StudentsListState> {
 
   void replaceStudent(StudentModel student) =>
       emit(state._replaceStudent(student));
+
+  @override
+  Future<void> close() {
+    _filter.dispose();
+    return super.close();
+  }
 }

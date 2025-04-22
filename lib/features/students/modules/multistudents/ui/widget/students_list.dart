@@ -5,12 +5,14 @@ class _StudentsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final students = context.watch<StudentsListCubit>().students;
+    final cubit = context.watch<StudentsListCubit>();
 
-    return InfoTable(
-      columns: _generateColumns(context),
-      items: students,
-    );
+    return cubit.state.isLoading
+        ? AppLoadingWidget()
+        : InfoTable(
+          columns: _generateColumns(context),
+          items: cubit.students,
+        );
   }
 
   List<InfoColumn<StudentModel>> _generateColumns(
@@ -129,6 +131,7 @@ class _StudentsList extends StatelessWidget {
   Text _buildTitle(String title) {
     return Text(
       title,
+      textAlign: TextAlign.start,
       style: AppTextStyles.large.copyWith(
         color: AppColors.blackLight,
       ),

@@ -28,6 +28,8 @@ class _AppSearchFieldState extends State<AppSearchField> {
   Timer? _debounce;
 
   void _onChanged(String value) {
+    if (value.isEmpty) return;
+
     if (_debounce?.isActive ?? false) _debounce!.cancel();
 
     _debounce = Timer(const Duration(seconds: 1), () {

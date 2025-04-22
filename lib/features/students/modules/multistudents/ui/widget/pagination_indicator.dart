@@ -8,6 +8,7 @@ class _PaginationIndicator extends StatelessWidget {
     final pagination = context.select(
       (StudentsListCubit cubit) => cubit.pagination,
     );
+
     return Align(
       alignment: AlignmentDirectional.centerEnd,
       child: Container(
@@ -30,7 +31,7 @@ class _PaginationIndicator extends StatelessWidget {
             ),
             widthSpace(32),
             Text(
-              '${pagination.page}',
+              pagination.page?.toString() ?? '',
               style: AppTextStyles.xLarge.copyWith(
                 color: AppColors.black,
               ),
@@ -57,7 +58,7 @@ class _PaginationIndicator extends StatelessWidget {
       onTap: onPressed,
       child: Icon(
         icon,
-        color: isActivated ? AppColors.grey : AppColors.greyDark,
+        color: isActivated ? AppColors.primary : AppColors.grey,
         size: 24.r,
       ),
     );
