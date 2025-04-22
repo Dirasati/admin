@@ -23,8 +23,7 @@ class SubjectFormView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLoading = context.select(
-      (SubjectFormCubit cubit) =>
-          cubit.state.isLoading && !cubit.state.isLoaded,
+      (SubjectFormCubit cubit) => !cubit.state.isLoaded,
     );
     return BlocListener<SubjectFormCubit, SubjectFormState>(
       listener: (context, state) {
