@@ -4,7 +4,7 @@ part of 'multi_parent_cubit.dart';
 
 enum _MultiParentStatus { initial, loading, loaded, error }
 
-class MultiParentState extends ErrorState {
+class MultiParentState extends ErrorCubitState {
   final PaginationResult<ParentModel> _paginationResult;
   final _MultiParentStatus _status;
 

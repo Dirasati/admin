@@ -4,7 +4,7 @@ part of 'forgot_password_cubit.dart';
 
 enum _ForgotPasswordStatus { initial, loading, success, error }
 
-class ForgotPasswordState extends ErrorState {
+class ForgotPasswordState extends ErrorCubitState {
   final ForgotPasswordDto _dto;
   final _ForgotPasswordStatus _status;
 

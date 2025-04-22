@@ -4,7 +4,7 @@ part of 'check_otp_cubit.dart';
 
 enum _CheckOtpStatus { initial, loading, success, error }
 
-class CheckOtpState extends ErrorState {
+class CheckOtpState extends ErrorCubitState {
   final OtpDTO _dto;
   final _CheckOtpStatus _status;
 

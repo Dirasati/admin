@@ -4,7 +4,7 @@ part of 'school_classes_cubit.dart';
 
 enum _SchoolClassesStatus { initial, loading, loaded, error }
 
-class SchoolClassesState extends ErrorState {
+class SchoolClassesState extends ErrorCubitState {
   final PaginationResult<SchoolClassModel>? _result;
   final _SchoolClassesStatus _status;
 

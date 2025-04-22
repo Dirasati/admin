@@ -26,7 +26,9 @@ class _PaginationIndicator extends StatelessWidget {
             _buildButton(
               isActivated: pagination.prev != null,
               onPressed:
-                  () => context.read<StudentsListCubit>().prevPage(),
+                  pagination.prev != null
+                      ? context.read<StudentsListCubit>().prevPage
+                      : null,
               icon: AppIcons.keyboard_arrow_left,
             ),
             widthSpace(32),
@@ -40,7 +42,9 @@ class _PaginationIndicator extends StatelessWidget {
             _buildButton(
               isActivated: pagination.next != null,
               onPressed:
-                  () => context.read<StudentsListCubit>().nextPage(),
+                  pagination.next != null
+                      ? context.read<StudentsListCubit>().nextPage
+                      : null,
               icon: AppIcons.keyboard_arrow_right,
             ),
           ],
@@ -51,7 +55,7 @@ class _PaginationIndicator extends StatelessWidget {
 
   Widget _buildButton({
     required bool isActivated,
-    required VoidCallback onPressed,
+    required VoidCallback? onPressed,
     required IconData icon,
   }) {
     return InkWell(

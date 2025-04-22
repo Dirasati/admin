@@ -5,12 +5,12 @@ part 'school_class_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class SchoolClassModel extends Equatable {
-  @JsonKey(name: '_id')
   final String? id;
   final String? name;
   final String? level;
   final int? nbOfStudents;
   final int? nbOfTeachers;
+  //TODO complete with teachers
 
   const SchoolClassModel({
     this.id,

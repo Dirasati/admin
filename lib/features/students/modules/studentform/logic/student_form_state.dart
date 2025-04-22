@@ -2,7 +2,7 @@ part of 'student_form_cubit.dart';
 
 enum _StudentFormStatus { initial, loading, loaded, saved, error }
 
-class StudentFormState<T extends StudentDto> extends ErrorState {
+class StudentFormState<T extends StudentDto> extends ErrorCubitState {
   final T? _dto;
   final _StudentFormStatus _status;
 

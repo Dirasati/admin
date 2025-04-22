@@ -4,7 +4,7 @@ part of 'multi_students_cubit.dart';
 
 enum _MultiStudentsStatus { initial, loading, loaded, error }
 
-class StudentsListState extends ErrorState {
+class StudentsListState extends ErrorCubitState {
   final PaginationResult<StudentModel> _studentsResult;
   final _MultiStudentsStatus _status;
 

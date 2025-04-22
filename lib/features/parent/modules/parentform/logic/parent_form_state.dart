@@ -4,7 +4,7 @@ part of 'parent_form_cubit.dart';
 
 enum _ParentFormStatus { initial, loading, loaded, saved, error }
 
-class ParentFormState<T extends ParentDto> extends ErrorState {
+class ParentFormState<T extends ParentDto> extends ErrorCubitState {
   final T? _dto;
   final _ParentFormStatus _status;
 
@@ -17,8 +17,6 @@ class ParentFormState<T extends ParentDto> extends ErrorState {
 
   bool get isLoading => _status == _ParentFormStatus.loading;
   bool get isLoaded => _dto != null;
-
-  
 
   ParentFormState<T> _loading() {
     return _copyWith(status: _ParentFormStatus.loading);

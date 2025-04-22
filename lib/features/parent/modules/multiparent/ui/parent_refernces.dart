@@ -106,7 +106,7 @@ class ParentRefernces extends StatelessWidget {
                           () => controller.removeValue(parentDto),
                     ),
                 icon: Icon(
-                  AppIcons.delete,
+                  AppIcons.close,
                   size: 24.r,
                   color: AppColors.red,
                 ),
@@ -141,7 +141,13 @@ class ParentRefernces extends StatelessWidget {
             hintText: 'e.g. mother, father'.tr(contxt),
             itemsBuilder: (_) => AppConstants.parentRelations,
             isRequired: true,
-            itemToString: (relation) => relation,
+            itemToString: (relation) => relation.tr(contxt),
+            validator: (relation) {
+              if (relation == null || relation.isEmpty) {
+                return 'ParentRelationRequired'.tr(contxt);
+              }
+              return null;
+            },
           ),
         ],
       ),
