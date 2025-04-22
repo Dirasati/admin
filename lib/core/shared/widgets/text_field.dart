@@ -101,21 +101,21 @@ class AppTextField extends StatelessWidget {
                       color: AppColors.greyDark,
                     ),
 
-                    border: UnderlineInputBorder(
+                    border: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: AppColors.greyDark,
                       ),
                       borderRadius: BorderRadius.circular(8).r,
                     ),
 
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: AppColors.primary,
                       ),
                       borderRadius: BorderRadius.circular(8).r,
                     ),
 
-                    errorBorder: UnderlineInputBorder(
+                    errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: AppColors.red),
                       borderRadius: BorderRadius.circular(8).r,
                     ),

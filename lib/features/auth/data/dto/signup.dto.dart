@@ -30,7 +30,7 @@ class SignupDTO extends FormDTO {
           : 'PasswordNotMatch'.tr(context);
 
   String? validateRegion(String? value, BuildContext context) =>
-      !value.isEmpty ? null : 'RequiredField'.tr(context);
+      !value.isNullOrEmpty ? null : 'RequiredField'.tr(context);
 
   @override
   void dispose() {

@@ -11,89 +11,79 @@ import 'package:flutter/material.dart';
 part 'update_student_dto.dart';
 
 abstract class StudentDto extends FormDTO {
-  final TextEditingController nameController;
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
   final TextEditingController emailController;
-  final TextEditingController passwordController;
   final TextEditingController codeController;
   final EditingController<String> levelController;
-  final ListEditingController<ParentReferenceDTO> parentsReferences;
+  final EditingController<DateTime> birthDateController;
+  final EditingController<DateTime> inscriptionDateController;
+  final EditingController<String> genderController;
+  final TextEditingController phoneController;
+  final TextEditingController addressController;
+  final ListEditingController<ParentReferenceDTO>
+  parentsReferencesController;
 
   StudentDto({
-    required this.nameController,
-    required this.emailController,
-    required this.passwordController,
-    required this.parentsReferences,
     required this.codeController,
     required this.levelController,
+    required this.birthDateController,
+    required this.inscriptionDateController,
+    required this.genderController,
+    required this.phoneController,
+    required this.addressController,
+    required this.parentsReferencesController,
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.emailController,
   });
 
   @override
   void dispose() {
-    nameController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
     emailController.dispose();
-    passwordController.dispose();
-    parentsReferences.dispose();
     codeController.dispose();
     levelController.dispose();
-  }
-
-  String? validateName(String? value, BuildContext context) {
-    if (value == null || value.isEmpty) {
-      return 'NameIsRequired'.tr(context);
-    }
-    return null;
-  }
-
-  String? validateEmail(String? value, BuildContext context) {
-    if (value == null || value.isEmpty) {
-      return 'EmailIsRequired'.tr(context);
-    }
-    return null;
-  }
-
-  String? validatePassword(String? value, BuildContext context) {
-    if (value == null || value.isEmpty) {
-      return 'PasswordIsRequired'.tr(context);
-    }
-    return null;
-  }
-
-  String? validateCode(String? value, BuildContext context) {
-    if (value == null || value.isEmpty) {
-      return 'CodeIsRequired'.tr(context);
-    }
-    return null;
-  }
-
-  String? validateLevel(String? value, BuildContext context) {
-    if (value == null || value.isEmpty) {
-      return 'LevelIsRequired'.tr(context);
-    }
-    return null;
+    birthDateController.dispose();
+    inscriptionDateController.dispose();
+    genderController.dispose();
+    phoneController.dispose();
+    addressController.dispose();
+    parentsReferencesController.dispose();
   }
 }
 
 class CreateStudentDto extends StudentDto {
   CreateStudentDto()
     : super(
-        nameController: TextEditingController(),
+        firstNameController: TextEditingController(),
+        lastNameController: TextEditingController(),
         emailController: TextEditingController(),
-        passwordController: TextEditingController(),
-        parentsReferences:
-            ListEditingController<ParentReferenceDTO>(),
         codeController: TextEditingController(),
         levelController: EditingController<String>(),
+        birthDateController: EditingController<DateTime>(),
+        inscriptionDateController: EditingController<DateTime>(),
+        addressController: TextEditingController(),
+        genderController: EditingController<String>(),
+        phoneController: TextEditingController(),
+        parentsReferencesController:
+            ListEditingController<ParentReferenceDTO>(),
       );
 
   @override
   Future<Map<String, dynamic>> toMap() async {
     return {
-      'name': nameController.text,
+      'firstName': firstNameController.text,
+      'lastName': lastNameController.text,
+      'birthDate': birthDateController.value,
+      'inscriptionDate': inscriptionDateController.value,
+      'address': addressController.text,
       'email': emailController.text,
-      'password': passwordController.text,
+      'password': 'DEFAULT_PASSWORD',
       'code': codeController.text,
       'level': levelController.value,
-      'parentsReferences': parentsReferences.value.map(
+      'parentsReferences': parentsReferencesController.value.map(
         (e) => e.toMap(),
       ),
     }.withoutNullsOrEmpty();

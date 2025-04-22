@@ -29,17 +29,14 @@ class StudentsListView extends StatelessWidget {
       listener: (context, state) {
         state.onError(context.showErrorSnackbar);
       },
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 12.h),
-        child: Column(
-          children: [
-            _Header(),
-            heightSpace(16),
-            Expanded(child: _StudentsList()),
-            heightSpace(16),
-            _PaginationIndicator(),
-          ],
-        ),
+      child: Column(
+        children: [
+          _Header(),
+          heightSpace(16),
+          Expanded(child: _StudentsList()),
+          heightSpace(16),
+          _PaginationIndicator(),
+        ],
       ),
     );
   }

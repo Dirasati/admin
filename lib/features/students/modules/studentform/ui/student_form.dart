@@ -3,8 +3,10 @@ import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/extension/navigator.extension.dart';
 import 'package:dirasaty_admin/core/extension/snackbar.extension.dart';
+import 'package:dirasaty_admin/core/extension/validator.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
+import 'package:dirasaty_admin/core/shared/widgets/date_field.dart';
 import 'package:dirasaty_admin/core/shared/widgets/dropdown_field.dart';
 import 'package:dirasaty_admin/core/shared/widgets/loading_widget.dart';
 import 'package:dirasaty_admin/core/shared/widgets/text_field.dart';
@@ -22,22 +24,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-part 'widget/create_student_form.dart';
-part 'widget/update_student_form.dart';
+part 'widget/student_form.dart';
 
 class StudentForm extends StatelessWidget {
-  final Widget _studentForm;
-
-  const StudentForm._({required Widget studentForm})
-    : _studentForm = studentForm;
-
-  factory StudentForm.create() {
-    return StudentForm._(studentForm: _CreateStudentForm());
-  }
-
-  factory StudentForm.update() {
-    return StudentForm._(studentForm: _UpdateStudentForm());
-  }
+  const StudentForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +43,7 @@ class StudentForm extends StatelessWidget {
       },
       child: Container(
         width: 1250.w,
+        margin: EdgeInsets.symmetric(vertical: 40.h),
         padding: EdgeInsets.symmetric(
           horizontal: 32.w,
           vertical: 32.h,
@@ -69,7 +60,10 @@ class StudentForm extends StatelessWidget {
 
   Column _buildForm(BuildContext context) {
     final parentsReferences =
-        context.read<StudentFormCubit>().dto.parentsReferences;
+        context
+            .read<StudentFormCubit>()
+            .dto
+            .parentsReferencesController;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -91,7 +85,7 @@ class StudentForm extends StatelessWidget {
         ),
         heightSpace(24),
 
-        _studentForm,
+        _StudentForm(),
         heightSpace(24),
 
         Row(
@@ -122,8 +116,9 @@ class StudentForm extends StatelessWidget {
         heightSpace(24),
 
         Expanded(
-          //TODO use MultiParentCubit if parents are not in student model response
-          child: ParentRefernces(controller: parentsReferences),
+          child: SingleChildScrollView(
+            child: ParentRefernces(controller: parentsReferences),
+          ),
         ),
         heightSpace(24),
 

@@ -33,7 +33,7 @@ class _StudentsList extends StatelessWidget {
                 radius: 24.r,
                 backgroundColor: AppColors.greyDark,
               ),
-              _buildInfo(student.name!),
+              _buildInfo(student.fullName),
             ],
           ),
     ),
@@ -41,8 +41,7 @@ class _StudentsList extends StatelessWidget {
     InfoColumn(
       flex: 2,
       header: _buildTitle("Gender".tr(context)),
-      itemBuilder:
-          (student) => _buildInfo("Male"), //TODO make it dynamic
+      itemBuilder: (student) => _buildInfo(student.gender ?? ''),
     ),
 
     InfoColumn(
@@ -75,7 +74,7 @@ class _StudentsList extends StatelessWidget {
               create:
                   (context) =>
                       UpdateStudentCubit(student.id!)..load(),
-              child: StudentForm.update(),
+              child: StudentForm(),
             ),
             onResult: (student) {
               context.read<StudentsListCubit>().replaceStudent(

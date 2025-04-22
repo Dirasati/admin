@@ -1,5 +1,5 @@
 extension Validators on String? {
-  bool get isEmpty => this == null || this!.isEmpty;
+  bool get isNullOrEmpty => this == null || this!.isEmpty;
 
   bool get isValidEmail {
     if (this == null) return false;

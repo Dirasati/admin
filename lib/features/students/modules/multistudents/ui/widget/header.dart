@@ -21,7 +21,7 @@ class _Header extends StatelessWidget {
               () => context.dialogWith<StudentModel>(
                 child: BlocProvider<StudentFormCubit>(
                   create: (context) => CreateStudentCubit()..load(),
-                  child: StudentForm.create(),
+                  child: StudentForm(),
                 ),
                 onResult: (student) {
                   cubit.addStudent(student);

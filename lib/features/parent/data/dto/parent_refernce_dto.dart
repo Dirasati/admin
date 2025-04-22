@@ -1,10 +1,8 @@
-import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/extension/map.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 import 'package:dirasaty_admin/features/parent/data/models/parent_model.dart';
 import 'package:dirasaty_admin/features/parent/data/models/parent_reference_model.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 class ParentReferenceDTO extends Equatable {
   final EditingController<ParentModel> parentController;
