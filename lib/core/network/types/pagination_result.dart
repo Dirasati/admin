@@ -13,6 +13,9 @@ class PaginationResult<T> {
   PaginationResult<T> add(T item) =>
       copyWith(data: data.withUnique(item));
 
+  PaginationResult<T> addFirst(T item) =>
+      copyWith(data: data.withUniqueFirst(item));
+
   PaginationResult<T> addAll(PaginationResult<T> result) => copyWith(
     data: data.withAllUnique(result.data),
     pagination: result.pagination,

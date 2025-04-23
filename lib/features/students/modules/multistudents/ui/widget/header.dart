@@ -16,7 +16,7 @@ class _Header extends StatelessWidget {
         ),
         const Spacer(),
         AppButton.primary(
-          text: 'Add Student',
+          text: 'AddStudent'.tr(context),
           onPressed:
               () => context.dialogWith<StudentModel>(
                 child: BlocProvider<StudentFormCubit>(
@@ -32,12 +32,12 @@ class _Header extends StatelessWidget {
               ),
           suffixIcon: AppIcons.add,
         ),
-        widthSpace(12),
-        AppButton.secondary(
-          text: 'Filter',
-          onPressed: () {}, //TODO Show filter form
-          suffixIcon: AppIcons.filter_list,
-        ),
+        // widthSpace(12),
+        // AppButton.secondary(
+        //   text: 'Filter',
+        //   onPressed: () {}, //TODO Show filter form
+        //   suffixIcon: AppIcons.filter_list,
+        // ),
       ],
     );
   }

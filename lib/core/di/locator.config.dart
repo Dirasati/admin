@@ -18,6 +18,10 @@ import 'package:dirasaty_admin/features/subject/data/repository/subject_reposito
     as _i533;
 import 'package:dirasaty_admin/features/subject/data/source/subject_api.dart'
     as _i325;
+import 'package:dirasaty_admin/features/teachers/data/repository/teachers_repository.dart'
+    as _i305;
+import 'package:dirasaty_admin/features/teachers/data/source/teachers_api.dart'
+    as _i213;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -30,10 +34,14 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.lazySingleton<_i518.SchoolClassRepo>(() => _i518.SchoolClassRepo());
     gh.lazySingleton<_i533.SubjectRepo>(() => _i533.SubjectRepo());
+    gh.lazySingleton<_i305.TeachersRepo>(() => _i305.TeachersRepo());
     gh.lazySingleton<_i542.SchoolClassApi>(
       () => _i542.SchoolClassApi(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i325.SubjectApi>(() => _i325.SubjectApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i213.TeachersApi>(
+      () => _i213.TeachersApi(gh<_i361.Dio>()),
+    );
     return this;
   }
 }

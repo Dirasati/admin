@@ -1,6 +1,7 @@
 import 'package:dirasaty_admin/features/home/ui/home_screen.dart';
 import 'package:dirasaty_admin/features/schoolclass/config/school_class_navigator.dart';
 import 'package:dirasaty_admin/features/students/config/student_navigator.dart';
+import 'package:dirasaty_admin/features/teachers/config/teachers_navigator.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeNavigator {
@@ -10,6 +11,7 @@ class HomeNavigator {
       routes: [
         ...StudentNavigator.routes,
         ...SchoolClassNavigator.routes,
+        ...TeachersNavigator.routes,
       ],
     ),
   ];

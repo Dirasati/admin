@@ -47,19 +47,26 @@ class _SideBar extends StatelessWidget {
 
   List<_SideBarItem> _sideBarItems(BuildContext context) => [
     _SideBarItem(
-      title: 'Dashboard',
+      title: 'Dashboard'.tr(context),
       icon: AppIcons.dashboard,
       onTap: () {},
       context: context,
     ),
     _SideBarItem(
-      title: 'Students',
+      title: 'Teachers'.tr(context),
+      icon: AppIcons.person_outline,
+      onTap: () => context.to(TeachersNavigator.teachers()),
+      context: context,
+    ),
+    _SideBarItem(
+      title: 'Students'.tr(context),
       icon: AppIcons.person,
       onTap: () => context.to(StudentNavigator.students()),
       context: context,
     ),
+
     _SideBarItem(
-      title: 'Classes',
+      title: 'Classes'.tr(context),
       icon: AppIcons.class_icon,
       onTap: () => context.to(SchoolClassNavigator.classes()),
       context: context,

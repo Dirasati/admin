@@ -26,6 +26,12 @@ abstract class SubjectFormCubit<T extends SubjectDto>
   }
 
   void _save();
+
+  @override
+  Future<void> close() {
+    state._dto?.dispose();
+    return super.close();
+  }
 }
 
 class CreateSubjectCubit extends SubjectFormCubit<CreateSubjectDto> {

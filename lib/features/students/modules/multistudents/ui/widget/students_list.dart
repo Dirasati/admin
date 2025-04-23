@@ -71,6 +71,12 @@ class _StudentsList extends StatelessWidget {
     ),
 
     InfoColumn(
+      flex: 3,
+      header: _buildTitle("Address".tr(context)),
+      itemBuilder: (student) => _buildInfo(student.address ?? ''),
+    ),
+
+    InfoColumn(
       flex: 1,
       header: SizedBox.shrink(),
       itemBuilder:
@@ -87,7 +93,10 @@ class _StudentsList extends StatelessWidget {
   ) {
     return [
       PopupMenuItem(
-        child: Text("Edit".tr(context)),
+        child: Row(
+          spacing: 8.w,
+          children: [Icon(AppIcons.edit), Text("Edit".tr(context))],
+        ),
         onTap: () {
           context.dialogWith<StudentModel>(
             child: BlocProvider<StudentFormCubit>(
@@ -106,7 +115,13 @@ class _StudentsList extends StatelessWidget {
         },
       ),
       PopupMenuItem(
-        child: Text("Delete".tr(context)),
+        child: Row(
+          spacing: 8.w,
+          children: [
+            Icon(AppIcons.delete, color: AppColors.red),
+            Text("Delete".tr(context)),
+          ],
+        ),
         onTap: () {
           context.alertDialog(
             title: "Delete".tr(context),

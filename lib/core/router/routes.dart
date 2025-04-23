@@ -26,4 +26,9 @@ abstract class AppRoutes {
   //* CLASS ROUTES
   static const String classes = '/classes';
   static const String classDetails = '/classes/:id';
+
+  //* TEACHER ROUTES
+  static const String teachers = '/teachers';
+
+
 }
