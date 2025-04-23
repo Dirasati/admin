@@ -60,8 +60,6 @@ class _Form extends StatelessWidget {
                             : null,
               ),
 
-              
-
               AppTextField(
                 controller: dto.phoneController,
                 label: 'Phone'.tr(context),
@@ -96,6 +94,20 @@ class _Form extends StatelessWidget {
                 validator:
                     (value) =>
                         value.isNullOrEmpty
+                            ? 'FieldIsRequired'.tr(context)
+                            : null,
+              ),
+
+              AppDateField(
+                controller: dto.birthDateController,
+                label: 'BirthDate'.tr(context),
+                firstDate: DateTime(1900),
+                lastDate: DateTime.now(),
+                isRequired: true,
+                width: 380.w,
+                validator:
+                    (value) =>
+                        value == null
                             ? 'FieldIsRequired'.tr(context)
                             : null,
               ),

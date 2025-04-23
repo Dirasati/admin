@@ -6,7 +6,7 @@ import 'package:dirasaty_admin/core/extension/navigator.extension.dart';
 import 'package:dirasaty_admin/core/extension/validator.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
-import 'package:dirasaty_admin/core/shared/widgets/check_box.dart';
+import 'package:dirasaty_admin/core/shared/widgets/date_field.dart';
 import 'package:dirasaty_admin/core/shared/widgets/dropdown_field.dart';
 import 'package:dirasaty_admin/core/shared/widgets/loading_widget.dart';
 import 'package:dirasaty_admin/core/shared/widgets/multi_dropdown_field.dart';

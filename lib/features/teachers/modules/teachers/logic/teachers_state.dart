@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 part of 'teachers_cubit.dart';
 
 enum _TeachersStatus { initial, loading, loaded, error }
@@ -8,7 +10,6 @@ class TeachersState extends ErrorCubitState {
 
   TeachersState({
     required PaginationResult<TeacherModel> result,
-    // ignore: library_private_types_in_public_api
     _TeachersStatus? status,
     String? error,
   }) : _result = result,
