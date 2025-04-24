@@ -11,7 +11,7 @@ import 'package:dirasaty_admin/core/services/cache/cache.service.dart';
 import 'package:dirasaty_admin/core/services/cloudstorage/cloud_storage.service.dart';
 import 'package:dirasaty_admin/core/services/cloudstorage/cloudinary.service.dart';
 import 'package:dirasaty_admin/core/services/dio/dio.service.dart';
-import 'package:dirasaty_admin/core/services/filepicker/filepick.service.dart';
+import 'package:dirasaty_admin/core/services/filepicker/file_picker_service.dart';
 
 import 'locator.config.dart';
 
@@ -37,15 +37,7 @@ Future<void> setupLocator() async {
   //Router
   locator.registerSingleton(AppRouter());
 
-  //File Picker
-  locator.registerLazySingleton<ImagePickerService>(
-    () => kIsWeb ? WebFilePicker() : MobileFilePicker(),
-  );
 
-  //Cloud storage service
-  locator.registerLazySingleton<ImageCloudStorageService>(
-    () => CloudinaryService(),
-  );
 
   // Features dependencies
   ParentDependency.init();
