@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:dirasaty_admin/core/di/locator.dart';
 import 'package:dirasaty_admin/core/shared/dto/filedto/file_dto.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
