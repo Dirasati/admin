@@ -1,3 +1,4 @@
+import 'package:dirasaty_admin/core/shared/models/subject_teacher_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -8,9 +9,10 @@ class SchoolClassModel extends Equatable {
   final String? id;
   final String? name;
   final String? level;
+  final String? planing;
   final int? nbOfStudents;
   final int? nbOfTeachers;
-  //TODO complete with teachers
+  final List<SubjectTeacherModel>? subjects;
 
   const SchoolClassModel({
     this.id,
@@ -18,6 +20,8 @@ class SchoolClassModel extends Equatable {
     this.level,
     this.nbOfStudents,
     this.nbOfTeachers,
+    this.subjects,
+    this.planing,
   });
 
   factory SchoolClassModel.fromJson(Map<String, dynamic> json) =>

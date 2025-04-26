@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'school_class_form_state.dart';
 
-abstract class SchoolClassFormCubit<T extends SchoolClassDto>
+abstract class SchoolClassFormCubit<T extends SchoolClassDTO>
     extends Cubit<SchoolClassFormState<T>> {
   final _repository = locator<SchoolClassRepo>();
 
@@ -22,7 +22,12 @@ abstract class SchoolClassFormCubit<T extends SchoolClassDto>
 
   void init();
 
-  void save();
+  void _save();
+
+  void save() {
+    if (isLoading || !dto.validate()) return;
+    _save();
+  }
 }
 
 class CreateSchoolClassCubit
@@ -35,7 +40,7 @@ class CreateSchoolClassCubit
   }
 
   @override
-  void save() async {
+  void _save() async {
     emit(state._loading());
 
     final response = await _repository.createSchoolClass(dto);
@@ -57,7 +62,7 @@ class UpdateSchoolClassCubit
   void init() => emit(state._loaded(UpdateSchoolClassDto(_class)));
 
   @override
-  void save() async {
+  void _save() async {
     emit(state._loading());
 
     final response = await _repository.updateSchoolClass(dto);
