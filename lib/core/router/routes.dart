@@ -30,5 +30,9 @@ abstract class AppRoutes {
   //* TEACHER ROUTES
   static const String teachers = '/teachers';
 
+  //* ABSENCE ROUTES
+  static const String absences = '/absences';
+
+
 
 }

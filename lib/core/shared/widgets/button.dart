@@ -30,13 +30,15 @@ class AppButton extends StatelessWidget {
     IconData? suffixIcon,
     void Function()? onPressed,
     bool Function(BuildContext context)? isLoading,
+    Color? color,
+    Color? textColor,
   }) => AppButton._(
     text: text,
     suffixIcon: suffixIcon,
     onPressed: onPressed,
     isLoading: isLoading,
-    color: AppColors.primary,
-    textStyle: AppTextStyles.primaryButton,
+    color: color ?? AppColors.primary,
+    textStyle: AppTextStyles.primaryButton.copyWith(color: textColor),
   );
 
   factory AppButton.secondary({

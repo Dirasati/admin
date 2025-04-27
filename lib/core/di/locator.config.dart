@@ -16,6 +16,10 @@ import 'package:dirasaty_admin/core/services/cloudstorage/cloudinary.service.dar
     as _i480;
 import 'package:dirasaty_admin/core/services/filepicker/file_picker_service.dart'
     as _i118;
+import 'package:dirasaty_admin/features/absence/data/repository/absence_repository.dart'
+    as _i169;
+import 'package:dirasaty_admin/features/absence/data/source/absence_api.dart'
+    as _i743;
 import 'package:dirasaty_admin/features/schoolclass/data/repository/school_class_repository.dart'
     as _i518;
 import 'package:dirasaty_admin/features/schoolclass/data/source/school_class_api.dart'
@@ -42,6 +46,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i533.SubjectRepo>(() => _i533.SubjectRepo());
     gh.lazySingleton<_i305.TeachersRepo>(() => _i305.TeachersRepo());
     gh.lazySingleton<_i118.PdfPickerService>(() => _i118.PdfPickerService());
+    gh.lazySingleton<_i169.AbsenceRepo>(() => _i169.AbsenceRepo());
     gh.lazySingleton<_i542.SchoolClassApi>(
       () => _i542.SchoolClassApi(gh<_i361.Dio>()),
     );
@@ -49,6 +54,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i213.TeachersApi>(
       () => _i213.TeachersApi(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i743.AbsenceApi>(() => _i743.AbsenceApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i961.PdfCloudStorageService>(
       () => _i480.PdfCloudinaryService(),
     );

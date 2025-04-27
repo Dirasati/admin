@@ -1,3 +1,4 @@
+import 'package:dirasaty_admin/features/absence/config/absence_navigator.dart';
 import 'package:dirasaty_admin/features/home/ui/home_screen.dart';
 import 'package:dirasaty_admin/features/schoolclass/config/school_class_navigator.dart';
 import 'package:dirasaty_admin/features/students/config/student_navigator.dart';
@@ -12,6 +13,7 @@ class HomeNavigator {
         ...StudentNavigator.routes,
         ...SchoolClassNavigator.routes,
         ...TeachersNavigator.routes,
+        ...AbsenceNavigator.routes,
       ],
     ),
   ];

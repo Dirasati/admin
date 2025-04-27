@@ -71,6 +71,13 @@ class _SideBar extends StatelessWidget {
       onTap: () => context.to(SchoolClassNavigator.classes()),
       context: context,
     ),
+
+    _SideBarItem(
+      title: 'Absences'.tr(context),
+      icon: AppIcons.cached,
+      onTap: () => context.to(AbsenceNavigator.absences()),
+      context: context,
+    ),
   ];
 }
 
