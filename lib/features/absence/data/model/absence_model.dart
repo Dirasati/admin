@@ -17,6 +17,7 @@ class AbsenceModel extends Equatable {
   final DateTime? absentSince;
   final String? subjectName;
   final List<SessionModel>? causingSessions;
+  final int? nbOfAbsences;
 
   const AbsenceModel({
     this.id,
@@ -27,6 +28,7 @@ class AbsenceModel extends Equatable {
     this.subjectName,
     this.causingSessions,
     this.hasJustification,
+    this.nbOfAbsences,
   });
 
   factory AbsenceModel.fromJson(Map<String, dynamic> json) =>
@@ -35,4 +37,3 @@ class AbsenceModel extends Equatable {
   @override
   List<Object?> get props => [id];
 }
-

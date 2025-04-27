@@ -26,17 +26,24 @@ class _AbsencesList extends StatelessWidget {
     ),
 
     InfoColumn(
-      flex: 4,
+      flex: 3,
       header: _buildTitle('Subject'.tr(context)),
       itemBuilder: (absence) => _buildInfo(absence.subjectName ?? ''),
     ),
 
     InfoColumn(
-      flex: 4,
+      flex: 3,
       header: _buildTitle('Absence Since'.tr(context)),
       itemBuilder:
           (absence) =>
               _buildInfo(absence.absentSince?.toDayMonthYear() ?? ''),
+    ),
+
+    InfoColumn(
+      flex: 2,
+      header: _buildTitle('Absence Number'.tr(context)),
+      itemBuilder:
+          (absence) => _buildInfo('   ${absence.nbOfAbsences}'),
     ),
 
     InfoColumn(
@@ -46,7 +53,7 @@ class _AbsencesList extends StatelessWidget {
           (absence) =>
               absence.hasJustification ?? false
                   ? AppButton.hyperLink(
-                    text: 'See Justification'.tr(context),
+                    text: 'See'.tr(context),
                     onPressed:
                         () => _showJustificationDialog(
                           context,
@@ -61,7 +68,7 @@ class _AbsencesList extends StatelessWidget {
       flex: 2,
       header: _buildTitle('Is Justified'.tr(context)),
       itemBuilder: (absence) {
-        return AppButton.primary(
+        return AppButton.secondary(
           text:
               absence.isJustified ?? false
                   ? 'Justified'.tr(context)
@@ -72,8 +79,8 @@ class _AbsencesList extends StatelessWidget {
                   : AppColors.red,
           textColor:
               absence.isJustified ?? false
-                  ? AppColors.white
-                  : AppColors.black,
+                  ? Colors.green
+                  : AppColors.red,
 
           isLoading:
               (context) => context.select(

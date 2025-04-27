@@ -32,7 +32,10 @@ class AbsencesCubit extends Cubit<AbsencesState> {
   }
 
   void nextPage() {
-    if (pagination.next != null) fetchAbsencees();
+    if (pagination.next != null) {
+      _paginationDto.nextPage();
+      fetchAbsencees();
+    }
   }
 
   void previousPage() {
@@ -49,7 +52,7 @@ class AbsencesCubit extends Cubit<AbsencesState> {
 
     response.when(
       success: (result) {
-        if (result.data.isNotEmpty) _paginationDto.nextPage();
+        // if (result.data.isNotEmpty) _paginationDto.nextPage();
 
         emit(state._loaded(result));
       },
@@ -78,6 +81,4 @@ class AbsencesCubit extends Cubit<AbsencesState> {
       error: (error) => emit(state._error(error.message)),
     );
   }
-
-
 }

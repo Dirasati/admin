@@ -46,13 +46,17 @@ class AppButton extends StatelessWidget {
     IconData? suffixIcon,
     void Function()? onPressed,
     bool Function(BuildContext context)? isLoading,
+    Color? color,
+    Color? textColor,
   }) => AppButton._(
     text: text,
     suffixIcon: suffixIcon,
     onPressed: onPressed,
     isLoading: isLoading,
-    borderColor: AppColors.primary,
-    textStyle: AppTextStyles.secondaryButton,
+    borderColor: color ?? AppColors.primary,
+    textStyle: AppTextStyles.secondaryButton.copyWith(
+      color: textColor,
+    ),
   );
 
   factory AppButton.hyperLink({
