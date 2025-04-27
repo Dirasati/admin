@@ -95,9 +95,9 @@ class _ClassCard extends StatelessWidget {
                           context.dialogWith<SchoolClassModel>(
                             child: BlocProvider<SchoolClassFormCubit>(
                               create:
-                                  (_) =>
-                                      UpdateSchoolClassCubit(class_)
-                                        ..init(),
+                                  (_) => UpdateSchoolClassCubit(
+                                    class_.id!,
+                                  )..init(),
                               child: const SchoolClassForm(),
                             ),
                             onResult: (class_) {

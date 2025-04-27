@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 part 'update_student_dto.dart';
 
-abstract class StudentDto extends FormDTO {
+abstract class StudentDto with FormDTO {
   final TextEditingController firstNameController;
   final TextEditingController lastNameController;
   final TextEditingController emailController;

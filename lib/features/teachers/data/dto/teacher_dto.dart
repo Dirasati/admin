@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 part 'create_teacher_dto.dart';
 part 'update_teacher_dto.dart';
 
-abstract class TeacherDto extends FormDTO {
+abstract class TeacherDto with FormDTO {
   final TextEditingController firstNameController;
   final TextEditingController lastNameController;
   final TextEditingController emailController;

@@ -11,5 +11,6 @@ class EditingController<T> extends ValueNotifier<T?> {
     }
   }
 
+
   void clear() => value = null;
 }

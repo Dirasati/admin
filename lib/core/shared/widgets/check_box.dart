@@ -28,12 +28,18 @@ class AppCheckBoxField extends StatelessWidget {
       validator: (_) => validator?.call(controller.value),
       builder:
           (state) => Row(
-            spacing: 12.w,
+            spacing: 4.w,
             children: [
-              Checkbox(
-                value: controller.value,
-                onChanged: (_) => controller.toggle(),
-                activeColor: Colors.blue,
+              ValueListenableBuilder(
+                valueListenable: controller,
+                builder: (_, value, __) {
+                  return Checkbox(
+                    value: value,
+                    onChanged: (value) {
+                      controller.value = value ?? false;
+                    },
+                  );
+                },
               ),
 
               Expanded(

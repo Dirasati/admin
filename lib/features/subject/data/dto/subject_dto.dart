@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 part 'create_subject_dto.dart';
 part 'update_subject_dto.dart';
 
-abstract class SubjectDto extends FormDTO {
+abstract class SubjectDto with FormDTO {
   final TextEditingController nameController;
   final EditingController<String> levelController;
   final EditingController<int> coefficientController;

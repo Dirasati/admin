@@ -24,7 +24,7 @@ abstract class SchoolClassApi {
     @Body() Map<String, dynamic> body,
   );
 
-  @PUT('/schoolClasses/{id}')
+  @PATCH('/schoolClasses/{id}')
   Future<SingleDataResponse> updateSchoolClass(
     @Path('id') String id,
     @Body() Map<String, dynamic> body,

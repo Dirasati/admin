@@ -14,15 +14,15 @@ class UpdateSchoolClassDto extends SchoolClassDTO {
           _schoolClass.level,
         ),
         planingController: EditingController<PdfDTO>(
-          _schoolClass.planing != null
-              ? RemotePdfDTO(_schoolClass.planing!)
+          _schoolClass.planning != null
+              ? RemotePdfDTO(_schoolClass.planning!)
               : null,
         ),
 
         teachingAssignments:
             ListEditingController<TeachingAssignmentDTO>(
-              _schoolClass.subjects
-                  ?.map((e) => TeachingAssignmentDTO.fromModel(e))
+              _schoolClass.teachingAssignments
+                  ?.map((e) => UpdateTeachingAssignmentDTO(e))
                   .toList(),
             ),
       );
@@ -37,14 +37,16 @@ class UpdateSchoolClassDto extends SchoolClassDTO {
       if (_schoolClass.level != levelController.value)
         'level': levelController.value,
 
-      if (_schoolClass.planing != planingUrl) 'planing': planingUrl,
+      if (_schoolClass.planning != planingUrl) 'planning': planingUrl,
 
-      // TODO add condition to check if the teaching assignments have changed
-      'teachingAssignments': await Future.wait(
-        teachingAssignments.value.map(
-          (assignment) => assignment.toMap(),
+      if (teachingAssignments.value.any(
+        (assignment) => assignment.isModified,
+      ))
+        'teachingAssignments': await Future.wait(
+          teachingAssignments.value.map(
+            (assignment) => assignment.toMap(),
+          ),
         ),
-      ),
     };
   }
 }

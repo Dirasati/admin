@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/shared/dto/form_dto.dart';
 
-class ForgotPasswordDto extends FormDTO {
+class ForgotPasswordDto with FormDTO {
   final TextEditingController emailController;
 
   ForgotPasswordDto({String? email})

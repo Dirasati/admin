@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 part 'create_paent_dto.dart';
 part 'update_paent_dto.dart';
 
-abstract class ParentDto extends FormDTO {
+abstract class ParentDto with FormDTO {
   final TextEditingController firstNameController;
   final TextEditingController lastNameController;
   final TextEditingController emailController;

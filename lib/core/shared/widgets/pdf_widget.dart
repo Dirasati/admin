@@ -1,3 +1,4 @@
+import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
@@ -23,6 +24,7 @@ class PdfWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius ?? 0),
         color: Colors.white,
+        border: Border.all(color: AppColors.black, width: 1),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius ?? 0),

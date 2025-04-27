@@ -10,6 +10,7 @@ class _Form extends StatelessWidget {
       key: dto.formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           AppTextField(
             controller: dto.nameController,
@@ -22,7 +23,7 @@ class _Form extends StatelessWidget {
                         : null,
           ),
           heightSpace(12),
-
+      
           AppDropDownField(
             controller: dto.levelController,
             itemsBuilder: (_) => AppConstants.levels,
@@ -37,20 +38,26 @@ class _Form extends StatelessWidget {
                         : null,
           ),
           heightSpace(12),
-
+      
           AppDropDownField(
             controller: dto.coefficientController,
             label: 'Coefficient'.tr(context),
             itemsBuilder: (_) => [for (int i = 1; i <= 8; i++) i],
             itemToString: (coefficient) => coefficient.toString(),
             isRequired: true,
+            validator:
+                (value) =>
+                    value == null ||
+                            ![for (int i = 1; i <= 8; i++) i]
+                                .contains(value)
+                        ? 'FieldIsRequired'.tr(context)
+                        : null,
           ),
           heightSpace(12),
-
+      
           AppCheckBoxField(
             controller: dto.isMainController,
             label: 'IsMain'.tr(context),
-            isRequired: true,
             validator:
                 (value) =>
                     value == null
@@ -58,7 +65,7 @@ class _Form extends StatelessWidget {
                         : null,
           ),
           heightSpace(24),
-
+      
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: AppButton.primary(
@@ -66,7 +73,8 @@ class _Form extends StatelessWidget {
               onPressed: context.read<SubjectFormCubit>().save,
               isLoading:
                   (ctx) => ctx.select(
-                    (SubjectFormCubit cubit) => cubit.state.isLoading,
+                    (SubjectFormCubit cubit) =>
+                        cubit.state.isLoading,
                   ),
             ),
           ),

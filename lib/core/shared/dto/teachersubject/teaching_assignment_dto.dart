@@ -4,8 +4,12 @@ import 'package:dirasaty_admin/core/shared/dto/form_dto.dart';
 import 'package:dirasaty_admin/core/shared/models/subject_teacher_model.dart';
 import 'package:dirasaty_admin/features/subject/data/model/subject_model.dart';
 import 'package:dirasaty_admin/features/teachers/data/model/teacher_model.dart';
+import 'package:equatable/equatable.dart';
 
-class TeachingAssignmentDTO extends FormDTO {
+part 'create_teaching_assignment_dto.dart';
+part 'update_teaching_assignment_dto.dart';
+
+abstract class TeachingAssignmentDTO extends Equatable with FormDTO {
   final EditingController<TeacherModel> teacherController;
   final EditingController<SubjectModel> subjectController;
 
@@ -14,13 +18,7 @@ class TeachingAssignmentDTO extends FormDTO {
     required this.subjectController,
   });
 
-  TeachingAssignmentDTO.fromModel(SubjectTeacherModel model)
-    : teacherController = EditingController<TeacherModel>(
-        model.teacher,
-      ),
-      subjectController = EditingController<SubjectModel>(
-        model.subject,
-      );
+  bool get isModified;
 
   @override
   void dispose() {
@@ -35,4 +33,7 @@ class TeachingAssignmentDTO extends FormDTO {
       'subject': subjectController.value?.id,
     }.withoutNullsOrEmpty();
   }
+
+  @override
+  List<Object?> get props => [subjectController.value];
 }

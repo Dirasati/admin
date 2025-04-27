@@ -6,6 +6,7 @@ import 'package:dirasaty_admin/core/di/locator.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
+
 void main() async {
   // Define the flavor
   FlavorConfig(

@@ -17,7 +17,7 @@ class CreateSchoolClassDto extends SchoolClassDTO {
       
       'level': levelController.value,
 
-      'planing': await planingController.value?.url,
+      'planning': await planingController.value?.url,
 
       'teachingAssignments': await Future.wait(
         teachingAssignments.value.map(

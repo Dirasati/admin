@@ -35,6 +35,7 @@ class SubjectFormView extends StatelessWidget {
           horizontal: 16.w,
           vertical: 12.h,
         ),
+        margin: EdgeInsets.symmetric(vertical: 16.h),
         width: 380.w,
         decoration: BoxDecoration(
           color: Colors.white,

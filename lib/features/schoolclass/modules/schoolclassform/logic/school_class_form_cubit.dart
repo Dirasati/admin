@@ -54,12 +54,22 @@ class CreateSchoolClassCubit
 
 class UpdateSchoolClassCubit
     extends SchoolClassFormCubit<UpdateSchoolClassDto> {
-  final SchoolClassModel _class;
+  final String _classId;
 
-  UpdateSchoolClassCubit(this._class) : super();
+  UpdateSchoolClassCubit(this._classId) : super();
 
   @override
-  void init() => emit(state._loaded(UpdateSchoolClassDto(_class)));
+  void init() async{
+    emit(state._loading());
+
+    final response = await _repository.getSchoolClass(_classId);
+
+    response.when(
+      success: (model) => emit(state._loaded(UpdateSchoolClassDto(model))),
+      error: (error) => emit(state._error(error.message)),
+    );
+    
+  }
 
   @override
   void _save() async {

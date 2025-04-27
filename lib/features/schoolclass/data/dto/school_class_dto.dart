@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 part 'create_school_class_dto.dart';
 part 'update_school_class_dto.dart';
 
-abstract class SchoolClassDTO extends FormDTO {
+abstract class SchoolClassDTO with FormDTO {
   final TextEditingController nameController;
   final EditingController<String> levelController;
   final EditingController<PdfDTO> planingController;
@@ -32,7 +32,7 @@ abstract class SchoolClassDTO extends FormDTO {
     for (var assignment in teachingAssignments.value) {
       assignment.dispose();
     }
-    
+
     teachingAssignments.dispose();
   }
 }

@@ -3,7 +3,7 @@ import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/extension/validator.extension.dart';
 import 'package:dirasaty_admin/core/shared/dto/form_dto.dart';
 
-class SignupDTO extends FormDTO {
+class SignupDTO with FormDTO {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final regionController = TextEditingController();

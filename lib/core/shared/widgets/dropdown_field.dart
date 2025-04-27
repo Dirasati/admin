@@ -40,6 +40,7 @@ class AppDropDownField<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = itemsBuilder(context);
     return SizedBox(
       width: width,
       child: FormField<T>(
@@ -95,8 +96,9 @@ class AppDropDownField<T> extends StatelessWidget {
               DropdownSearch<T>(
                 itemAsString: itemToString,
                 selectedItem: controller.value,
+                compareFn: (item1, item2) => item1 == item2,
 
-                items: (filter, loadProps) => itemsBuilder(context),
+                items: (filter, loadProps) => items,
 
                 onChanged:
                     (value) =>

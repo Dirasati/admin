@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-abstract class FormDTO {
+mixin  FormDTO {
   final formKey = GlobalKey<FormState>();
 
   bool validate() => formKey.currentState!.validate();
