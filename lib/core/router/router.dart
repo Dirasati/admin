@@ -1,3 +1,4 @@
+import 'package:dirasaty_admin/features/subject/config/subject_navigator.dart';
 import 'package:dirasaty_admin/features/parent/config/parent_navigator.dart';
 // ignore_for_file: non_constant_identifier_names
 
@@ -16,6 +17,7 @@ class AppRouter {
   final routerConfig = GoRouter(
     initialLocation: '/students', //TODO change to home
     routes: [
+      ...SubjectNavigator.routes,
       ...ParentNavigator.routes,
       ...AuthNavigator.routes,
       ...HomeNavigator.routes,

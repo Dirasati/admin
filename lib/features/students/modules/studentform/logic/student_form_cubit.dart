@@ -18,6 +18,12 @@ abstract class StudentFormCubit<T extends StudentDto>
   void load();
 
   void save();
+
+  @override
+  Future<void> close() {
+    state._dto?.dispose();
+    return super.close();
+  }
 }
 
 class CreateStudentCubit extends StudentFormCubit<CreateStudentDto> {
@@ -28,6 +34,8 @@ class CreateStudentCubit extends StudentFormCubit<CreateStudentDto> {
 
   @override
   void save() async {
+    if (state.isLoading || !dto.validate()) return;
+
     emit(state._loading());
 
     final result = await _studentRepo.createStudent(dto);
@@ -59,6 +67,8 @@ class UpdateStudentCubit extends StudentFormCubit<UpdateStudentDto> {
 
   @override
   void save() async {
+    if (state.isLoading || !dto.validate()) return;
+
     emit(state._loading());
 
     final result = await _studentRepo.updateStudent(dto);

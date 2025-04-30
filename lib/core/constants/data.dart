@@ -1,5 +1,5 @@
 abstract class AppConstants {
-  static List<String> levels = [
+  static const levels = [
     "1er primaire",
     "2eme primaire",
     "3eme primaire",
@@ -14,9 +14,18 @@ abstract class AppConstants {
     "3eme secondaire",
   ];
 
-  static List<String> parentRelations = [
-    "Father",
-    "Mother",
-    "Guardian",
+  static const subjects = [
+    "Math",
+    "Science",
+    "History",
+    "Geography",
+    "English",
+    "Arabic",
+    "French",
+    "Physical Education",
   ];
+
+  static const parentRelations = ["Father", "Mother", "Guardian"];
+
+  static const genders = ["Male", "Female"];
 }

@@ -1,9 +1,12 @@
+import 'package:dirasaty_admin/core/extension/date_formatter.extension.dart';
 import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/extension/snackbar.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
 import 'package:dirasaty_admin/core/shared/widgets/info_table.dart';
+import 'package:dirasaty_admin/core/shared/widgets/loading_widget.dart';
+import 'package:dirasaty_admin/core/shared/widgets/pagination_indicator.dart';
 import 'package:dirasaty_admin/core/shared/widgets/search_field.dart';
 import 'package:dirasaty_admin/core/themes/font_styles.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
@@ -29,17 +32,14 @@ class StudentsListView extends StatelessWidget {
       listener: (context, state) {
         state.onError(context.showErrorSnackbar);
       },
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 12.h),
-        child: Column(
-          children: [
-            _Header(),
-            heightSpace(16),
-            Expanded(child: _StudentsList()),
-            heightSpace(16),
-            _PaginationIndicator(),
-          ],
-        ),
+      child: Column(
+        children: [
+          _Header(),
+          heightSpace(16),
+          Expanded(child: _StudentsList()),
+          heightSpace(16),
+          _PaginationIndicator(),
+        ],
       ),
     );
   }

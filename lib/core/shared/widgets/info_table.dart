@@ -13,8 +13,8 @@ class InfoColumn<T> {
     this.flex = 1,
   }) : header = Padding(
          padding: EdgeInsets.symmetric(
-           vertical: 10.h,
-           horizontal: 10.w,
+           vertical: 12.h,
+           horizontal: 8.w,
          ),
          child: header,
        );
@@ -36,12 +36,13 @@ class InfoTable<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4.w),
+      padding: EdgeInsets.only(left: 8.w, right: 8.w, bottom: 12.h),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(8).r,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children:
@@ -54,30 +55,30 @@ class InfoTable<T> extends StatelessWidget {
                     )
                     .toList(),
           ),
-          const Divider(),
 
-          ...items.map(
-            (item) => Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 16.h,
-                    horizontal: 12.w,
-                  ),
-                  child: Row(
-                    children:
-                        columns
-                            .map(
-                              (column) => Expanded(
-                                flex: column.flex,
-                                child: column.itemBuilder(item),
-                              ),
-                            )
-                            .toList(),
-                  ),
-                ),
-                const Divider(),
-              ],
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return Column(
+                  children: [
+                    Row(
+                      children:
+                          columns
+                              .map(
+                                (column) => Expanded(
+                                  flex: column.flex,
+                                  child: column.itemBuilder(item),
+                                ),
+                              )
+                              .toList(),
+                    ),
+                    const Divider(),
+                  ],
+                );
+              },
+
+              itemCount: items.length,
             ),
           ),
         ],

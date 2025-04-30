@@ -1,6 +1,6 @@
 import 'package:dirasaty_admin/core/di/locator.dart';
 import 'package:dirasaty_admin/core/types/cubitstate/error.state.dart';
-import 'package:dirasaty_admin/features/parent/data/dto/paent_dto.dart';
+import 'package:dirasaty_admin/features/parent/data/dto/parent_dto.dart';
 import 'package:dirasaty_admin/features/parent/data/models/parent_model.dart';
 import 'package:dirasaty_admin/features/parent/data/repository/parent_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +18,12 @@ abstract class ParentFormCubit<T extends ParentDto>
   void loadDto();
 
   void save();
+
+  @override
+  Future<void> close() {
+    state._dto?.dispose();
+    return super.close();
+  }
 }
 
 class CreateParentCubit extends ParentFormCubit<CreateParentDto> {

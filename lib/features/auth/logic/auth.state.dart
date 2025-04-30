@@ -1,10 +1,7 @@
 part of 'auth.cubit.dart';
 
-class AuthState extends ErrorState {
-  
-
-  AuthState({ String? error})
-    : super(error);
+class AuthState extends ErrorCubitState {
+  AuthState({String? error}) : super(error);
 
   factory AuthState.initial() => AuthState();
 
@@ -14,8 +11,5 @@ class AuthState extends ErrorState {
   AuthState _error(String error) => _copyWith(error: error);
 
   AuthState _copyWith({bool? isAuthanticated, String? error}) =>
-      AuthState(
-       
-        error: error,
-      );
+      AuthState(error: error);
 }

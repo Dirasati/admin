@@ -1,34 +1,30 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:image_picker/image_picker.dart';
+import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'cloud_storage.service.dart';
 
-class CloudinaryService extends ImageCloudStorageService {
+mixin CloudinaryConfig {
+  //TODO : use dotenv package to load these values
   final String cloudName = "deljic9sr";
   final String apiKey = "248828733121325";
   final String apiSecret = "G2w253r_y0q7i7ardBnPA194Wjs";
   final String uploadPreset = 'learn_flutter';
 
-  @override
-  Future<String> upload(XFile file) async {
-    final url = Uri.parse(
-      "https://api.cloudinary.com/v1_1/$cloudName/image/upload",
-    );
+  Uri get uploadUrl;
 
+  Future<String> upload(Uint8List fileBytes, String fileName) async {
     // Prepare the data for the request
-    final request = http.MultipartRequest("POST", url)
+    final request = http.MultipartRequest("POST", uploadUrl)
       ..fields['upload_preset'] = uploadPreset;
-
-    // Add the file to the request
-    final bytes = await file.readAsBytes();
 
     request.files.add(
       http.MultipartFile.fromBytes(
         'file',
-        bytes.toList(),
-        filename: file.name,
+        fileBytes.toList(),
+        filename: fileName,
       ),
     );
 
@@ -44,4 +40,24 @@ class CloudinaryService extends ImageCloudStorageService {
       throw Exception("Failed to upload image: ${response.body}");
     }
   }
+}
+
+// * Cloudinary service for uploading images
+@LazySingleton(as: ImageCloudStorageService)
+class ImageCloudinaryService extends ImageCloudStorageService
+    with CloudinaryConfig {
+  @override
+  Uri get uploadUrl => Uri.parse(
+    "https://api.cloudinary.com/v1_1/$cloudName/image/upload",
+  );
+}
+
+// * Cloudinary service for uploading PDFs
+@LazySingleton(as: PdfCloudStorageService)
+class PdfCloudinaryService extends PdfCloudStorageService
+    with CloudinaryConfig {
+  @override
+  Uri get uploadUrl => Uri.parse(
+    "https://api.cloudinary.com/v1_1/$cloudName/raw/upload",
+  );
 }

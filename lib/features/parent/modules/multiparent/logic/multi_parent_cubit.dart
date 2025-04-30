@@ -22,7 +22,7 @@ class MultiParentCubit extends Cubit<MultiParentState> {
 
   void firstPage() {
     _filter.firstPage();
-    state._paginationResult.clear();
+    emit(MultiParentState.initial());
 
     emit(state._loading());
 

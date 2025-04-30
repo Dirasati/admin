@@ -1,8 +1,9 @@
+import 'dart:typed_data';
 
-import 'package:image_picker/image_picker.dart';
-
-abstract class _CloudStorageService<TFile> {
-  Future<String> upload(TFile file);
+abstract class CloudStorageService {
+  Future<String> upload(Uint8List fileBytes, String fileName);
 }
 
-abstract class ImageCloudStorageService extends _CloudStorageService<XFile> {}
+abstract class ImageCloudStorageService extends CloudStorageService {}
+
+abstract class PdfCloudStorageService extends CloudStorageService {}

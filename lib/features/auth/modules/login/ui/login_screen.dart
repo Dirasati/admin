@@ -3,6 +3,7 @@ import 'package:dirasaty_admin/core/shared/widgets/auth_screen.dart';
 import 'package:dirasaty_admin/core/shared/widgets/button.dart';
 import 'package:dirasaty_admin/core/shared/widgets/input_field.dart';
 import 'package:dirasaty_admin/features/auth/config/auth_navigator.dart';
+import 'package:dirasaty_admin/features/students/config/student_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
@@ -19,7 +20,9 @@ class LoginScreen extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         state.onError(context.showErrorDialog);
-        // state.onSuccess(() => context.offAll(HomeNavigator())); //TODO go to home
+        state.onSuccess(
+          () => context.offAll(StudentNavigator.students()),
+        ); //TODO go to home
       },
       child: AuthScreen(
         title: 'Login'.tr(context),
@@ -60,8 +63,7 @@ class _Form extends StatelessWidget {
           AppInputField.password(
             controller: dto.passwordController,
             hintText: 'Password'.tr(context),
-            validator:
-                (value) => dto.validatePassword(value, context),
+            validator: (value) => null,
           ),
           heightSpace(32),
           Row(

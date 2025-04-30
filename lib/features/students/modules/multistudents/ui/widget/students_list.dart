@@ -5,25 +5,27 @@ class _StudentsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final students = context.select(
-      (StudentsListCubit cubit) => cubit.students,
-    );
-    return InfoTable(
-      columns: _generateColumns(context),
-      items: students,
-    );
+    final cubit = context.watch<StudentsListCubit>();
+
+    return cubit.state.isLoading
+        ? AppLoadingWidget()
+        : InfoTable(
+          columns: _generateColumns(context),
+          items: cubit.students,
+        );
   }
 
   List<InfoColumn<StudentModel>> _generateColumns(
     BuildContext context,
   ) => [
     InfoColumn(
+      flex: 2,
       header: _buildTitle("ID".tr(context)),
       itemBuilder: (student) => _buildInfo(student.code!),
     ),
 
     InfoColumn(
-      flex: 6,
+      flex: 8,
       header: _buildTitle("Name".tr(context)),
       itemBuilder:
           (student) => Row(
@@ -33,26 +35,49 @@ class _StudentsList extends StatelessWidget {
                 radius: 24.r,
                 backgroundColor: AppColors.greyDark,
               ),
-              _buildInfo(student.name!),
+              _buildInfo(student.fullName),
             ],
           ),
     ),
 
     InfoColumn(
-      flex: 2,
+      flex: 3,
       header: _buildTitle("Gender".tr(context)),
-      itemBuilder:
-          (student) => _buildInfo("Male"), //TODO make it dynamic
+      itemBuilder: (student) => _buildInfo(student.gender ?? ''),
     ),
 
     InfoColumn(
-      flex: 2,
-      header: _buildTitle("Class".tr(context)),
-      itemBuilder:
-          (student) => _buildInfo(student.schoolClass?.name ?? ''),
+      flex: 3,
+      header: _buildTitle("Level".tr(context)),
+      itemBuilder: (student) => _buildInfo(student.level ?? ''),
     ),
 
     InfoColumn(
+      flex: 3,
+      header: _buildTitle("Inscription".tr(context)),
+      itemBuilder:
+          (student) => _buildInfo(
+            student.inscriptionDate?.toLocal().toDayMonthYear() ?? '',
+          ),
+    ),
+
+    InfoColumn(
+      flex: 3,
+      header: _buildTitle("Birth Day".tr(context)),
+      itemBuilder:
+          (student) => _buildInfo(
+            student.birthDate?.toLocal().toDayMonthYear() ?? '',
+          ),
+    ),
+
+    InfoColumn(
+      flex: 3,
+      header: _buildTitle("Address".tr(context)),
+      itemBuilder: (student) => _buildInfo(student.address ?? ''),
+    ),
+
+    InfoColumn(
+      flex: 1,
       header: SizedBox.shrink(),
       itemBuilder:
           (student) => PopupMenuButton(
@@ -68,12 +93,17 @@ class _StudentsList extends StatelessWidget {
   ) {
     return [
       PopupMenuItem(
-        child: Text("Edit".tr(context)),
+        child: Row(
+          spacing: 8.w,
+          children: [Icon(AppIcons.edit), Text("Edit".tr(context))],
+        ),
         onTap: () {
           context.dialogWith<StudentModel>(
             child: BlocProvider<StudentFormCubit>(
-              create: (context) => UpdateStudentCubit(student.id!),
-              child: StudentForm.update(),
+              create:
+                  (context) =>
+                      UpdateStudentCubit(student.id!)..load(),
+              child: StudentForm(),
             ),
             onResult: (student) {
               context.read<StudentsListCubit>().replaceStudent(
@@ -85,7 +115,13 @@ class _StudentsList extends StatelessWidget {
         },
       ),
       PopupMenuItem(
-        child: Text("Delete".tr(context)),
+        child: Row(
+          spacing: 8.w,
+          children: [
+            Icon(AppIcons.delete, color: AppColors.red),
+            Text("Delete".tr(context)),
+          ],
+        ),
         onTap: () {
           context.alertDialog(
             title: "Delete".tr(context),
@@ -110,6 +146,7 @@ class _StudentsList extends StatelessWidget {
   Text _buildTitle(String title) {
     return Text(
       title,
+      textAlign: TextAlign.start,
       style: AppTextStyles.large.copyWith(
         color: AppColors.blackLight,
       ),

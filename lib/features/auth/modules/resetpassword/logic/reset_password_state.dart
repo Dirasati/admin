@@ -4,7 +4,7 @@ part of 'reset_password_cubit.dart';
 
 enum _ResetPasswordStatus { initial, loading, success, error }
 
-class ResetPasswordState extends ErrorState {
+class ResetPasswordState extends ErrorCubitState {
   final NewPasswordDTO _dto;
   final _ResetPasswordStatus _status;
 

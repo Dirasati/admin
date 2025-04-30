@@ -3,7 +3,7 @@ import 'package:dirasaty_admin/core/extension/localization.extension.dart';
 import 'package:dirasaty_admin/core/extension/validator.extension.dart';
 import 'package:dirasaty_admin/core/shared/dto/form_dto.dart';
 
-class SignupDTO extends FormDTO {
+class SignupDTO with FormDTO {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final regionController = TextEditingController();
@@ -30,7 +30,7 @@ class SignupDTO extends FormDTO {
           : 'PasswordNotMatch'.tr(context);
 
   String? validateRegion(String? value, BuildContext context) =>
-      !value.isEmpty ? null : 'RequiredField'.tr(context);
+      !value.isNullOrEmpty ? null : 'RequiredField'.tr(context);
 
   @override
   void dispose() {

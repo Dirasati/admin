@@ -40,10 +40,12 @@ class AppDropDownField<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = itemsBuilder(context);
     return SizedBox(
       width: width,
       child: FormField<T>(
         validator: (value) => validator?.call(controller.value),
+        autovalidateMode: AutovalidateMode.onUnfocus,
         builder: (state) {
           return Column(
             children: [
@@ -94,12 +96,9 @@ class AppDropDownField<T> extends StatelessWidget {
               DropdownSearch<T>(
                 itemAsString: itemToString,
                 selectedItem: controller.value,
+                compareFn: (item1, item2) => item1 == item2,
 
-                autoValidateMode: AutovalidateMode.onUserInteraction,
-
-                items: (filter, loadProps) => itemsBuilder(context),
-
-                validator: (value) => validator?.call(value),
+                items: (filter, loadProps) => items,
 
                 onChanged:
                     (value) =>
