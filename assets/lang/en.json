@@ -31,6 +31,8 @@
     "TryAgain": "Try again",
     "CheckEmail": "Check your email",
     "TeacherInfo": "Teacher Information",
+    "UnjustifyAbsenceConfirmation": "Are you sure you want to mark this absence as unjustified?",
+    "JustifyAbsenceConfirmation": "Are you sure you want to mark this absence as justified?",
     "Send": "Send",
     "CheckOtpSuccess": "You have successfully verified your email address",
     "ResendOtp": "Resend OTP",

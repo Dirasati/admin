@@ -55,7 +55,7 @@ class AbsencesState extends ErrorCubitState {
 class _LoadingState extends AbsencesState {
   final AbsenceModel? absence;
   _LoadingState(this.absence, AbsencesState state)
-    : super(status: _AbsencesStatus.loading, result: state._result);
+    : super(status: _AbsencesStatus.loaded, result: state._result);
 
   @override
   bool isAbsenceLoading(AbsenceModel absence) =>

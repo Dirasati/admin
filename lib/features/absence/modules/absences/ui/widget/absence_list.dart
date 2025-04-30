@@ -57,7 +57,7 @@ class _AbsencesList extends StatelessWidget {
                     onPressed:
                         () => _showJustificationDialog(
                           context,
-                          absence.student,
+                          absence,
                         ),
                   )
                   : SizedBox.shrink(),
@@ -65,7 +65,7 @@ class _AbsencesList extends StatelessWidget {
 
     //Buttons to justify or unjustify the absence
     InfoColumn(
-      flex: 2,
+      flex: 3,
       header: _buildTitle('Is Justified'.tr(context)),
       itemBuilder: (absence) {
         return AppButton.secondary(
@@ -89,8 +89,22 @@ class _AbsencesList extends StatelessWidget {
               ),
 
           onPressed:
-              () =>
-                  _showJustificationDialog(context, absence.student),
+              () => context.alertDialog(
+                title: 'Justification'.tr(context),
+                content:
+                    absence.isJustified ?? false
+                        ? 'UnjustifyAbsenceConfirmation'.tr(context)
+                        : 'JustifyAbsenceConfirmation'.tr(context),
+                onConfirm:
+                    () =>
+                        absence.isJustified ?? false
+                            ? context
+                                .read<AbsencesCubit>()
+                                .markAbsenceUnjustified(absence)
+                            : context
+                                .read<AbsencesCubit>()
+                                .markAbsenceJustified(absence),
+              ),
         );
       },
     ),
@@ -98,9 +112,14 @@ class _AbsencesList extends StatelessWidget {
 
   void _showJustificationDialog(
     BuildContext context,
-    StudentModel? student,
+    AbsenceModel? absence,
   ) {
-    //TODO : show justification dialog
+    context.dialog(
+      child: BlocProvider(
+        create: (_) => JustificationCubit(absence?.id ?? ''),
+        child: AbsenceDetailsView(),
+      ),
+    );
   }
 
   Text _buildInfo(String info) {

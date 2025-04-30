@@ -11,6 +11,8 @@ import 'package:dirasaty_admin/core/shared/widgets/search_field.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/font_styles.dart';
 import 'package:dirasaty_admin/features/absence/data/model/absence_model.dart';
+import 'package:dirasaty_admin/features/absence/modules/justification/logic/justification_cubit.dart';
+import 'package:dirasaty_admin/features/absence/modules/justification/ui/absence_details_view.dart';
 import 'package:dirasaty_admin/features/students/data/model/student_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
