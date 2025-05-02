@@ -39,8 +39,8 @@ class _MaterialApp extends StatelessWidget {
       routerConfig: router.routerConfig,
       theme: ThemeData(fontFamily: FontFamily.poppins),
       supportedLocales: [
-        Locale('fr'), // French
         Locale('en'), // English
+        Locale('fr'), // French
         Locale('ar'), // Arabic
       ],
       localizationsDelegates: [
@@ -51,13 +51,13 @@ class _MaterialApp extends StatelessWidget {
       ],
       locale: local,
       localeResolutionCallback: (locale, supportedLocales) {
-        if (locale != null &&
-            supportedLocales.any(
-              (element) =>
-                  element.languageCode == locale.languageCode,
-            )) {
-          return locale;
-        }
+        // if (locale != null && 
+        //     supportedLocales.any(
+        //       (element) =>
+        //           element.languageCode == locale.languageCode,
+        //     )) {
+        //   return locale;
+        // }
         // If the current device locale is not supported, use the first one
         return supportedLocales.first;
       },

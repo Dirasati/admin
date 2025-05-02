@@ -31,4 +31,12 @@ abstract class AbsenceApi {
   Future<MessageResponse> deleteAbsence({
     @Path('id') required String id,
   });
+
+
+  @PATCH('/justifications/{id}')
+  Future<MessageResponse> updateJustification({
+    @Path('id') required String id,
+    @Body() required Map<String, dynamic> body,
+  });
+
 }

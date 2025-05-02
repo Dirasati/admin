@@ -81,4 +81,15 @@ class AbsencesCubit extends Cubit<AbsencesState> {
       error: (error) => emit(state._error(error.message)),
     );
   }
+
+  void updateAbsence(AbsenceModel absence) async {
+    emit(state._loadingAbsence(absence));
+
+    final response = await _repository.getAbsence(absence.id!);
+
+    response.when(
+      success: (result) => emit(state._replaceAbsence(result)),
+      error: (error) => emit(state._error(error.message)),
+    );
+  }
 }

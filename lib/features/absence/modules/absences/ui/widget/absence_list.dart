@@ -114,11 +114,14 @@ class _AbsencesList extends StatelessWidget {
     BuildContext context,
     AbsenceModel? absence,
   ) {
-    context.dialog(
+    context.dialogWith<bool>(
       child: BlocProvider(
         create: (_) => JustificationCubit(absence?.id ?? ''),
         child: AbsenceDetailsView(),
       ),
+      onResult: (isAccepted) {
+        context.read<AbsencesCubit>().updateAbsence(absence!);
+      },
     );
   }
 

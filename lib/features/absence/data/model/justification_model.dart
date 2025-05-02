@@ -20,6 +20,8 @@ class JustificationModel extends Equatable {
     this.status,
   });
 
+  bool get canAccept => status == "Pending";
+
   factory JustificationModel.fromJson(Map<String, dynamic> json) =>
       _$JustificationModelFromJson(json);
 

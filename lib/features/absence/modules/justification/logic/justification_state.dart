@@ -2,7 +2,7 @@
 
 part of 'justification_cubit.dart';
 
-enum _JustificationStatus { initial, loading, loaded, error }
+enum _JustificationStatus { initial, loading, loaded, saved, error }
 
 class JustificationState extends ErrorCubitState {
   final AbsenceModel? _absence;
@@ -41,10 +41,28 @@ class JustificationState extends ErrorCubitState {
     );
   }
 
+  JustificationState _saved(bool isAccepted) =>
+      _SavedState(this, isAccepted: isAccepted);
+
   JustificationState _error(String error) {
     return _copyWith(
       status: _JustificationStatus.error,
       error: error,
     );
   }
+
+  void onSave(ValueChanged<bool> onSaved) {}
+}
+
+class _SavedState extends JustificationState {
+  final bool isAccepted;
+
+  _SavedState(JustificationState state, {required this.isAccepted})
+    : super(
+        absence: state._absence,
+        status: _JustificationStatus.saved,
+      );
+
+  @override
+  void onSave(ValueChanged<bool> onSaved) => onSaved(isAccepted);
 }

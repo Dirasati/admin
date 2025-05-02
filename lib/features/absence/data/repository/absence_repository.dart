@@ -3,6 +3,7 @@ import 'package:dirasaty_admin/core/network/repo_base.dart';
 import 'package:dirasaty_admin/core/network/types/pagination_result.dart';
 import 'package:dirasaty_admin/features/absence/data/dto/absence_filter.dart';
 import 'package:dirasaty_admin/features/absence/data/model/absence_model.dart';
+import 'package:dirasaty_admin/features/absence/data/model/justification_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../source/absence_api.dart';
@@ -54,5 +55,14 @@ class AbsenceRepo extends NetworkRepository {
     return tryApiCall(
       () async => await _absenceApi.deleteAbsence(id: absence.id!),
     );
+  }
+
+  RepoResult<void> updateJustification(JustificationModel justification,  String status) {
+    return tryApiCall(() async {
+      await _absenceApi.updateJustification(
+        id: justification.id!,
+        body: {"status": status},
+      );
+    });
   }
 }

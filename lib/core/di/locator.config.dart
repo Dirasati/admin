@@ -43,18 +43,18 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.lazySingleton<_i518.SchoolClassRepo>(() => _i518.SchoolClassRepo());
+    gh.lazySingleton<_i169.AbsenceRepo>(() => _i169.AbsenceRepo());
     gh.lazySingleton<_i533.SubjectRepo>(() => _i533.SubjectRepo());
     gh.lazySingleton<_i305.TeachersRepo>(() => _i305.TeachersRepo());
     gh.lazySingleton<_i118.PdfPickerService>(() => _i118.PdfPickerService());
-    gh.lazySingleton<_i169.AbsenceRepo>(() => _i169.AbsenceRepo());
     gh.lazySingleton<_i542.SchoolClassApi>(
       () => _i542.SchoolClassApi(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i743.AbsenceApi>(() => _i743.AbsenceApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i325.SubjectApi>(() => _i325.SubjectApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i213.TeachersApi>(
       () => _i213.TeachersApi(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i743.AbsenceApi>(() => _i743.AbsenceApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i961.PdfCloudStorageService>(
       () => _i480.PdfCloudinaryService(),
     );
