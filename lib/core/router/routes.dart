@@ -33,6 +33,9 @@ abstract class AppRoutes {
   //* ABSENCE ROUTES
   static const String absences = '/absences';
 
+  //* PARENT ROUTES
+  static const String parents = '/parents';
+
 
 
 }
