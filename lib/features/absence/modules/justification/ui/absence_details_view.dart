@@ -222,7 +222,7 @@ class AbsenceDetailsView extends StatelessWidget {
           Text('Parent Information', style: AppTextStyles.xLarge),
           heightSpace(12),
 
-          _buildInfo('Name', parent.name),
+          _buildInfo('Name', parent.fullName),
           heightSpace(4),
           _buildInfo('Phone', parent.phone ?? ''),
           heightSpace(4),

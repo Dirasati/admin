@@ -18,7 +18,6 @@ class AppRouter {
     initialLocation: '/students', //TODO change to home
     routes: [
       ...SubjectNavigator.routes,
-      ...ParentNavigator.routes,
       ...AuthNavigator.routes,
       ...HomeNavigator.routes,
     ],

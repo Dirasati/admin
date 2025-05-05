@@ -19,9 +19,8 @@ class ParentModel extends UserModel {
   final String? address;
   final String? gender;
 
-  String get name => '$firstName $lastName';
+  String get fullName => '$firstName $lastName';
 
   factory ParentModel.fromJson(Map<String, dynamic> json) =>
       _$ParentModelFromJson(json);
-
 }

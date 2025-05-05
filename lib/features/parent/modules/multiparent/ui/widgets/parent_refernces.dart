@@ -91,7 +91,7 @@ class ParentRefernces extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  parent?.name ?? 'UNDEFINED'.tr(contxt),
+                  parent?.fullName ?? 'UNDEFINED'.tr(contxt),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.xLarge,

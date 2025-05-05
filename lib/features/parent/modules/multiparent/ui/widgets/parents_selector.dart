@@ -96,7 +96,7 @@ class _ParentsList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            parent.name,
+            parent.fullName,
             style: AppTextStyles.xLarge.copyWith(
               color: AppColors.black,
             ),
