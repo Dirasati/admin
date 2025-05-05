@@ -72,7 +72,7 @@ class _ParentsList extends StatelessWidget {
         onTap: () {
           context.dialogWith<ParentModel>(
             child: BlocProvider<ParentFormCubit>(
-              create: (_) => UpdateParentCubit(parent.id!),
+              create: (_) => UpdateParentCubit(parent.id!)..loadDto(),
               child: ParentForm(),
             ),
             onResult: context.read<MultiParentCubit>().replace,
