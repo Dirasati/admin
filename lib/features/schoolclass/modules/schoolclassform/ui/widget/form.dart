@@ -80,7 +80,6 @@ class _Form extends StatelessWidget {
               height: 550.h,
               width: double.infinity,
               borderRadius: 16.r,
-              isRequired: false,
             ),
 
             Align(

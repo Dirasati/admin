@@ -1,10 +1,12 @@
 import 'package:dirasaty_admin/core/extension/dialog.extension.dart';
 import 'package:dirasaty_admin/core/extension/localization.extension.dart';
+import 'package:dirasaty_admin/core/shared/classes/dimensions.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/list_generic_editingcontroller.dart';
 import 'package:dirasaty_admin/core/shared/dto/teachersubject/teaching_assignment_dto.dart';
 import 'package:dirasaty_admin/core/shared/widgets/dropdown_field.dart';
 import 'package:dirasaty_admin/core/themes/colors.dart';
 import 'package:dirasaty_admin/core/themes/font_styles.dart';
+import 'package:dirasaty_admin/core/themes/icons.dart';
 import 'package:dirasaty_admin/features/subject/data/model/subject_model.dart';
 import 'package:dirasaty_admin/features/subject/modules/subjectform/logic/subject_form_cubit.dart';
 import 'package:dirasaty_admin/features/subject/modules/subjectform/ui/subject_form_view.dart';
@@ -185,6 +187,29 @@ class TeacherAssignmentField extends StatelessWidget {
                   );
                 },
               ),
+
+              if (state.hasError) ...[
+                heightSpace(4),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    widthSpace(8),
+                    Icon(
+                      AppIcons.error_outline,
+                      color: AppColors.red,
+                      size: 20.r,
+                    ),
+                    widthSpace(8),
+                    Expanded(
+                      child: Text(
+                        state.errorText!,
+                        style: AppTextStyles.error,
+                      ),
+                    ),
+                    widthSpace(8),
+                  ],
+                ),
+              ],
             ],
           ),
     );

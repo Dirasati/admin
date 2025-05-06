@@ -36,6 +36,9 @@ abstract class AppRoutes {
   //* PARENT ROUTES
   static const String parents = '/parents';
 
+  //* ADMIN ROUTES
+  static const String admins = '/admins';
+
 
 
 }

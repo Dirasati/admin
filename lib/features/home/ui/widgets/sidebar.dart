@@ -53,6 +53,12 @@ class _SideBar extends StatelessWidget {
       context: context,
     ),
     _SideBarItem(
+      title: 'Admins'.tr(context),
+      icon: AppIcons.person,
+      onTap: () => context.to(AdminsNavigator.admins()),
+      context: context,
+    ),
+    _SideBarItem(
       title: 'Teachers'.tr(context),
       icon: AppIcons.person_outline,
       onTap: () => context.to(TeachersNavigator.teachers()),
