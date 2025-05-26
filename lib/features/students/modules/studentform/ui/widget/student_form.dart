@@ -22,7 +22,7 @@ class _StudentForm extends StatelessWidget {
                       ? "InvalidName".tr(context)
                       : null,
         ),
-    
+
         AppTextField(
           controller: dto.lastNameController,
           label: "LastName".tr(context),
@@ -34,7 +34,7 @@ class _StudentForm extends StatelessWidget {
                       ? "InvalidName".tr(context)
                       : null,
         ),
-    
+
         AppTextField(
           controller: dto.emailController,
           label: "Email".tr(context),
@@ -46,7 +46,7 @@ class _StudentForm extends StatelessWidget {
                       ? null
                       : "InvalidEmail".tr(context),
         ),
-    
+
         AppTextField(
           controller: dto.codeController,
           label: "Code".tr(context),
@@ -58,7 +58,7 @@ class _StudentForm extends StatelessWidget {
                       ? null
                       : "InvalidCode".tr(context),
         ),
-    
+
         AppDropDownField(
           controller: dto.levelController,
           itemsBuilder: (_) => AppConstants.levels,
@@ -72,7 +72,7 @@ class _StudentForm extends StatelessWidget {
                       ? null
                       : "InvalidLevel".tr(context),
         ),
-    
+
         AppDateField(
           controller: dto.birthDateController,
           label: "BirthDate".tr(context),
@@ -86,7 +86,7 @@ class _StudentForm extends StatelessWidget {
                       ? null
                       : "InvalidBirthDate".tr(context),
         ),
-    
+
         AppTextField(
           controller: dto.phoneController,
           label: "Phone".tr(context),
@@ -98,7 +98,7 @@ class _StudentForm extends StatelessWidget {
                       ? null
                       : "InvalidPhone".tr(context),
         ),
-    
+
         AppDateField(
           controller: dto.inscriptionDateController,
           label: "InscriptionDate".tr(context),
@@ -112,7 +112,7 @@ class _StudentForm extends StatelessWidget {
                       ? null
                       : "InvalidInscriptionDate".tr(context),
         ),
-    
+
         AppDropDownField(
           controller: dto.genderController,
           label: "Gender".tr(context),
@@ -126,7 +126,7 @@ class _StudentForm extends StatelessWidget {
                       ? null
                       : "InvalidGender".tr(context),
         ),
-    
+
         AppTextField(
           controller: dto.addressController,
           label: "Address".tr(context),
@@ -138,6 +138,37 @@ class _StudentForm extends StatelessWidget {
                       ? null
                       : "InvalidAddress".tr(context),
         ),
+
+        if (dto is CreateStudentDto) ...[
+          AppTextField(
+            controller: dto.amountController,
+            label: "Amount".tr(context),
+            isRequired: true,
+            width: 380.w,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            validator:
+                (value) =>
+                    value != null &&
+                            value.isNotEmpty &&
+                            int.tryParse(value) != null
+                        ? null
+                        : "InvalidAmount".tr(context),
+          ),
+
+          AppDropDownField(
+            controller: dto.paymentModeController,
+            itemsBuilder: (_) => AppConstants.paymentModes,
+            itemToString: (mode) => mode.tr(context),
+            label: "PaymentMode".tr(context),
+            isRequired: true,
+            width: 380.w,
+            validator:
+                (value) =>
+                    AppConstants.paymentModes.contains(value)
+                        ? null
+                        : "InvalidPaymentMode".tr(context),
+          ),
+        ],
       ],
     );
   }

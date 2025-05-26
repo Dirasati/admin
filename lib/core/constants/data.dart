@@ -1,17 +1,17 @@
 abstract class AppConstants {
   static const levels = [
-    "1er primaire",
-    "2eme primaire",
-    "3eme primaire",
-    "4eme primaire",
-    "5eme primaire",
-    "1er moyen",
-    "2eme moyen",
-    "3eme moyen",
-    "4eme moyen",
-    "1er secondaire",
-    "2eme secondaire",
-    "3eme secondaire",
+    "1st Primary",
+    "2nd Primary",
+    "3rd Primary",
+    "4th Primary",
+    "5th Primary",
+    "1st Middle",
+    "2nd Middle",
+    "3rd Middle",
+    "4th Middle",
+    "1st Secondary",
+    "2nd Secondary",
+    "3rd Secondary",
   ];
 
   static const subjects = [
@@ -23,6 +23,13 @@ abstract class AppConstants {
     "Arabic",
     "French",
     "Physical Education",
+  ];
+
+  static const paymentModes = [
+    "yearly",
+    "semester",
+    "quarterly",
+    "monthly",
   ];
 
   static const parentRelations = ["Father", "Mother", "Guardian"];

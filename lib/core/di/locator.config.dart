@@ -24,6 +24,10 @@ import 'package:dirasaty_admin/features/admins/data/repository/admins_repository
     as _i974;
 import 'package:dirasaty_admin/features/admins/data/source/admins_api.dart'
     as _i77;
+import 'package:dirasaty_admin/features/payment/data/repository/payment_repository.dart'
+    as _i862;
+import 'package:dirasaty_admin/features/payment/data/source/payment_api.dart'
+    as _i754;
 import 'package:dirasaty_admin/features/schoolclass/data/repository/school_class_repository.dart'
     as _i518;
 import 'package:dirasaty_admin/features/schoolclass/data/source/school_class_api.dart'
@@ -49,18 +53,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i518.SchoolClassRepo>(() => _i518.SchoolClassRepo());
     gh.lazySingleton<_i169.AbsenceRepo>(() => _i169.AbsenceRepo());
     gh.lazySingleton<_i533.SubjectRepo>(() => _i533.SubjectRepo());
+    gh.lazySingleton<_i974.AdminsRepo>(() => _i974.AdminsRepo());
+    gh.lazySingleton<_i862.PaymentRepo>(() => _i862.PaymentRepo());
     gh.lazySingleton<_i305.TeachersRepo>(() => _i305.TeachersRepo());
     gh.lazySingleton<_i118.PdfPickerService>(() => _i118.PdfPickerService());
-    gh.lazySingleton<_i974.AdminsRepo>(() => _i974.AdminsRepo());
     gh.lazySingleton<_i542.SchoolClassApi>(
       () => _i542.SchoolClassApi(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i743.AbsenceApi>(() => _i743.AbsenceApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i325.SubjectApi>(() => _i325.SubjectApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i77.AdminsApi>(() => _i77.AdminsApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i754.PaymentApi>(() => _i754.PaymentApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i213.TeachersApi>(
       () => _i213.TeachersApi(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i77.AdminsApi>(() => _i77.AdminsApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i961.PdfCloudStorageService>(
       () => _i480.PdfCloudinaryService(),
     );

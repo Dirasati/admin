@@ -13,7 +13,7 @@ void main() async {
   // Define the flavor
   FlavorConfig(
     name: "DEVELOPMENT",
-    variables: {"baseUrl": "http://192.168.1.9:3000/api/v1"},
+    variables: {"baseUrl": "http://localhost:3000/api/v1"},
   );
 
   // Initialize the ScreenUtil

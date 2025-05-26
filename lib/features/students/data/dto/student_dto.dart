@@ -54,8 +54,13 @@ abstract class StudentDto with FormDTO {
 }
 
 class CreateStudentDto extends StudentDto {
+  final TextEditingController amountController;
+  final EditingController<String> paymentModeController;
+
   CreateStudentDto()
-    : super(
+    : amountController = TextEditingController(),
+      paymentModeController = EditingController<String>(),
+      super(
         firstNameController: TextEditingController(),
         lastNameController: TextEditingController(),
         emailController: TextEditingController(),
@@ -88,6 +93,8 @@ class CreateStudentDto extends StudentDto {
       'parentsReferences': await Future.wait(
         parentsReferencesController.value.map((e) => e.toMap()),
       ),
+      'amount': int.tryParse(amountController.text),
+      'paymentMode': paymentModeController.value,
     }.withoutNullsOrEmpty();
   }
 }
