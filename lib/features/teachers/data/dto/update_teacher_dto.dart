@@ -30,9 +30,15 @@ class UpdateTeacherDto extends TeacherDto {
         subjectsController: ListEditingController<String>(
           _teacher.subjects,
         ),
+
+        planningController: EditingController<PdfDTO>(
+          _teacher.planning != null
+              ? RemotePdfDTO(_teacher.planning!)
+              : null,
+        ),
       );
 
-      String get id => _teacher.id!;
+  String get id => _teacher.id!;
 
   @override
   Future<Map<String, dynamic>> toMap() async {

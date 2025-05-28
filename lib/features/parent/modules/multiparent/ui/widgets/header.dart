@@ -16,7 +16,7 @@ class _Header extends StatelessWidget {
         ),
         const Spacer(),
         AppButton.primary(
-          text: 'AddTeacher'.tr(context),
+          text: 'Add Parent'.tr(context),
           onPressed: () {
             context.dialogWith<ParentModel>(
               child: BlocProvider<ParentFormCubit>(

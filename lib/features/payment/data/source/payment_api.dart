@@ -11,18 +11,23 @@ abstract class PaymentApi {
   @factoryMethod
   factory PaymentApi(Dio dio) = _PaymentApi;
 
-  @GET('tuition-fee')
+  @GET('/tuition-fee')
   Future<PaginatedDataResponse> getTuitionFee({
     @Queries() required Map<String, dynamic> queries,
   });
 
-  @GET('payment/{tuitionFeeId}')
+  @GET('/payment/{tuitionFeeId}')
   Future<PaginatedDataResponse> getPayments({
     @Path('tuitionFeeId') required String tuitionFeeId,
     @Queries() required Map<String, dynamic> queries,
   });
 
-  @POST('payment')
+  @GET('/tuition-fee/{tuitionFeeId}')
+  Future<SingleDataResponse> getTuitionFeeById({
+    @Path('tuitionFeeId') required String tuitionFeeId,
+  });
+
+  @POST('/payment')
   Future<SingleDataResponse> createPayment({
     @Body() required Map<String, dynamic> body,
   });

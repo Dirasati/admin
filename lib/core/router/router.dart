@@ -1,4 +1,3 @@
-import 'package:dirasaty_admin/features/payment/config/payment_navigator.dart';
 import 'package:dirasaty_admin/features/subject/config/subject_navigator.dart';
 // ignore_for_file: non_constant_identifier_names
 
@@ -16,7 +15,7 @@ part 'navigator_base.dart';
 class AppRouter {
   final routerConfig = GoRouter(
     initialLocation: '/students', //TODO change to home
-    routes: [...PaymentNavigator.routes, 
+    routes: [
       ...SubjectNavigator.routes,
       ...AuthNavigator.routes,
       ...HomeNavigator.routes,

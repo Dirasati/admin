@@ -37,17 +37,17 @@ class PaymentDto with FormDTO {
     return _payment != null
         ? {
           if (_payment.tuitionFee != tuitionFeeController.value)
-            'tuitionFee': tuitionFeeController.value?.id,
+            'tuitionFeeId': tuitionFeeController.value?.id,
 
           if (_payment.parent != parentController.value)
-            'parent': parentController.value?.id,
+            'parentId': parentController.value?.id,
 
           if (_payment.amount != int.tryParse(amountController.text))
             'amount': int.tryParse(amountController.text),
         }
         : {
-          'tuitionFee': tuitionFeeController.value?.id,
-          'parent': parentController.value?.id,
+          'tuitionFeeId': tuitionFeeController.value?.id,
+          'parentId': parentController.value?.id,
           'amount': int.tryParse(amountController.text),
         };
   }

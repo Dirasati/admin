@@ -8,6 +8,7 @@ import 'package:dirasaty_admin/core/themes/icons.dart';
 import 'package:dirasaty_admin/features/absence/config/absence_navigator.dart';
 import 'package:dirasaty_admin/features/admins/config/admins_navigator.dart';
 import 'package:dirasaty_admin/features/parent/config/parent_navigator.dart';
+import 'package:dirasaty_admin/features/payment/config/payment_navigator.dart';
 import 'package:dirasaty_admin/features/schoolclass/config/school_class_navigator.dart';
 import 'package:dirasaty_admin/features/students/config/student_navigator.dart';
 import 'package:dirasaty_admin/features/teachers/config/teachers_navigator.dart';

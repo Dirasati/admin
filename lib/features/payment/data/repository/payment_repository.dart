@@ -45,13 +45,23 @@ class PaymentRepo extends NetworkRepository {
     });
   }
 
-  RepoResult<PaymentModel> createPayment(PaymentDto dto) {
+  RepoResult<TuitionFeeModel> createPayment(PaymentDto dto) {
     return tryApiCall(() async {
       final response = await _paymentApi.createPayment(
         body: await dto.toMap(),
       );
 
-      return PaymentModel.fromJson(response.data!);
+      return TuitionFeeModel.fromJson(response.data!);
+    });
+  }
+
+  RepoResult<TuitionFeeModel> getTuitionFeeById(String tuitionFeeId) {
+    return tryApiCall(() async {
+      final response = await _paymentApi.getTuitionFeeById(
+        tuitionFeeId: tuitionFeeId,
+      );
+
+      return TuitionFeeModel.fromJson(response.data!);
     });
   }
 }

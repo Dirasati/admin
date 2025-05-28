@@ -1,6 +1,7 @@
 import 'package:dirasaty_admin/core/extension/map.extension.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 import 'package:dirasaty_admin/core/shared/classes/editioncontollers/list_generic_editingcontroller.dart';
+import 'package:dirasaty_admin/core/shared/dto/filedto/file_dto.dart';
 import 'package:dirasaty_admin/core/shared/dto/form_dto.dart';
 import 'package:dirasaty_admin/features/teachers/data/model/teacher_model.dart';
 import 'package:flutter/widgets.dart';
@@ -17,6 +18,7 @@ abstract class TeacherDto with FormDTO {
   final EditingController<DateTime> birthDateController;
   final EditingController<String> genderController;
   final ListEditingController<String> subjectsController;
+  final EditingController<PdfDTO> planningController;
 
   TeacherDto({
     required this.firstNameController,
@@ -27,6 +29,7 @@ abstract class TeacherDto with FormDTO {
     required this.birthDateController,
     required this.genderController,
     required this.subjectsController,
+    required this.planningController,
   });
 
   @override
@@ -37,5 +40,6 @@ abstract class TeacherDto with FormDTO {
     addressController.dispose();
     phoneController.dispose();
     birthDateController.dispose();
+    
   }
 }

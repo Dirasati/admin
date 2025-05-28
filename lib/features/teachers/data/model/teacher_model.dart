@@ -10,12 +10,14 @@ class TeacherModel extends UserModel {
   final String? gender;
   final String? phone;
   final String? address;
+  final String? planning;
 
   const TeacherModel({
     super.id,
     super.firstName,
     super.lastName,
     super.email,
+    this.planning,
     this.address,
     this.birthDate,
     this.gender,

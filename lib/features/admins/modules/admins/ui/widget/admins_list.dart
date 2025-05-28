@@ -25,7 +25,8 @@ class _AdminsList extends StatelessWidget {
               CircleAvatar(
                 radius: 24.r,
                 backgroundColor: AppColors.greyDark,
-              ),
+              ), 
+              widthSpace(12),
               _buildInfo(admin.fullName),
             ],
           ),

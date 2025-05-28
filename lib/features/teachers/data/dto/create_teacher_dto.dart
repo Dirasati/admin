@@ -13,6 +13,7 @@ class CreateTeacherDto extends TeacherDto {
         ),
         genderController: EditingController<String>('Male'),
         subjectsController: ListEditingController<String>(),
+        planningController: EditingController<PdfDTO>(),
       );
 
   @override

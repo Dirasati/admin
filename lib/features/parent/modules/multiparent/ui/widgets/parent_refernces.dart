@@ -121,16 +121,20 @@ class ParentRefernces extends StatelessWidget {
                 AppIcons.phone: parent?.phone,
                 AppIcons.email: parent?.email,
               }.entries.map(
-                (e) => Row(
-                  spacing: 4.w,
-                  children: [
-                    Icon(e.key, size: 24.r),
-
-                    Text(
-                      e.value ?? 'UNDEFINED'.tr(contxt),
-                      style: AppTextStyles.small,
-                    ),
-                  ],
+                (e) => Expanded(
+                  child: Row(
+                    spacing: 4.w,
+                    children: [
+                      Icon(e.key, size: 24.r),
+                  
+                      Expanded(
+                        child: Text(
+                          e.value ?? 'UNDEFINED'.tr(contxt),
+                          style: AppTextStyles.small,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

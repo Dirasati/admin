@@ -46,12 +46,12 @@ class _SideBar extends StatelessWidget {
   }
 
   List<_SideBarItem> _sideBarItems(BuildContext context) => [
-    _SideBarItem(
-      title: 'Dashboard'.tr(context),
-      icon: AppIcons.dashboard,
-      onTap: () {},
-      context: context,
-    ),
+    // _SideBarItem(
+    //   title: 'Dashboard'.tr(context),
+    //   icon: AppIcons.dashboard,
+    //   onTap: () {},
+    //   context: context,
+    // ),
     _SideBarItem(
       title: 'Admins'.tr(context),
       icon: AppIcons.person,
@@ -88,6 +88,13 @@ class _SideBar extends StatelessWidget {
       title: 'Absences'.tr(context),
       icon: AppIcons.cached,
       onTap: () => context.to(AbsenceNavigator.absences()),
+      context: context,
+    ),
+
+    _SideBarItem(
+      title: 'Tuition Fees'.tr(context),
+      icon: AppIcons.payment,
+      onTap: () => context.to(PaymentNavigator.tuitionFees()),
       context: context,
     ),
   ];

@@ -11,7 +11,8 @@ class _AuthTokenInterceptor extends InterceptorsWrapper {
 
     if (accessToken != null) {
       options.headers['Authorization'] = 'Bearer $accessToken';
-      return handler.next(options);
+      
+      
     }
 
     super.onRequest(options, handler);

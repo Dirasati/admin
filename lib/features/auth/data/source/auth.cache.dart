@@ -20,24 +20,18 @@ class SecureAuthCache extends AuthCache {
   @override
   Future<void> setTokens(AuthTokens tokens) async {
     await Future.wait([
-      _cacheHelper.setSecuredString(
-        'ACCESS_TOKEN',
-        tokens.accessToken,
-      ),
-      _cacheHelper.setSecuredString(
-        'REFRESH_TOKEN',
-        tokens.refreshToken,
-      ),
+      _cacheHelper.setData('ACCESS_TOKEN', tokens.accessToken),
+      _cacheHelper.setData('REFRESH_TOKEN', tokens.refreshToken),
     ]);
   }
 
   @override
   Future<String?> get accessToken async =>
-      await _cacheHelper.getSecuredString('ACCESS_TOKEN');
+      await _cacheHelper.getString('ACCESS_TOKEN');
 
   @override
   Future<String?> get refreshToken async =>
-      await _cacheHelper.getSecuredString('REFRESH_TOKEN');
+      await _cacheHelper.getString('REFRESH_TOKEN');
 
   @override
   Future<void> clearTokens() async {

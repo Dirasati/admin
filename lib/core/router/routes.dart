@@ -39,6 +39,9 @@ abstract class AppRoutes {
   //* ADMIN ROUTES
   static const String admins = '/admins';
 
+  //* PAYMENT ROUTES
+  static const String tuitionFees = '/tuition-fees';
+
 
 
 }
